@@ -1,0 +1,30 @@
+INSTRUÇÕES PARA PUBLICAR NO GITHUB PAGES
+
+1. Crie um repositório no GitHub:
+   - Vá em https://github.com/new
+   - Nome sugerido: uaisint-presentation
+   - Deixe público
+   - NÃO marque "Initialize this repository with a README"
+
+2. No terminal, execute estes comandos:
+
+   # Substitua YOUR_GITHUB_USERNAME pelo seu usuário do GitHub
+   git remote add origin https://github.com/YOUR_GITHUB_USERNAME/uaisint-presentation.git
+   
+   # Enviar para o GitHub
+   git push -u origin main
+
+3. Configure o GitHub Pages:
+   - No repositório, vá em Settings
+   - No menu lateral, clique em Pages
+   - Em "Source", escolha "Deploy from a branch"
+   - Em "Branch", selecione "main" e "/ (root)"
+   - Clique em Save
+
+4. Após alguns minutos, acesse:
+   https://YOUR_GITHUB_USERNAME.github.io/uaisint-presentation/
+
+OBSERVAÇÕES:
+- O projeto já está com git iniciado e commit feito
+- Só precisa adicionar o remote e fazer push
+- A estrutura está pronta para GitHub Pages

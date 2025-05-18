@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA & OSINT — A Nova Fronteira Digital | UAISINT</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --dark-bg: #0a0e27;
+            --darker-bg: #060818;
+            --card-bg: rgba(17, 24, 39, 0.8);
+            --accent-cyan: #00d2ff;
+            --accent-purple: #667eea;
+            --accent-pink: #f5576c;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: var(--dark-bg);
+            overflow: hidden;
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 400%;
+            height: 400%;
+            top: -150%;
+            left: -150%;
+            background: radial-gradient(circle at center, transparent 0%, var(--accent-purple) 15%, transparent 30%, var(--accent-cyan) 45%, transparent 60%, var(--accent-pink) 75%, transparent 90%);
+            animation: rotate 45s linear infinite;
+            opacity: 0.05;
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 20s infinite;
+            box-shadow: 0 0 6px var(--accent-cyan);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Section */
+        .hero-content {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 20px;
+            animation: float-in 1s ease-out;
+        }
+
+        @keyframes float-in {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            animation: title-reveal 1.2s ease-out;
+        }
+
+        @keyframes title-reveal {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: float-in 1.4s ease-out;
+        }
+
+        /* Mode Selector */
+        .mode-selector {
+            animation: float-in 1.6s ease-out;
+        }
+
+        .mode-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .mode-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .mode-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .mode-option {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mode-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .mode-option:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--accent-purple);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .mode-option:hover::before {
+            opacity: 0.1;
+        }
+
+        .mode-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .mode-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .mode-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Event Badge */
+        /* Floating Info Button */
+        .floating-info {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .floating-button {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .floating-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
+        }
+
+        .floating-button i {
+            font-size: 24px;
+            color: white;
+        }
+
+        .info-content {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 25px;
+            min-width: 320px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .info-content.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .event-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 15px;
+        }
+
+        .event-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-cyan);
+            padding: 3px;
+        }
+
+        .event-details {
+            flex: 1;
+        }
+
+        .event-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .event-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .event-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .event-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .event-link:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: var(--accent-purple);
+            transform: translateX(5px);
+        }
+
+        .event-link i {
+            font-size: 18px;
+            color: var(--accent-cyan);
+            width: 20px;
+            text-align: center;
+        }
+
+        .event-link span {
+            font-size: 0.95rem;
+        }
+        
+        /* Developer Styles */
+        .developer-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 15px;
+        }
+
+        .developer-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .developer-details {
+            flex: 1;
+        }
+
+        .developer-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .developer-role {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .developer-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--accent-purple);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .developer-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .developer-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .developer-link:hover {
+            color: var(--accent-cyan);
+        }
+
+        @keyframes slide-in-left {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slide-in-right {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .event-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .event-badge img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-cyan);
+            padding: 2px;
+        }
+
+        .event-info h3 {
+            font-size: 1rem;
+            margin-bottom: 3px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .event-info p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--glass-border);
+            border-top: 3px solid var(--accent-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            animation: pulse 1.5s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Matrix Effect */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .matrix-column {
+            position: absolute;
+            top: -100%;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #00ff00;
+            line-height: 12px;
+            animation: matrix-fall linear infinite;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        @keyframes matrix-fall {
+            to {
+                transform: translateY(200vh);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+
+
+            .hero-title {
+                font-size: clamp(2rem, 5vw, 3rem);
+            }
+
+            .mode-options {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .mode-card {
+                padding: 20px;
+            }
+
+            .floating-info {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .floating-button {
+                width: 50px;
+                height: 50px;
+            }
+
+            .info-content {
+                right: -10px;
+                left: -250px;
+                min-width: 280px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .main-container {
+                max-width: 1000px;
+            }
+        }
+        
+        /* Language Selector */
+        .lang-selector {
+            display: flex;
+            gap: 10px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 8px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .lang-btn.active {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--accent-purple);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-text" data-i18n="loading.text">Carregando experiência...</p>
+        </div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    
+    <!-- Matrix Effect -->
+    <div class="matrix-bg" id="matrixBg"></div>
+    
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Language Selector -->
+    <div class="lang-selector">
+        <button class="lang-btn active" data-lang="pt">PT</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Hero Section -->
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-shield-alt"></i>
+                <span data-i18n="hero.badge">INTELIGÊNCIA DIGITAL</span>
+            </div>
+            
+            <h1 class="hero-title">
+                <span data-i18n="hero.title1">IA & OSINT</span><br>
+                <span class="gradient-text" data-i18n="hero.title2">A Nova Fronteira</span>
+            </h1>
+            
+            <p class="hero-subtitle" data-i18n="hero.subtitle">
+                Descubra como a Inteligência Artificial está revolucionando
+                a coleta e análise de informações abertas
+            </p>
+            
+            <!-- Mode Selector -->
+            <div class="mode-selector">
+                <div class="mode-card">
+                    <h2 class="mode-title" data-i18n="mode.title">Escolha seu modo de visualização</h2>
+                    <div class="mode-options">
+                        <div class="mode-option" onclick="startPresentation()">
+                            <i class="fas fa-desktop mode-icon"></i>
+                            <h3 class="mode-name" data-i18n="mode.presentation">Apresentação</h3>
+                            <p class="mode-desc" data-i18n="mode.presentationDesc">
+                                Slides interativos para sua palestra
+                            </p>
+                        </div>
+                        <div class="mode-option" onclick="startWebsite()">
+                            <i class="fas fa-globe mode-icon"></i>
+                            <h3 class="mode-name" data-i18n="mode.website">Site Completo</h3>
+                            <p class="mode-desc" data-i18n="mode.websiteDesc">
+                                Explore todo o conteúdo em formato web
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Info Button -->
+    <div class="floating-info">
+        <button class="floating-button" onclick="toggleInfo()">
+            <i class="fas fa-info"></i>
+        </button>
+        <div class="info-content" id="infoContent">
+            <div class="developer-header">
+                <div class="developer-avatar">AH</div>
+                <div class="developer-details">
+                    <h3 class="developer-name">Anderson Henrique da Silva</h3>
+                    <p class="developer-role">Arquiteto Digital</p>
+                </div>
+            </div>
+            <div class="developer-skills">
+                <span class="skill-tag">IA</span>
+                <span class="skill-tag">Machine Learning</span>
+                <span class="skill-tag">Cybersegurança</span>
+                <span class="skill-tag">OSINT</span>
+            </div>
+            <div class="developer-links">
+                <a href="https://linkedin.com/in/anderson-h-silva95" target="_blank" class="developer-link">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/anderson-ufrj" target="_blank" class="developer-link">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="mailto:andersonhs27@gmail.com" class="developer-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+            <hr style="margin: 20px 0; border: 1px solid var(--glass-border);">
+            <div class="event-header">
+                <img src="./assets/uaisint_logo.png" alt="UAISINT" class="event-logo">
+                <div class="event-details">
+                    <h3 class="event-title">UAISINT</h3>
+                    <p class="event-subtitle">Grupo de OSINT de Minas Gerais</p>
+                </div>
+            </div>
+            <div class="event-links">
+                <a href="https://www.linkedin.com/groups/10060469/" target="_blank" class="event-link">
+                    <i class="fab fa-linkedin"></i>
+                    <span>Grupo no LinkedIn</span>
+                </a>
+                <a href="https://www.instagram.com/uaisint/" target="_blank" class="event-link">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram @uaisint</span>
+                </a>
+                <a href="https://twitter.com/uaisint" target="_blank" class="event-link">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter @uaisint</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Create matrix rain effect
+        function createMatrixRain() {
+            const matrixBg = document.getElementById('matrixBg');
+            const columns = Math.floor(window.innerWidth / 30);
+            
+            for (let i = 0; i < columns; i++) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = i * 30 + 'px';
+                column.style.animationDuration = Math.random() * 15 + 10 + 's';
+                column.style.animationDelay = Math.random() * 10 + 's';
+                
+                // Generate binary string
+                let binaryString = '';
+                const length = Math.floor(Math.random() * 50 + 50);
+                for (let j = 0; j < length; j++) {
+                    binaryString += Math.random() > 0.5 ? '1' : '0';
+                    if (j % 5 === 4) binaryString += '<br>';
+                }
+                
+                column.innerHTML = binaryString;
+                matrixBg.appendChild(column);
+            }
+        }
+
+        // Mode selection functions with relative paths
+        function startPresentation() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            loadingScreen.classList.remove('hidden');
+            setTimeout(() => {
+                window.location.href = './presentation.html';
+            }, 1000);
+        }
+
+        function startWebsite() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            loadingScreen.classList.remove('hidden');
+            setTimeout(() => {
+                window.location.href = './website.html';
+            }, 1000);
+        }
+
+        // Toggle Info Panel
+        function toggleInfo() {
+            const infoContent = document.getElementById('infoContent');
+            infoContent.classList.toggle('show');
+        }
+
+        // Close info panel when clicking outside
+        document.addEventListener('click', (e) => {
+            const floatingInfo = document.querySelector('.floating-info');
+            const infoContent = document.getElementById('infoContent');
+            
+            if (!floatingInfo.contains(e.target) && infoContent.classList.contains('show')) {
+                infoContent.classList.remove('show');
+            }
+        });
+
+        // Translations
+        const translations = {
+            pt: {
+                loading: {
+                    text: "Carregando experiência..."
+                },
+                hero: {
+                    badge: "INTELIGÊNCIA DIGITAL",
+                    title1: "IA & OSINT",
+                    title2: "A Nova Fronteira",
+                    subtitle: "Descubra como a Inteligência Artificial está revolucionando a coleta e análise de informações abertas"
+                },
+                mode: {
+                    title: "Escolha seu modo de visualização",
+                    presentation: "Apresentação",
+                    presentationDesc: "Slides interativos para sua palestra",
+                    website: "Site Completo",
+                    websiteDesc: "Explore todo o conteúdo em formato web"
+                }
+            },
+            en: {
+                loading: {
+                    text: "Loading experience..."
+                },
+                hero: {
+                    badge: "DIGITAL INTELLIGENCE",
+                    title1: "AI & OSINT",
+                    title2: "The New Frontier",
+                    subtitle: "Discover how Artificial Intelligence is revolutionizing open source information collection and analysis"
+                },
+                mode: {
+                    title: "Choose your viewing mode",
+                    presentation: "Presentation",
+                    presentationDesc: "Interactive slides for your talk",
+                    website: "Full Website",
+                    websiteDesc: "Explore all content in web format"
+                }
+            },
+            es: {
+                loading: {
+                    text: "Cargando experiencia..."
+                },
+                hero: {
+                    badge: "INTELIGENCIA DIGITAL",
+                    title1: "IA & OSINT",
+                    title2: "La Nueva Frontera",
+                    subtitle: "Descubre cómo la Inteligencia Artificial está revolucionando la recolección y análisis de información abierta"
+                },
+                mode: {
+                    title: "Elige tu modo de visualización",
+                    presentation: "Presentación",
+                    presentationDesc: "Diapositivas interactivas para tu charla",
+                    website: "Sitio Completo",
+                    websiteDesc: "Explora todo el contenido en formato web"
+                }
+            }
+        };
+        
+        // Language management
+        let currentLang = 'pt';
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            
+            // Update active language button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Update all translated elements
+            updateTranslations();
+        }
+        
+        function updateTranslations() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const keys = key.split('.');
+                let translation = translations[currentLang];
+                
+                for (const k of keys) {
+                    translation = translation?.[k];
+                }
+                
+                if (translation) {
+                    element.textContent = translation;
+                }
+            });
+            
+            // Update page title based on language
+            const titleTranslations = {
+                'pt': 'IA & OSINT — A Nova Fronteira Digital | UAISINT',
+                'en': 'AI & OSINT — The New Digital Frontier | UAISINT',
+                'es': 'IA & OSINT — La Nueva Frontera Digital | UAISINT'
+            };
+            document.title = titleTranslations[currentLang] || titleTranslations['pt'];
+        }
+        
+        // Setup language selector
+        function setupLanguageSelector() {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    setLanguage(btn.dataset.lang);
+                });
+            });
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            createParticles();
+            createMatrixRain();
+            setupLanguageSelector();
+            
+            // Hide loading screen
+            setTimeout(() => {
+                const loadingScreen = document.getElementById('loadingScreen');
+                loadingScreen.classList.add('hidden');
+            }, 1500);
+            
+            // Initialize language
+            setLanguage('pt');
+        });
+    </script>
+    
+    <!-- Footer -->
+    <footer style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); text-align: center; font-size: 0.85rem; color: var(--text-secondary); z-index: 100;">
+        <p>&copy; 2025 Anderson Henrique da Silva | IA & OSINT - UAISINT</p>
+        <p style="margin-top: 5px;">
+            <small>Feito com ❤️ em Minas Gerais</small>
+        </p>
+    </footer>
+</body>
+</html>

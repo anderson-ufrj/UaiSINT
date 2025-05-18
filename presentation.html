@@ -1,0 +1,2656 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA & OSINT — Apresentação UAISINT</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --dark-bg: #0a0e27;
+            --darker-bg: #060818;
+            --card-bg: rgba(17, 24, 39, 0.8);
+            --accent-cyan: #00d2ff;
+            --accent-purple: #667eea;
+            --accent-pink: #f5576c;
+            --accent-green: #10b981;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            overflow: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Matrix Rain Effect */
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .matrix-column {
+            position: absolute;
+            top: -100%;
+            color: #0f9d58;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            line-height: 12px;
+            text-shadow: 0 0 5px #0f9d58;
+            animation: matrixFall linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes matrixFall {
+            to {
+                transform: translateY(200vh);
+            }
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: var(--dark-bg);
+            overflow: hidden;
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 400%;
+            height: 400%;
+            top: -150%;
+            left: -150%;
+            background: radial-gradient(circle at center, transparent 0%, var(--accent-purple) 10%, transparent 20%, var(--accent-cyan) 30%, transparent 40%, var(--accent-pink) 50%, transparent 60%);
+            animation: rotate 60s linear infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Slide System */
+        .slide-container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            width: 85%;
+            max-width: 1100px;
+            height: 85vh;
+            display: none;
+            animation: none;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Slide Content */
+        .slide-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            padding-bottom: 100px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+            max-height: 85vh;
+            position: relative;
+        }
+
+        /* Typography */
+        .slide-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-align: center;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .slide-subtitle {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .slide-text {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            display: flex;
+            gap: 5px;
+            z-index: 200;
+        }
+
+        .lang-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn:hover {
+            background: var(--accent-purple);
+            color: white;
+            border-color: var(--accent-purple);
+        }
+
+        .lang-btn.active {
+            background: var(--primary-gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Grid Layouts */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-purple);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Timeline - Interactive */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        .timeline-progress {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 0%;
+            background: var(--primary-gradient);
+            transition: height 2s ease;
+            z-index: 2;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: var(--glass-border);
+            z-index: 1;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 30px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-purple);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            border: 4px solid var(--dark-bg);
+            z-index: 3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-dot.active {
+            width: 30px;
+            height: 30px;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+        }
+
+        .timeline-time {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .timeline-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .tool-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tool-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: transparent;
+        }
+
+        .tool-card:hover::after {
+            opacity: 0.1;
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tool-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .tool-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Ethics Cards */
+        .ethics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .ethics-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ethics-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--accent-purple), transparent, var(--accent-cyan), transparent);
+            animation: spin 8s linear infinite;
+            opacity: 0.05;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .ethics-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--secondary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 36px;
+            color: white;
+        }
+
+        .ethics-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .ethics-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Interactive Elements */
+        .code-block {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            position: relative;
+            max-width: 100%;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .code-lang {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .code-copy {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 5px 15px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .code-copy:hover {
+            background: var(--accent-purple);
+            color: white;
+            border-color: var(--accent-purple);
+        }
+
+        .code-content {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-green);
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        /* Demo Section */
+        .demo-container {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .demo-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .demo-desc {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .demo-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .demo-input:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .demo-button {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .demo-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .demo-result {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            min-height: 150px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-loading {
+            display: none;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .demo-loading.active {
+            display: block;
+        }
+
+        .loading-dots {
+            display: inline-block;
+            animation: loadingDots 1.5s infinite;
+        }
+
+        @keyframes loadingDots {
+            0% { content: '.'; }
+            33% { content: '..'; }
+            66% { content: '...'; }
+        }
+
+        /* Controls */
+        .controls {
+            position: fixed;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 5px 30px;
+            border-radius: 40px;
+            border: 1px solid var(--glass-border);
+            z-index: 10;
+            height: 45px;
+        }
+
+        .control-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 50%;
+        }
+
+        .control-btn:hover {
+            color: var(--accent-purple);
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .control-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-indicator {
+            display: flex;
+            gap: 6px;
+        }
+
+        .indicator-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--glass-border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background: var(--accent-purple);
+            width: 18px;
+            border-radius: 3px;
+        }
+
+        /* Timer */
+        .timer {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .timer-icon {
+            color: var(--accent-cyan);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--glass-border);
+            z-index: 101;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-gradient);
+            width: 0;
+            transition: width 0.5s ease;
+        }
+
+        /* QR Code */
+        .qr-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .qr-code {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        /* Mineiro Style */
+        .mineiro-badge {
+            background: var(--glass-bg);
+            border: 2px solid var(--accent-cyan);
+            border-radius: 30px;
+            padding: 10px 20px;
+            display: block;
+            margin: 20px auto;
+            animation: pulse 2s infinite;
+            text-align: center;
+            width: fit-content;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .mineiro-text {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            font-style: italic;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.15em;
+            animation: typing 6s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            0% { width: 0; }
+            40% { width: 100%; }
+            60% { width: 100%; }
+            70% { width: 80%; }
+            80% { width: 0; }
+            100% { width: 0; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--accent-cyan); }
+        }
+
+        .mineiro-text::after {
+            content: '|';
+            margin-left: 2px;
+            color: var(--accent-cyan);
+            animation: blink-caret 0.75s step-end infinite;
+        }
+
+        /* UAISINT Logo */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .uaisint-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scale-in {
+            animation: scaleIn 0.6s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Link Button Style */
+        .link-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: var(--primary-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Thank You Slide */
+        .thank-you-container {
+            text-align: center;
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .thank-you-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 20px 30px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-primary);
+        }
+
+        .contact-card:hover {
+            transform: translateX(10px);
+            background: var(--primary-gradient);
+            border-color: transparent;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+        }
+
+        .contact-text {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: block;
+        }
+
+        .contact-text:hover {
+            color: var(--accent-purple);
+        }
+
+        /* Exit Button */
+        .exit-button {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .exit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .exit-button i {
+            margin-right: 10px;
+        }
+
+        /* Floating Info Button */
+        .floating-info {
+            position: fixed;
+            bottom: 60px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .floating-button {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .floating-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
+        }
+
+        .floating-button i {
+            font-size: 20px;
+            color: white;
+        }
+
+        .info-content {
+            position: absolute;
+            bottom: 60px;
+            right: 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+            min-width: 300px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .info-content.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .developer-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 15px;
+        }
+
+        .developer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .developer-details {
+            flex: 1;
+        }
+
+        .developer-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .developer-role {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .developer-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .skill-tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--accent-purple);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .developer-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .developer-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .developer-link:hover {
+            color: var(--accent-cyan);
+        }
+
+        .event-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 15px;
+        }
+
+        .event-logo {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .event-details {
+            flex: 1;
+            text-align: left;
+        }
+
+        .event-title {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .event-subtitle {
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            color: #94a3b8;
+        }
+
+        .event-date {
+            margin: 5px 0 0 0;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .event-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .event-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .event-link:hover {
+            background: rgba(45, 212, 191, 0.1);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix Rain Effect -->
+    <div class="matrix-rain" id="matrixRain"></div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Timer -->
+    <div class="timer">
+        <i class="fas fa-clock timer-icon"></i>
+        <span id="timer">00:00</span>
+    </div>
+
+    <!-- Slides Container -->
+    <div class="slide-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active" data-slide="1">
+            <div class="slide-content">
+                <div class="logo-container">
+                    <img src="./assets/uaisint_logo.png" 
+                         alt="UAISINT Logo" 
+                         class="uaisint-logo">
+                    <h1 class="slide-title fade-in">IA & OSINT</h1>
+                </div>
+                <h2 class="slide-subtitle">A Nova Fronteira Digital</h2>
+                <p class="slide-text fade-in" style="animation-delay: 0.3s;">
+                    O Futuro da Inteligência é Agora
+                </p>
+                <div style="text-align: center;">
+                    <div class="mineiro-badge">
+                        <span class="mineiro-text">UAI, SÔ! Seja bem-vindo ao UAISINT!</span>
+                    </div>
+                </div>
+                <div class="code-block fade-in" style="animation-delay: 0.6s;">
+                    <div class="code-header">
+                        <span class="code-lang">Python</span>
+                        <button class="code-copy" onclick="copyCode(this)">
+                            <i class="fas fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <pre class="code-content"># Bem-vindo ao futuro da inteligência digital
+import osint
+import artificial_intelligence as ai
+
+def discover_the_invisible():
+    data = osint.collect_open_source()
+    insights = ai.analyze(data)
+    return insights
+
+# UAISINT - Grupo de OSINT de Minas Gerais
+# "Trem bão demais da conta!"
+print("Iniciando jornada...")</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: O Mundo Invisível dos Dados -->
+        <div class="slide" data-slide="2">
+            <div class="slide-content">
+                <h2 class="slide-title">O Mundo Invisível dos Dados</h2>
+                <p class="slide-text fade-in">
+                    Enquanto você lê esta frase, bilhões de dados são gerados, processados e analisados ao redor do mundo.
+                </p>
+                <div class="feature-grid">
+                    <div class="feature-card fade-in" style="animation-delay: 0.2s;">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="feature-title">2.5 Quintilhões</h3>
+                        <p class="feature-desc">Bytes de dados criados diariamente</p>
+                    </div>
+                    <div class="feature-card fade-in" style="animation-delay: 0.4s;">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="feature-title">4.9 Bilhões</h3>
+                        <p class="feature-desc">Usuários ativos na internet</p>
+                    </div>
+                    <div class="feature-card fade-in" style="animation-delay: 0.6s;">
+                        <div class="feature-icon">
+                            <i class="fas fa-eye-slash"></i>
+                        </div>
+                        <h3 class="feature-title">90%</h3>
+                        <p class="feature-desc">Dos dados são invisíveis ao usuário comum</p>
+                    </div>
+                </div>
+                <div class="demo-container fade-in" style="animation-delay: 0.8s;">
+                    <div class="demo-header">
+                        <h3 class="demo-title">Demonstração ao Vivo</h3>
+                        <p class="demo-desc">Descubra o que seus dados revelam sobre você</p>
+                    </div>
+                    <input type="text" class="demo-input" placeholder="Digite um username ou email..." id="demoInput">
+                    <button class="demo-button" onclick="runDemo()">Analisar</button>
+                    <div class="demo-result" id="demoResult">
+                        <div class="demo-loading" id="demoLoading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Analisando dados<span class="loading-dots">...</span></p>
+                        </div>
+                        <div id="demoContent" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: O Que é OSINT? -->
+        <div class="slide" data-slide="3">
+            <div class="slide-content">
+                <h2 class="slide-title">O Que é OSINT?</h2>
+                <p class="slide-subtitle">Open Source Intelligence</p>
+                <p class="slide-text">
+                    A arte de transformar informações públicas em inteligência acionável
+                </p>
+                <div class="timeline" id="timelineContainer">
+                    <div class="timeline-progress" id="timelineProgress"></div>
+                    <div class="timeline-item" data-delay="0">
+                        <div class="timeline-dot" onclick="activateTimelineItem(this)"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-time">Coleta</h3>
+                            <h4 class="timeline-title">Dados Públicos</h4>
+                            <p class="timeline-desc">Redes sociais, sites, registros públicos, metadados</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-delay="500">
+                        <div class="timeline-dot" onclick="activateTimelineItem(this)"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-time">Análise</h3>
+                            <h4 class="timeline-title">Processamento Inteligente</h4>
+                            <p class="timeline-desc">Correlação, validação, enriquecimento de dados</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-delay="1000">
+                        <div class="timeline-dot" onclick="activateTimelineItem(this)"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-time">Inteligência</h3>
+                            <h4 class="timeline-title">Insights Acionáveis</h4>
+                            <p class="timeline-desc">Informações estratégicas para tomada de decisão</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="mineiro-badge" style="margin-top: 30px;">
+                        <span class="mineiro-text">Uai, é igual caçar tesouros no meio dos trem tudo!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Quando IA Encontra OSINT -->
+        <div class="slide" data-slide="4">
+            <div class="slide-content">
+                <h2 class="slide-title">Quando IA Encontra OSINT</h2>
+                <p class="slide-subtitle gradient-text">A Revolução Começa Aqui</p>
+                <div class="feature-grid">
+                    <div class="feature-card scale-in">
+                        <div class="feature-icon" style="background: var(--secondary-gradient);">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="feature-title">Machine Learning</h3>
+                        <p class="feature-desc">Algoritmos que aprendem padrões e predizem comportamentos</p>
+                    </div>
+                    <div class="feature-card scale-in" style="animation-delay: 0.2s;">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="feature-title">Processamento Natural</h3>
+                        <p class="feature-desc">Análise semântica de textos em múltiplos idiomas</p>
+                    </div>
+                    <div class="feature-card scale-in" style="animation-delay: 0.4s;">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3 class="feature-title">Visão Computacional</h3>
+                        <p class="feature-desc">Reconhecimento facial e análise de imagens</p>
+                    </div>
+                </div>
+                <div class="code-block fade-in" style="animation-delay: 0.6s;">
+                    <div class="code-header">
+                        <span class="code-lang">Python</span>
+                        <button class="code-copy" onclick="copyCode(this)">
+                            <i class="fas fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <pre class="code-content">from transformers import pipeline
+import osint_tools as osint
+
+# Criar pipeline de análise
+analyzer = pipeline("sentiment-analysis")
+
+# Coletar dados de fontes abertas
+social_data = osint.collect_social_media("@target_user")
+
+# Analisar sentimentos e padrões
+for post in social_data:
+    sentiment = analyzer(post.text)
+    print(f"Post: {post.text[:50]}...")
+    print(f"Sentimento: {sentiment[0]['label']}")
+    print(f"Confiança: {sentiment[0]['score']:.2%}\n")</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Arsenal Digital -->
+        <div class="slide" data-slide="5">
+            <div class="slide-content">
+                <h2 class="slide-title">Arsenal Digital</h2>
+                <p class="slide-subtitle">Ferramentas do Detetive Digital</p>
+                <div class="tools-grid">
+                    <div class="tool-card fade-in">
+                        <div class="tool-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <h3 class="tool-name">Maltego</h3>
+                        <p class="tool-desc">Visualização de relacionamentos e conexões</p>
+                    </div>
+                    <div class="tool-card fade-in" style="animation-delay: 0.1s;">
+                        <div class="tool-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3 class="tool-name">Shodan</h3>
+                        <p class="tool-desc">O Google dos dispositivos conectados</p>
+                    </div>
+                    <div class="tool-card fade-in" style="animation-delay: 0.2s;">
+                        <div class="tool-icon">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <h3 class="tool-name">TheHarvester</h3>
+                        <p class="tool-desc">Coleta de emails e subdomínios</p>
+                    </div>
+                    <div class="tool-card fade-in" style="animation-delay: 0.3s;">
+                        <div class="tool-icon">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <h3 class="tool-name">SpiderFoot</h3>
+                        <p class="tool-desc">Automação de reconhecimento</p>
+                    </div>
+                    <div class="tool-card fade-in" style="animation-delay: 0.4s;">
+                        <div class="tool-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="tool-name">Recon-ng</h3>
+                        <p class="tool-desc">Framework modular de reconhecimento</p>
+                    </div>
+                    <div class="tool-card fade-in" style="animation-delay: 0.5s;">
+                        <div class="tool-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="tool-name">OSINT Framework</h3>
+                        <p class="tool-desc">Diretório completo de ferramentas</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <p class="slide-text">
+                        <strong>+ IA:</strong> GPT-4, Claude, Gemini, LLaMA, Stable Diffusion
+                    </p>
+                    <div style="display: flex; justify-content: center; gap: 15px; margin-top: 20px;">
+                        <a href="https://openai.com/gpt-4" target="_blank" class="link-btn">GPT-4</a>
+                        <a href="https://claude.ai" target="_blank" class="link-btn">Claude</a>
+                        <a href="https://gemini.google.com" target="_blank" class="link-btn">Gemini</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Casos de Uso Real -->
+        <div class="slide" data-slide="6">
+            <div class="slide-content">
+                <h2 class="slide-title">Impacto no Mundo Real</h2>
+                <p class="slide-subtitle">Casos que Mudaram o Jogo</p>
+                <div class="feature-grid">
+                    <div class="feature-card slide-up">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Segurança Cibernética</h3>
+                        <p class="feature-desc">
+                            Identificação proativa de vulnerabilidades e ameaças antes que sejam exploradas
+                        </p>
+                    </div>
+                    <div class="feature-card slide-up" style="animation-delay: 0.2s;">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <h3 class="feature-title">Jornalismo Investigativo</h3>
+                        <p class="feature-desc">
+                            Verificação de fatos e descoberta de conexões ocultas em tempo real
+                        </p>
+                    </div>
+                    <div class="feature-card slide-up" style="animation-delay: 0.4s;">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <h3 class="feature-title">Investigações Criminais</h3>
+                        <p class="feature-desc">
+                            Rastreamento de atividades ilícitas e identificação de redes criminosas
+                        </p>
+                    </div>
+                </div>
+                <div class="demo-container" style="margin-top: 40px;">
+                    <h3 class="demo-title">Caso de Estudo: Bellingcat</h3>
+                    <p style="text-align: left; line-height: 1.8; color: var(--text-secondary);">
+                        Em 2020, o coletivo Bellingcat usou OSINT + IA para identificar e rastrear os responsáveis 
+                        pelo envenenamento de Alexei Navalny. Através da análise de:
+                    </p>
+                    <ul style="text-align: left; color: var(--text-secondary); line-height: 2;">
+                        <li>Metadados de fotos públicas</li>
+                        <li>Registros de voos disponíveis online</li>
+                        <li>Análise facial com IA</li>
+                        <li>Correlação de dados de redes sociais</li>
+                    </ul>
+                    <p style="text-align: left; line-height: 1.8; color: var(--accent-cyan); margin-top: 20px;">
+                        <strong>Resultado:</strong> Identificação completa dos agentes envolvidos, incluindo nomes, 
+                        endereços e histórico de operações.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Casos Brasileiros -->
+        <div class="slide" data-slide="7">
+            <div class="slide-content">
+                <h2 class="slide-title">OSINT no Brasil</h2>
+                <p class="slide-subtitle">Casos de Sucesso Nacionais</p>
+                <div class="feature-grid">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #2563eb, #1d4ed8);">
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <h3 class="feature-title">Lava Jato</h3>
+                        <p class="feature-desc">
+                            OSINT usado para rastrear movimentações financeiras e conexões entre investigados. 
+                            <a href="https://pt.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_Lava_Jato" target="_blank" class="link-btn">Saiba mais</a>
+                        </p>
+                    </div>
+                    <div class="feature-card fade-in" style="animation-delay: 0.2s;">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #dc2626, #991b1b);">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h3 class="feature-title">Incêndios na Amazônia</h3>
+                        <p class="feature-desc">
+                            Análise de dados satelitais e redes sociais para identificar focos criminosos. 
+                            <a href="https://firms.modaps.eosdis.nasa.gov/active_fire/" target="_blank" class="link-btn">NASA FIRMS</a>
+                        </p>
+                    </div>
+                    <div class="feature-card fade-in" style="animation-delay: 0.4s;">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #059669, #047857);">
+                            <i class="fas fa-virus"></i>
+                        </div>
+                        <h3 class="feature-title">Combate à Desinformação</h3>
+                        <p class="feature-desc">
+                            Rastreamento de fake news durante a pandemia usando IA e análise de redes. 
+                            <a href="https://www.comprova.com.br/" target="_blank" class="link-btn">Projeto Comprova</a>
+                        </p>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="mineiro-badge" style="margin-top: 40px;">
+                        <span class="mineiro-text">Ô trem bão! OSINT já tá bombando no Brasil todo, sô!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Dilemas Éticos -->
+        <div class="slide" data-slide="8">
+            <div class="slide-content">
+                <h2 class="slide-title">O Paradoxo Ético</h2>
+                <p class="slide-subtitle">Grandes Poderes, Grandes Responsabilidades</p>
+                <div class="ethics-grid">
+                    <div class="ethics-card fade-in">
+                        <div class="ethics-icon">
+                            <i class="fas fa-user-lock"></i>
+                        </div>
+                        <h3 class="ethics-title">Privacidade vs. Segurança</h3>
+                        <p class="ethics-desc">
+                            Até onde podemos ir em nome da segurança coletiva? 
+                            O equilíbrio entre proteção e vigilância nunca foi tão delicado.
+                        </p>
+                    </div>
+                    <div class="ethics-card fade-in" style="animation-delay: 0.3s;">
+                        <div class="ethics-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3 class="ethics-title">Viés Algorítmico</h3>
+                        <p class="ethics-desc">
+                            Quando a IA toma decisões baseadas em dados OSINT, 
+                            como garantir justiça e imparcialidade?
+                        </p>
+                    </div>
+                    <div class="ethics-card fade-in" style="animation-delay: 0.6s;">
+                        <div class="ethics-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3 class="ethics-title">Desinformação</h3>
+                        <p class="ethics-desc">
+                            As mesmas ferramentas que revelam verdades podem 
+                            ser usadas para propagar mentiras em escala massiva.
+                        </p>
+                    </div>
+                    <div class="ethics-card fade-in" style="animation-delay: 0.9s;">
+                        <div class="ethics-icon">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <h3 class="ethics-title">Transparência vs. Eficácia</h3>
+                        <p class="ethics-desc">
+                            Revelar métodos e fontes pode proteger direitos, mas 
+                            também comprometer investigações legítimas.
+                        </p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <blockquote style="font-size: 1.5rem; font-style: italic; color: var(--text-secondary);">
+                        "Com grande conhecimento vem grande responsabilidade."
+                    </blockquote>
+                    <p style="color: var(--accent-purple); margin-top: 10px;">
+                        — Princípio fundamental do OSINT ético
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Aspectos Legais do OSINT -->
+        <div class="slide" data-slide="9">
+            <div class="slide-content">
+                <h2 class="slide-title">OSINT na Lei Brasileira</h2>
+                <p class="slide-subtitle gradient-text">O Que Pode e O Que Não Pode</p>
+                <div style="text-align: center; margin: 30px 0;">
+                    <div class="code-block" style="max-width: 800px; margin: 0 auto;">
+                        <div class="code-header">
+                            <span class="code-lang">Marco Legal</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 30px;">
+                            <div style="text-align: left;">
+                                <h3 style="color: #22c55e; margin-bottom: 15px;">✅ PERMITIDO</h3>
+                                <div class="fade-in">
+                                    <p style="margin: 10px 0;">• Dados públicos em redes sociais</p>
+                                    <p style="margin: 10px 0;">• Google Dorks e pesquisa avançada</p>
+                                    <p style="margin: 10px 0;">• APIs públicas e documentadas</p>
+                                    <p style="margin: 10px 0;">• Registros públicos (CNPJ, CPF*)</p>
+                                    <p style="font-size: 0.9rem; color: var(--text-secondary);">*Quando disponibilizado publicamente</p>
+                                </div>
+                            </div>
+                            <div style="text-align: left;">
+                                <h3 style="color: #ef4444; margin-bottom: 15px;">❌ PROIBIDO</h3>
+                                <div class="fade-in" style="animation-delay: 0.2s;">
+                                    <p style="margin: 10px 0;">• Invasão de dispositivos (Lei 12.737/12)</p>
+                                    <p style="margin: 10px 0;">• Quebra de sigilo sem autorização</p>
+                                    <p style="margin: 10px 0;">• Phishing e engenharia social</p>
+                                    <p style="margin: 10px 0;">• Uso de dados para crimes</p>
+                                    <p style="font-size: 0.9rem; color: var(--text-secondary);">Pena: 6 meses a 2 anos + multa</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-grid" style="grid-template-columns: repeat(3, 1fr); margin-top: 30px;">
+                    <div class="feature-card" style="padding: 20px;">
+                        <i class="fas fa-balance-scale" style="font-size: 2rem; color: var(--accent-purple);"></i>
+                        <h4 style="margin: 10px 0;">Lei Carolina Dieckmann</h4>
+                        <p style="font-size: 0.85rem;">Invasão de dispositivos</p>
+                    </div>
+                    <div class="feature-card" style="padding: 20px;">
+                        <i class="fas fa-user-shield" style="font-size: 2rem; color: var(--accent-cyan);"></i>
+                        <h4 style="margin: 10px 0;">Marco Civil Internet</h4>
+                        <p style="font-size: 0.85rem;">Privacidade online</p>
+                    </div>
+                    <div class="feature-card" style="padding: 20px;">
+                        <i class="fas fa-file-contract" style="font-size: 2rem; color: var(--accent-pink);"></i>
+                        <h4 style="margin: 10px 0;">LGPD</h4>
+                        <p style="font-size: 0.85rem;">Proteção de dados</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: LGPD e Proteção de Dados -->
+        <div class="slide" data-slide="10">
+            <div class="slide-content">
+                <h2 class="slide-title">LGPD + OSINT</h2>
+                <p class="slide-subtitle">Como a Lei 13.709/18 Impacta Nossa Prática</p>
+                <div style="text-align: center; margin: 30px 0;">
+                    <div class="ethics-grid" style="grid-template-columns: repeat(2, 1fr);">
+                        <div class="ethics-card" style="padding: 30px;">
+                            <div style="text-align: center; margin-bottom: 20px;">
+                                <i class="fas fa-lock" style="font-size: 3rem; color: var(--accent-purple);"></i>
+                            </div>
+                            <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--accent-cyan);">10 Princípios LGPD</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left;">
+                                <span class="scale-in">✓ Finalidade</span>
+                                <span class="scale-in" style="animation-delay: 0.1s;">✓ Adequação</span>
+                                <span class="scale-in" style="animation-delay: 0.2s;">✓ Necessidade</span>
+                                <span class="scale-in" style="animation-delay: 0.3s;">✓ Transparência</span>
+                                <span class="scale-in" style="animation-delay: 0.4s;">✓ Segurança</span>
+                                <span class="scale-in" style="animation-delay: 0.5s;">✓ Prevenção</span>
+                                <span class="scale-in" style="animation-delay: 0.6s;">✓ Não discriminação</span>
+                                <span class="scale-in" style="animation-delay: 0.7s;">✓ Qualidade</span>
+                                <span class="scale-in" style="animation-delay: 0.8s;">✓ Livre acesso</span>
+                                <span class="scale-in" style="animation-delay: 0.9s;">✓ Responsabilização</span>
+                            </div>
+                        </div>
+                        <div class="ethics-card" style="padding: 30px;">
+                            <div style="text-align: center; margin-bottom: 20px;">
+                                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--accent-pink);"></i>
+                            </div>
+                            <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--accent-pink);">Penalidades</h3>
+                            <div class="fade-in" style="text-align: left;">
+                                <p style="margin: 15px 0; font-size: 1.1rem;">
+                                    <strong>💰 Multa simples:</strong><br>
+                                    Até 2% do faturamento<br>
+                                    Limitada a R$ 50 milhões
+                                </p>
+                                <p style="margin: 15px 0; font-size: 1.1rem;">
+                                    <strong>🚫 Multa diária:</strong><br>
+                                    Até R$ 50 mil por dia
+                                </p>
+                                <p style="margin: 15px 0; font-size: 1.1rem;">
+                                    <strong>⛔ Sanções:</strong><br>
+                                    Bloqueio ou eliminação dos dados
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: var(--glass-bg); border-radius: 16px; padding: 20px; margin-top: 30px;">
+                    <p style="font-size: 1.3rem; text-align: center;">
+                        <i class="fas fa-info-circle" style="color: var(--accent-cyan);"></i>
+                        <strong>Dica OSINT:</strong> Dados públicos ainda precisam de 
+                        <span class="gradient-text">base legal</span> para processamento!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Mundo Hiperconectado -->
+        <div class="slide" data-slide="11">
+            <div class="slide-content">
+                <h2 class="slide-title">24/7 Online</h2>
+                <p class="slide-subtitle gradient-text">Sua Vida Digital em Números</p>
+                <div style="text-align: center; margin: 40px 0;">
+                    <div class="feature-grid" style="grid-template-columns: repeat(4, 1fr);">
+                        <div class="feature-card scale-in" style="padding: 20px;">
+                            <div style="font-size: 3rem; font-weight: 900; color: var(--accent-cyan);">2.5</div>
+                            <p style="font-size: 0.9rem;">Quintilhões de bytes/dia</p>
+                        </div>
+                        <div class="feature-card scale-in" style="animation-delay: 0.2s; padding: 20px;">
+                            <div style="font-size: 3rem; font-weight: 900; color: var(--accent-purple);">147</div>
+                            <p style="font-size: 0.9rem;">Vezes checamos celular/dia</p>
+                        </div>
+                        <div class="feature-card scale-in" style="animation-delay: 0.4s; padding: 20px;">
+                            <div style="font-size: 3rem; font-weight: 900; color: var(--accent-pink);">96%</div>
+                            <p style="font-size: 0.9rem;">Brasileiros online</p>
+                        </div>
+                        <div class="feature-card scale-in" style="animation-delay: 0.6s; padding: 20px;">
+                            <div style="font-size: 3rem; font-weight: 900; color: var(--accent-green);">5h</div>
+                            <p style="font-size: 0.9rem;">Tempo médio online/dia</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="code-block" style="max-width: 700px; margin: 0 auto;">
+                        <div class="code-header">
+                            <span class="code-lang">Rastro Digital em 1 Minuto</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 20px;">
+                            <div class="fade-in" style="text-align: left;">
+                                <p>📍 <strong>Localização:</strong> GPS + Wi-Fi + Cell Tower</p>
+                                <p>🔍 <strong>Buscas:</strong> Google, Bing, DuckDuckGo</p>
+                                <p>📱 <strong>Apps:</strong> 30+ em background</p>
+                                <p>🍪 <strong>Cookies:</strong> 100+ rastreadores</p>
+                            </div>
+                            <div class="fade-in" style="text-align: left; animation-delay: 0.3s;">
+                                <p>💳 <strong>Compras:</strong> Cartão + PIX</p>
+                                <p>📸 <strong>Fotos:</strong> Metadados EXIF</p>
+                                <p>🗣️ <strong>Voz:</strong> Assistentes sempre ouvindo</p>
+                                <p>👁️ <strong>Biometria:</strong> Face + Digital</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mineiro-badge" style="margin-top: 30px;">
+                    <span class="mineiro-text" style="font-size: 1.2rem;">
+                        Tá veno só? Cê tá sendo vigiado o tempo todo, uai!
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: O Futuro é Híbrido (renumerado) -->
+        <div class="slide" data-slide="12">
+            <div class="slide-content">
+                <h2 class="slide-title">A Nova Inteligência Híbrida</h2>
+                <p class="slide-subtitle gradient-text">Humano + Máquina = Futuro</p>
+                <div style="text-align: center; margin: 40px 0;">
+                    <div style="display: inline-flex; align-items: center; gap: 50px;">
+                        <div class="scale-in">
+                            <i class="fas fa-user" style="font-size: 5rem; color: var(--accent-purple);"></i>
+                            <p style="margin-top: 10px; font-weight: 600;">Intuição</p>
+                            <p style="color: var(--text-secondary);">Contexto</p>
+                            <p style="color: var(--text-secondary);">Ética</p>
+                        </div>
+                        <div class="scale-in" style="animation-delay: 0.3s;">
+                            <i class="fas fa-plus" style="font-size: 3rem; color: var(--accent-cyan);"></i>
+                        </div>
+                        <div class="scale-in" style="animation-delay: 0.6s;">
+                            <i class="fas fa-robot" style="font-size: 5rem; color: var(--accent-pink);"></i>
+                            <p style="margin-top: 10px; font-weight: 600;">Processamento</p>
+                            <p style="color: var(--text-secondary);">Escala</p>
+                            <p style="color: var(--text-secondary);">Precisão</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-grid" style="margin-top: 50px;">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon" style="background: var(--primary-gradient);">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="feature-title">Educação</h3>
+                        <p class="feature-desc">Treinamento contínuo em novas ferramentas e técnicas</p>
+                    </div>
+                    <div class="feature-card fade-in" style="animation-delay: 0.2s;">
+                        <div class="feature-icon" style="background: var(--secondary-gradient);">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="feature-title">Colaboração</h3>
+                        <p class="feature-desc">Redes globais de pesquisadores e analistas</p>
+                    </div>
+                    <div class="feature-card fade-in" style="animation-delay: 0.4s;">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="feature-title">Inovação</h3>
+                        <p class="feature-desc">Desenvolvimento de novas metodologias híbridas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Ferramentas Práticas -->
+        <div class="slide" data-slide="13">
+            <div class="slide-content">
+                <h2 class="slide-title">Mão na Massa!</h2>
+                <p class="slide-subtitle">Ferramentas para Começar Hoje</p>
+                <div class="tools-grid">
+                    <a href="https://github.com/megadose/holehe" target="_blank" class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-at"></i>
+                        </div>
+                        <h3 class="tool-name">Holehe</h3>
+                        <p class="tool-desc">Verifica existência de emails em +120 sites</p>
+                    </a>
+                    <a href="https://github.com/sherlock-project/sherlock" target="_blank" class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3 class="tool-name">Sherlock</h3>
+                        <p class="tool-desc">Busca usernames em redes sociais</p>
+                    </a>
+                    <a href="https://github.com/sundowndev/phoneinfoga" target="_blank" class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3 class="tool-name">PhoneInfoga</h3>
+                        <p class="tool-desc">Análise avançada de números telefônicos</p>
+                    </a>
+                    <a href="https://github.com/Datalux/Osintgram" target="_blank" class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <h3 class="tool-name">Osintgram</h3>
+                        <p class="tool-desc">OSINT específico para Instagram</p>
+                    </a>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <p class="slide-text">
+                        <strong>Dica:</strong> Todos os links são clicáveis! Explore essas ferramentas gratuitas.
+                    </p>
+                    <div style="text-align: center;">
+                        <div class="mineiro-badge">
+                            <span class="mineiro-text">Uai, sô! Tudo de graça! Bão demais!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: UAISINT - Comunidade -->
+        <div class="slide" data-slide="14">
+            <div class="slide-content">
+                <h2 class="slide-title">UAISINT - Nossa Comunidade</h2>
+                <div class="logo-container">
+                    <img src="./assets/uaisint_logo.png" 
+                         alt="UAISINT Logo" 
+                         class="uaisint-logo">
+                </div>
+                <p class="slide-subtitle">Grupo de OSINT de Minas Gerais</p>
+                <div class="feature-grid" style="margin-top: 40px;">
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #dc2626, #991b1b);">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="feature-title">Comunidade Ativa</h3>
+                        <p class="feature-desc">Troca de conhecimentos e experiências entre profissionais. 
+                        <a href="https://discord.gg/osint" target="_blank" class="link-btn">Junte-se ao Discord</a></p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #059669, #047857);">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="feature-title">Recursos Educacionais</h3>
+                        <p class="feature-desc">Tutoriais, workshops e materiais exclusivos. 
+                        <a href="https://www.youtube.com/@OSINTCurious" target="_blank" class="link-btn">OSINT Curious</a></p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Projetos Colaborativos</h3>
+                        <p class="feature-desc">Trabalhos em equipe para casos reais. 
+                        <a href="https://github.com/OSINT-Brazil" target="_blank" class="link-btn">OSINT Brazil</a></p>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="mineiro-badge" style="margin-top: 40px;">
+                        <span class="mineiro-text">UAISINT - Onde o trem fica sério, mas sem perder a mineirice!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Chamada para Ação -->
+        <div class="slide" data-slide="15">
+            <div class="slide-content">
+                <h2 class="slide-title">Seja um Detetive Digital</h2>
+                <p class="slide-subtitle">O Futuro Precisa de Você</p>
+                
+                <div class="feature-grid" style="margin-bottom: 30px;">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="feature-title">Por onde começar?</h3>
+                        <p class="feature-desc">
+                            <strong>Cursos gratuitos:</strong> bellingcat.com/resources<br>
+                            <strong>Ferramentas básicas:</strong> Google Dorking, OSINT Framework<br>
+                            <strong>CTFs:</strong> Desafios práticos para treinar habilidades
+                        </p>
+                    </div>
+                    <div class="feature-card fade-in" style="animation-delay: 0.2s;">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="feature-title">Habilidades Essenciais</h3>
+                        <p class="feature-desc">
+                            <strong>Python:</strong> Automação e análise de dados<br>
+                            <strong>SQL:</strong> Gerenciamento de grandes datasets<br>
+                            <strong>APIs:</strong> Integração com ferramentas
+                        </p>
+                    </div>
+                    <div class="feature-card fade-in" style="animation-delay: 0.4s;">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="feature-title">Mindset OSINT</h3>
+                        <p class="feature-desc">
+                            <strong>Curiosidade:</strong> Questione tudo<br>
+                            <strong>Ética:</strong> Respeite a privacidade<br>
+                            <strong>Persistência:</strong> A verdade está nos detalhes
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin: 40px 0;">
+                    <blockquote style="font-size: 1.8rem; font-style: italic; color: var(--text-primary); line-height: 1.4;">
+                        "No mundo digital, cada rastro conta uma história.<br>
+                        <span class="gradient-text">Seja o narrador do futuro.</span>"
+                    </blockquote>
+                </div>
+                
+                <div style="text-align: center;">
+                    <a href="https://github.com/UAISINT" target="_blank" class="btn btn-primary" style="margin: 0 10px;">
+                        <i class="fab fa-github"></i>
+                        <span>Contribua no GitHub</span>
+                    </a>
+                    <a href="https://t.me/uaisint" target="_blank" class="btn btn-secondary" style="margin: 0 10px;">
+                        <i class="fab fa-telegram"></i>
+                        <span>Entre no Telegram</span>
+                    </a>
+                </div>
+                
+                <div style="text-align: center;">
+                    <div class="mineiro-badge" style="margin-top: 40px;">
+                        <span class="mineiro-text">Bora pescar uns dados, uai!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Contato e Recursos -->
+        <div class="slide" data-slide="16">
+            <div class="slide-content">
+                <h2 class="slide-title">Vamos Continuar a Conversa</h2>
+                <div style="text-align: center; margin: 40px 0;">
+                    <img src="./assets/imagem1.png" alt="IA & OSINT" 
+                         style="border-radius: 12px; width: 300px; height: auto; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    <h3 style="font-size: 2rem; margin-bottom: 10px;">Anderson H. Silva</h3>
+                    <p style="color: var(--text-secondary); font-size: 1.2rem; margin-bottom: 30px;">
+                        Arquiteto de Inteligência Digital<br>
+                        Machine Learning | IA | Análise de Dados | Filosofia
+                    </p>
+                </div>
+                <div class="qr-container">
+                    <h3 style="color: var(--accent-cyan); margin-bottom: 20px;">Conecte-se no LinkedIn</h3>
+                    <div class="qr-code">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://linkedin.com/in/anderson-h-silva95" 
+                             alt="QR Code LinkedIn">
+                    </div>
+                    <p style="margin-top: 10px;">ou acesse: linkedin.com/in/anderson-h-silva95</p>
+                </div>
+                <div class="contact-grid" style="margin-top: 40px; max-width: 400px; margin-left: auto; margin-right: auto;">
+                    <a href="https://linkedin.com/in/anderson-h-silva95" target="_blank" class="contact-card">
+                        <i class="fab fa-linkedin contact-icon"></i>
+                        <span class="contact-text">/anderson-h-silva95</span>
+                    </a>
+                    <a href="https://twitter.com/neural_thinker" target="_blank" class="contact-card">
+                        <i class="fab fa-twitter contact-icon"></i>
+                        <span class="contact-text">@neural_thinker</span>
+                    </a>
+                    <a href="mailto:andersonhs27@gmail.com" class="contact-card">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <span class="contact-text">andersonhs27@gmail.com</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Agradecimento -->
+        <div class="slide" data-slide="17">
+            <div class="slide-content">
+                <div class="thank-you-container">
+                    <div class="logo-container" style="margin-bottom: 20px;">
+                        <img src="./assets/uaisint_logo.png" 
+                             alt="UAISINT Logo" 
+                             class="uaisint-logo">
+                    </div>
+                    <h1 class="thank-you-title">Muito Obrigado!</h1>
+                    <div style="text-align: center;">
+                        <div class="mineiro-badge" style="margin: 15px 0;">
+                            <span class="mineiro-text">Valeu demais da conta, sô! Foi bão demais!</span>
+                        </div>
+                    </div>
+                    <p class="slide-text" style="font-size: 1.1rem; margin-bottom: 20px;">
+                        Vamos juntos construir o futuro da inteligência digital!
+                    </p>
+                    <div class="feature-grid" style="max-width: 800px; margin: 0 auto;">
+                        <a href="https://www.linkedin.com/groups/10060469/" target="_blank" class="feature-card" style="padding: 15px; text-align: center; text-decoration: none;">
+                            <div class="feature-icon" style="background: var(--primary-gradient); width: 40px; height: 40px; font-size: 18px; margin: 0 auto;">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <h3 class="feature-title" style="font-size: 1rem; margin: 10px 0;">LinkedIn</h3>
+                            <p class="feature-desc" style="font-size: 0.8rem;">Grupo UAISINT</p>
+                        </a>
+                        <a href="https://osintframework.com" target="_blank" class="feature-card" style="padding: 15px; text-align: center; text-decoration: none;">
+                            <div class="feature-icon" style="background: var(--secondary-gradient); width: 40px; height: 40px; font-size: 18px; margin: 0 auto;">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <h3 class="feature-title" style="font-size: 1rem; margin: 10px 0;">Recursos</h3>
+                            <p class="feature-desc" style="font-size: 0.8rem;">OSINT Framework</p>
+                        </a>
+                        <a href="https://discord.gg/uaisint" target="_blank" class="feature-card" style="padding: 15px; text-align: center; text-decoration: none;">
+                            <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #059669); width: 40px; height: 40px; font-size: 18px; margin: 0 auto;">
+                                <i class="fab fa-discord"></i>
+                            </div>
+                            <h3 class="feature-title" style="font-size: 1rem; margin: 10px 0;">Comunidade</h3>
+                            <p class="feature-desc" style="font-size: 0.8rem;">Discord</p>
+                        </a>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <p style="color: var(--accent-cyan); font-size: 1.1rem;">
+                            #UAISINT #OSINT #IA #MinasGerais
+                        </p>
+                    </div>
+                    <div style="display: flex; gap: 20px; margin-top: 30px;">
+                        <button class="exit-button" onclick="exitPresentation()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sair da Apresentação
+                        </button>
+                        <button class="exit-button" onclick="goToWebsite()" style="background: var(--secondary-gradient);">
+                            <i class="fas fa-globe"></i>
+                            Ir para o Site
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-btn" onclick="previousSlide()" id="prevBtn">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="slide-indicator" id="slideIndicator">
+            <!-- Dots will be generated dynamically -->
+        </div>
+        <button class="control-btn" onclick="nextSlide()" id="nextBtn">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <script>
+        // Global variables
+        let currentSlide = 1;
+        const totalSlides = 17;
+        let presentationStartTime = Date.now();
+        let timerInterval;
+        let currentLanguage = 'pt';
+
+        // Translations
+        const translations = {
+            pt: {
+                title: 'IA & OSINT',
+                subtitle: 'A Nova Fronteira Digital',
+                motto: 'O Futuro da Inteligência é Agora',
+                welcome: 'UAI, SÔ! Seja bem-vindo ao UAISINT!',
+                startJourney: 'Iniciando jornada...',
+                invisibleWorld: 'O Mundo Invisível dos Dados',
+                whatIsOsint: 'O Que é OSINT?',
+                osintFull: 'Open Source Intelligence',
+                osintDesc: 'A arte de transformar informações públicas em inteligência acionável',
+                whenAiMeets: 'Quando IA Encontra OSINT',
+                revolutionHere: 'A Revolução Começa Aqui',
+                digitalArsenal: 'Arsenal Digital',
+                digitalDetective: 'Ferramentas do Detetive Digital',
+                realWorldImpact: 'Impacto no Mundo Real',
+                casesChanged: 'Casos que Mudaram o Jogo',
+                osintBrazil: 'OSINT no Brasil',
+                nationalSuccess: 'Casos de Sucesso Nacionais',
+                ethicalParadox: 'O Paradoxo Ético',
+                greatPower: 'Grandes Poderes, Grandes Responsabilidades',
+                hybridIntelligence: 'A Nova Inteligência Híbrida',
+                humanMachine: 'Humano + Máquina = Futuro',
+                getStarted: 'Mão na Massa!',
+                toolsToday: 'Ferramentas para Começar Hoje',
+                ourCommunity: 'UAISINT - Nossa Comunidade',
+                osintGroupMG: 'Grupo de OSINT de Minas Gerais',
+                beDetective: 'Seja um Detetive Digital',
+                futureNeeds: 'O Futuro Precisa de Você',
+                continueTalk: 'Vamos Continuar a Conversa',
+                connect: 'Conecte-se no LinkedIn',
+                thankYou: 'Muito Obrigado!',
+                mineiroPhrases: {
+                    phrase1: 'UAI, SÔ! Seja bem-vindo ao UAISINT!',
+                    phrase2: 'Uai, é igual caçar tesouros no meio dos trem tudo!',
+                    phrase3: 'Ô trem bão! OSINT já tá bombando no Brasil todo, sô!',
+                    phrase4: 'Trem bão demais da conta!',
+                    phrase5: 'UAISINT - Onde o trem fica sério, mas sem perder a mineirice!',
+                    phrase6: 'Vamo que vamo, sô! O trem tá só começando!',
+                    phrase7: 'Uai, sô! Tudo de graça! Bão demais!',
+                    phrase8: 'Valeu demais da conta, sô! Foi bão demais!'
+                }
+            },
+            en: {
+                title: 'AI & OSINT',
+                subtitle: 'The New Digital Frontier',
+                motto: 'Where Invisibility Becomes Intelligence',
+                welcome: 'Welcome to UAISINT!',
+                startJourney: 'Starting journey...',
+                invisibleWorld: 'The Invisible World of Data',
+                whatIsOsint: 'What is OSINT?',
+                osintFull: 'Open Source Intelligence',
+                osintDesc: 'The art of transforming public information into actionable intelligence',
+                whenAiMeets: 'When AI Meets OSINT',
+                revolutionHere: 'The Revolution Starts Here',
+                digitalArsenal: 'Digital Arsenal',
+                digitalDetective: 'Digital Detective Tools',
+                realWorldImpact: 'Real World Impact',
+                casesChanged: 'Cases That Changed the Game',
+                osintBrazil: 'OSINT in Brazil',
+                nationalSuccess: 'National Success Cases',
+                ethicalParadox: 'The Ethical Paradox',
+                greatPower: 'With Great Power Comes Great Responsibility',
+                hybridIntelligence: 'The New Hybrid Intelligence',
+                humanMachine: 'Human + Machine = Future',
+                getStarted: 'Get Your Hands Dirty!',
+                toolsToday: 'Tools to Start Today',
+                ourCommunity: 'UAISINT - Our Community',
+                osintGroupMG: 'OSINT Group from Minas Gerais',
+                beDetective: 'Be a Digital Detective',
+                futureNeeds: 'The Future Needs You',
+                continueTalk: 'Let\'s Continue the Conversation',
+                connect: 'Connect on LinkedIn',
+                thankYou: 'Thank You!',
+                mineiroPhrases: {
+                    phrase1: 'Welcome to UAISINT!',
+                    phrase2: 'It\'s like hunting for treasures among everything!',
+                    phrase3: 'OSINT is already booming in Brazil!',
+                    phrase4: 'Amazing stuff!',
+                    phrase5: 'UAISINT - Where things get serious, but keeping the Minas spirit!',
+                    phrase6: 'Let\'s go! This is just the beginning!',
+                    phrase7: 'Everything for free! Amazing!',
+                    phrase8: 'Thanks so much! It was great!'
+                }
+            },
+            es: {
+                title: 'IA & OSINT',
+                subtitle: 'La Nueva Frontera Digital',
+                motto: 'Donde la Invisibilidad se Convierte en Inteligencia',
+                welcome: '¡Bienvenido a UAISINT!',
+                startJourney: 'Iniciando viaje...',
+                invisibleWorld: 'El Mundo Invisible de los Datos',
+                whatIsOsint: '¿Qué es OSINT?',
+                osintFull: 'Inteligencia de Fuentes Abiertas',
+                osintDesc: 'El arte de transformar información pública en inteligencia accionable',
+                whenAiMeets: 'Cuando la IA Encuentra OSINT',
+                revolutionHere: 'La Revolución Comienza Aquí',
+                digitalArsenal: 'Arsenal Digital',
+                digitalDetective: 'Herramientas del Detective Digital',
+                realWorldImpact: 'Impacto en el Mundo Real',
+                casesChanged: 'Casos que Cambiaron el Juego',
+                osintBrazil: 'OSINT en Brasil',
+                nationalSuccess: 'Casos de Éxito Nacionales',
+                ethicalParadox: 'La Paradoja Ética',
+                greatPower: 'Grandes Poderes, Grandes Responsabilidades',
+                hybridIntelligence: 'La Nueva Inteligencia Híbrida',
+                humanMachine: 'Humano + Máquina = Futuro',
+                getStarted: '¡Manos a la Obra!',
+                toolsToday: 'Herramientas para Empezar Hoy',
+                ourCommunity: 'UAISINT - Nuestra Comunidad',
+                osintGroupMG: 'Grupo de OSINT de Minas Gerais',
+                beDetective: 'Sé un Detective Digital',
+                futureNeeds: 'El Futuro te Necesita',
+                continueTalk: 'Continuemos la Conversación',
+                connect: 'Conéctate en LinkedIn',
+                thankYou: '¡Muchas Gracias!',
+                mineiroPhrases: {
+                    phrase1: '¡Bienvenido a UAISINT!',
+                    phrase2: 'Es como buscar tesoros entre todo!',
+                    phrase3: '¡OSINT ya está en auge en todo Brasil!',
+                    phrase4: '¡Increíble!',
+                    phrase5: 'UAISINT - ¡Donde se pone serio pero sin perder el espíritu mineiro!',
+                    phrase6: '¡Vamos! ¡Esto apenas comienza!',
+                    phrase7: '¡Todo gratis! ¡Increíble!',
+                    phrase8: '¡Muchas gracias! ¡Fue genial!'
+                }
+            }
+        };
+
+        // Initialize presentation
+        function init() {
+            createMatrixRain();
+            createSlideIndicators();
+            updateSlide();
+            startTimer();
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', handleKeyPress);
+            
+            // Update progress bar
+            updateProgressBar();
+            
+            // Language selector disabled for GitHub Pages
+            // addLanguageSelector();
+        }
+
+        // Create Matrix Rain Effect
+        function createMatrixRain() {
+            const matrixRain = document.getElementById('matrixRain');
+            const columns = Math.floor(window.innerWidth / 20);
+            
+            for (let i = 0; i < columns; i++) {
+                const column = document.createElement('div');
+                column.className = 'matrix-column';
+                column.style.left = i * 20 + 'px';
+                column.style.animationDuration = Math.random() * 15 + 10 + 's';
+                column.style.animationDelay = Math.random() * 10 + 's';
+                
+                // Generate random binary string
+                let binaryString = '';
+                const length = Math.floor(Math.random() * 50 + 50);
+                for (let j = 0; j < length; j++) {
+                    binaryString += Math.random() > 0.5 ? '1' : '0';
+                    if (j % 5 === 4) binaryString += '\n';
+                }
+                
+                column.textContent = binaryString;
+                matrixRain.appendChild(column);
+            }
+        }
+
+        // Create slide indicators
+        function createSlideIndicators() {
+            const indicator = document.getElementById('slideIndicator');
+            for (let i = 1; i <= totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'indicator-dot';
+                dot.onclick = () => goToSlide(i);
+                indicator.appendChild(dot);
+            }
+        }
+
+        // Update current slide
+        function updateSlide() {
+            // Hide all slides
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Show current slide
+            const currentSlideElement = document.querySelector(`[data-slide="${currentSlide}"]`);
+            if (currentSlideElement) {
+                currentSlideElement.classList.add('active');
+                
+                // Initialize timeline if present
+                if (currentSlide === 3 || currentSlide === 12) {
+                    initializeTimeline();
+                }
+            }
+            
+            // Update indicators
+            document.querySelectorAll('.indicator-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index + 1 === currentSlide);
+            });
+            
+            // Update controls
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+            
+            // Update progress bar
+            updateProgressBar();
+        }
+
+        // Initialize interactive timeline
+        function initializeTimeline() {
+            const timelineItems = document.querySelectorAll('.slide.active .timeline-item');
+            const progressBar = document.querySelector('.slide.active .timeline-progress');
+            
+            timelineItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('visible');
+                    const dot = item.querySelector('.timeline-dot');
+                    if (dot) {
+                        dot.classList.add('active');
+                    }
+                    
+                    if (progressBar) {
+                        const progress = ((index + 1) / timelineItems.length) * 100;
+                        progressBar.style.height = progress + '%';
+                    }
+                }, parseInt(item.dataset.delay || 0));
+            });
+        }
+
+        // Activate timeline item on click
+        function activateTimelineItem(dot) {
+            const item = dot.closest('.timeline-item');
+            const items = Array.from(item.parentElement.querySelectorAll('.timeline-item'));
+            const index = items.indexOf(item);
+            
+            items.forEach((item, i) => {
+                if (i <= index) {
+                    item.classList.add('visible');
+                    item.querySelector('.timeline-dot').classList.add('active');
+                }
+            });
+            
+            const progressBar = item.closest('.timeline').querySelector('.timeline-progress');
+            if (progressBar) {
+                const progress = ((index + 1) / items.length) * 100;
+                progressBar.style.height = progress + '%';
+            }
+        }
+
+        // Navigate to next slide
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        // Navigate to previous slide
+        function previousSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Go to specific slide
+        function goToSlide(slideNumber) {
+            currentSlide = slideNumber;
+            updateSlide();
+        }
+
+        // Handle keyboard navigation
+        function handleKeyPress(e) {
+            switch(e.key) {
+                case 'ArrowRight':
+                case ' ':
+                    e.preventDefault();
+                    nextSlide();
+                    break;
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    previousSlide();
+                    break;
+                case 'f':
+                case 'F':
+                    toggleFullscreen();
+                    break;
+                case 'Escape':
+                    if (document.fullscreenElement) {
+                        document.exitFullscreen();
+                    }
+                    break;
+            }
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        // Start presentation timer
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                const elapsed = Date.now() - presentationStartTime;
+                const minutes = Math.floor(elapsed / 60000);
+                const seconds = Math.floor((elapsed % 60000) / 1000);
+                document.getElementById('timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        // Toggle fullscreen
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Copy code to clipboard
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('.code-content').textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                button.style.background = 'var(--accent-green)';
+                button.style.color = 'white';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '';
+                    button.style.color = '';
+                }, 2000);
+            });
+        }
+
+        // Run demo
+        function runDemo() {
+            const input = document.getElementById('demoInput').value;
+            const loading = document.getElementById('demoLoading');
+            const content = document.getElementById('demoContent');
+            const result = document.getElementById('demoResult');
+            
+            if (!input) {
+                alert('Por favor, digite um username ou email');
+                return;
+            }
+            
+            loading.classList.add('active');
+            content.style.display = 'none';
+            
+            // Simulate analysis
+            setTimeout(() => {
+                loading.classList.remove('active');
+                content.style.display = 'block';
+                
+                content.innerHTML = `
+                    <h4 style="color: var(--accent-cyan); margin-bottom: 15px;">Análise de: ${input}</h4>
+                    <div style="display: grid; gap: 15px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-check-circle" style="color: var(--accent-green);"></i>
+                            <span>3 redes sociais encontradas</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-check-circle" style="color: var(--accent-green);"></i>
+                            <span>15 postagens públicas analisadas</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-check-circle" style="color: var(--accent-green);"></i>
+                            <span>Localização aproximada identificada</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-check-circle" style="color: var(--accent-green);"></i>
+                            <span>7 conexões mapeadas</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 20px; color: var(--text-secondary); font-size: 0.9rem;">
+                        <i class="fas fa-info-circle"></i> Esta é uma demonstração. 
+                        Em um cenário real, muito mais informações estariam disponíveis.
+                    </p>
+                `;
+            }, 2000);
+        }
+
+        // Add language selector
+        function addLanguageSelector() {
+            const selector = document.createElement('div');
+            selector.className = 'language-selector';
+            selector.innerHTML = `
+                <button onclick="changeLanguage('pt')" class="lang-btn ${currentLanguage === 'pt' ? 'active' : ''}">PT</button>
+                <button onclick="changeLanguage('en')" class="lang-btn ${currentLanguage === 'en' ? 'active' : ''}">EN</button>
+                <button onclick="changeLanguage('es')" class="lang-btn ${currentLanguage === 'es' ? 'active' : ''}">ES</button>
+            `;
+            document.body.appendChild(selector);
+        }
+
+        // Change language
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            updateLanguage();
+            updateSlide();
+            
+            // Update language selector buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.toLowerCase() === lang || 
+                    (btn.textContent === 'PT' && lang === 'pt') ||
+                    (btn.textContent === 'EN' && lang === 'en') ||
+                    (btn.textContent === 'ES' && lang === 'es'));
+            });
+        }
+
+        // Update all text elements with translations
+        function updateLanguage() {
+            const t = translations[currentLanguage];
+            
+            // Update slide titles and content dynamically
+            updateSlide();
+        }
+
+        // Exit presentation
+        function exitPresentation() {
+            window.location.href = './index.html';
+        }
+
+        // Go to website
+        function goToWebsite() {
+            window.location.href = './index.html';
+        }
+
+        // Initialize on load
+        window.addEventListener('load', init);
+
+        // Toggle Info Panel
+        function toggleInfo() {
+            const infoContent = document.getElementById('infoContent');
+            infoContent.classList.toggle('show');
+        }
+
+        // Close info panel when clicking outside
+        document.addEventListener('click', (e) => {
+            const floatingInfo = document.querySelector('.floating-info');
+            const infoContent = document.getElementById('infoContent');
+            
+            if (!floatingInfo.contains(e.target) && infoContent.classList.contains('show')) {
+                infoContent.classList.remove('show');
+            }
+        });
+    </script>
+
+    <!-- Floating Info Button -->
+    <div class="floating-info">
+        <button class="floating-button" onclick="toggleInfo()">
+            <i class="fas fa-info"></i>
+        </button>
+        <div class="info-content" id="infoContent">
+            <div class="developer-header">
+                <div class="developer-avatar">AH</div>
+                <div class="developer-details">
+                    <h3 class="developer-name">Anderson Henrique da Silva</h3>
+                    <p class="developer-role">Arquiteto Digital</p>
+                </div>
+            </div>
+            <div class="developer-skills">
+                <span class="skill-tag">IA</span>
+                <span class="skill-tag">Machine Learning</span>
+                <span class="skill-tag">Cybersegurança</span>
+                <span class="skill-tag">OSINT</span>
+            </div>
+            <div class="developer-links">
+                <a href="https://linkedin.com/in/anderson-h-silva95" target="_blank" class="developer-link">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/anderson-ufrj" target="_blank" class="developer-link">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="mailto:andersonhs27@gmail.com" class="developer-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+            <hr style="margin: 20px 0; border: 1px solid var(--glass-border);">
+            <div class="event-header">
+                <img src="./assets/uaisint_logo.png" alt="UAISINT" class="event-logo">
+                <div class="event-details">
+                    <h3 class="event-title">UAISINT</h3>
+                    <p class="event-subtitle">Grupo de OSINT de Minas Gerais</p>
+                </div>
+            </div>
+            <div class="event-links">
+                <a href="https://www.linkedin.com/groups/10060469/" target="_blank" class="event-link">
+                    <i class="fab fa-linkedin"></i>
+                    <span>Grupo no LinkedIn</span>
+                </a>
+                <a href="https://www.instagram.com/uaisint/" target="_blank" class="event-link">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram @uaisint</span>
+                </a>
+                <a href="https://twitter.com/uaisint" target="_blank" class="event-link">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter @uaisint</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer style="position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); text-align: center; font-size: 0.7rem; color: rgba(255, 255, 255, 0.4); z-index: 100; width: auto;">
+        <p style="margin: 0;">&copy; 2025 Anderson Henrique da Silva | IA & OSINT - UAISINT</p>
+        <p style="margin: 0;">
+            <small>Feito com ❤️ em Minas Gerais</small>
+        </p>
+    </footer>
+</body>
+</html>
