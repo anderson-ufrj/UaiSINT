@@ -637,9 +637,20 @@
                 padding: 0 20px;
             }
 
-
             .hero-title {
-                font-size: clamp(2rem, 5vw, 3rem);
+                font-size: clamp(1.8rem, 6vw, 2.5rem);
+                margin-bottom: 10px;
+            }
+            
+            .hero-subtitle {
+                font-size: clamp(0.9rem, 2vw, 1.1rem);
+                padding: 0 10px;
+                margin-bottom: 30px;
+            }
+            
+            .hero-badge {
+                font-size: 0.85rem;
+                padding: 8px 16px;
             }
 
             .mode-options {
@@ -649,6 +660,28 @@
 
             .mode-card {
                 padding: 20px;
+            }
+            
+            .mode-title {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+            }
+            
+            .mode-option {
+                padding: 20px;
+            }
+            
+            .mode-icon {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+            
+            .mode-name {
+                font-size: 1.1rem;
+            }
+            
+            .mode-desc {
+                font-size: 0.85rem;
             }
 
             .floating-info {
@@ -662,9 +695,92 @@
             }
 
             .info-content {
-                right: -10px;
-                left: -250px;
-                min-width: 280px;
+                position: fixed;
+                bottom: 80px;
+                right: 20px;
+                left: 20px;
+                min-width: auto;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .lang-selector {
+                top: 20px;
+                right: 20px;
+                transform: scale(0.9);
+            }
+            
+            footer {
+                bottom: 5px;
+                font-size: 0.75rem;
+                padding: 0 20px;
+                text-align: center;
+            }
+            
+            body {
+                padding: 10px;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.6rem;
+                line-height: 1.2;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .mode-option {
+                padding: 15px;
+            }
+            
+            .mode-icon {
+                font-size: 1.8rem;
+            }
+            
+            .mode-name {
+                font-size: 1rem;
+            }
+            
+            .info-content {
+                bottom: 70px;
+                right: 10px;
+                left: 10px;
+                padding: 20px;
+            }
+            
+            .developer-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .developer-avatar {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .developer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .event-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .event-logo {
+                width: 50px;
+                height: 50px;
             }
         }
 
