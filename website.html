@@ -1008,109 +1008,7 @@
         }
 
         /* Welcome Modal */
-        .welcome-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .welcome-modal.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 600px;
-            width: 90%;
-            text-align: center;
-            animation: slideDown 0.5s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal-title {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .modal-subtitle {
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-        }
-
-        .choice-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .choice-btn {
-            padding: 20px 30px;
-            background: var(--glass-bg);
-            border: 2px solid var(--glass-border);
-            border-radius: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            min-width: 200px;
-            text-decoration: none;
-            color: var(--text-primary);
-        }
-
-        .choice-btn:hover {
-            background: var(--primary-gradient);
-            border-color: transparent;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        .choice-icon {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .choice-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .choice-desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
+        /* Estilos do modal removidos */
 
         /* Footer */
         footer {
@@ -2926,24 +2824,10 @@
             setupLanguageSelector();
             setupReadMode();
             setLanguage('pt');
-            checkFirstVisit();
         });
     </script>
     
-    <!-- Welcome Modal -->
-    <div class="welcome-modal" id="welcomeModal">
-        <div class="modal-content">
-            <h2 class="modal-title" data-i18n="modal.title">Bem-vindo ao IA & OSINT</h2>
-            <p class="modal-subtitle" data-i18n="modal.subtitle">Bem-vindo à apresentação</p>
-            <div class="choice-buttons">
-                <a href="./presentation.html" class="choice-btn" style="width: 100%;">
-                    <i class="fas fa-desktop choice-icon"></i>
-                    <div class="choice-title" data-i18n="modal.presentation">Apresentação</div>
-                    <div class="choice-desc" data-i18n="modal.presentationDesc">Slides interativos para palestra</div>
-                </a>
-            </div>
-        </div>
-    </div>
+    <!-- Modal removido -->
 
     <!-- Floating Info Button -->
     <div class="floating-info">
@@ -3076,48 +2960,7 @@
             }
         });
 
-        // Modal functions
-        function showModal() {
-            const modal = document.getElementById('welcomeModal');
-            updateModalTranslations();
-            modal.classList.add('show');
-        }
-        
-        function updateModalTranslations() {
-            // Update modal translations based on current language
-            const modalElements = document.querySelectorAll('#welcomeModal [data-i18n]');
-            modalElements.forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                const keys = key.split('.');
-                let translation = translations[currentLang];
-                
-                for (const k of keys) {
-                    translation = translation?.[k];
-                }
-                
-                if (translation) {
-                    element.textContent = translation;
-                }
-            });
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('welcomeModal');
-            modal.classList.remove('show');
-            
-            // Redireciona para a presentation após fechar o modal
-            setTimeout(() => {
-                window.location.href = './presentation.html';
-            }, 500);
-        }
-
-        // Show modal on first visit check
-        function checkFirstVisit() {
-            if (!localStorage.getItem('hasVisited')) {
-                setTimeout(showModal, 1000);
-                localStorage.setItem('hasVisited', 'true');
-            }
-        }
+        // Modal removido
     </script>
 </body>
 </html>
