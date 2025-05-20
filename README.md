@@ -4,7 +4,7 @@ Apresentação interativa sobre Inteligência Artificial e OSINT (Open Source In
 
 ## 🚀 Demonstração
 
-Acesse a apresentação ao vivo: [https://anderson-ufrj.github.io/UaiSINT/](https://anderson-ufrj.github.io/UaiSINT/)
+Acesse a apresentação ao vivo:(https://anderson-ufrj.github.io/UaiSINT/)
 
 ## 📁 Estrutura do Projeto
 

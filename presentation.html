@@ -917,7 +917,7 @@
             border-radius: 30px;
             border: 1px solid var(--glass-border);
             z-index: 200;
-            min-width: 160px;
+            min-width: 180px; /* Aumentado para acomodar textos mais longos */
             justify-content: space-between;
         }
         
@@ -925,6 +925,8 @@
             color: var(--text-secondary);
             font-weight: 600;
             font-size: 14px;
+            white-space: nowrap; /* Evita quebra de linha no texto */
+            flex: 1; /* Faz o texto ocupar o espaço disponível */
         }
         
         /* Toggle Switch */

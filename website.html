@@ -212,12 +212,15 @@
             border: 1px solid var(--glass-border);
             margin-left: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            min-width: 180px; /* Aumenta a largura mínima para evitar quebras de linha */
         }
         
         .read-mode-label {
             color: var(--text-secondary);
             font-weight: 600;
             font-size: 13px;
+            white-space: nowrap; /* Evita quebra de linha no texto */
+            flex: 1; /* Faz o texto ocupar o espaço disponível */
         }
         
         /* Toggle Switch */

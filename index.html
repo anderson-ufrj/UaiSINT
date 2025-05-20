@@ -845,12 +845,15 @@
             padding: 8px 15px;
             border-radius: 30px;
             border: 1px solid var(--glass-border);
+            min-width: 180px; /* Aumenta a largura mínima para evitar quebras de linha */
         }
         
         .read-mode-label {
             color: var(--text-secondary);
             font-weight: 600;
             font-size: 14px;
+            white-space: nowrap; /* Evita quebra de linha no texto */
+            flex: 1; /* Faz o texto ocupar o espaço disponível */
         }
         
         /* Toggle Switch */
