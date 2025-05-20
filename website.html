@@ -94,13 +94,13 @@
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
-            width: 100%;
+            padding: 1rem 1.5rem;
+            width: 95%;
             box-sizing: border-box;
         }
 
@@ -271,8 +271,18 @@
         }
         
         /* Read Mode Overlay */
+        .read-mode-active {
+            background-color: #000;
+            transition: background-color 0.5s ease;
+        }
+        
         .read-mode-active .matrix-column {
-            opacity: 0.1 !important;
+            opacity: 0 !important;
+            transition: opacity 0.5s ease;
+        }
+        
+        .read-mode-active .animated-bg::before {
+            opacity: 0 !important;
             transition: opacity 0.5s ease;
         }
 
@@ -375,10 +385,11 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            width: 100%;
+            width: 95%;
             box-sizing: border-box;
+            padding: 0 15px;
         }
 
         .section-header {
@@ -404,8 +415,9 @@
         /* Feature Grid */
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            width: 100%;
         }
 
         .feature-card {
