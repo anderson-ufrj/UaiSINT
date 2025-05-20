@@ -78,7 +78,7 @@
             line-height: 12px;
             text-shadow: 0 0 5px #0f9d58;
             animation: matrixFall linear infinite;
-            opacity: 0.25; /* Mantido opaco por padrão */
+            opacity: 0.15; /* Reduzido para ficar mais fosco por padrão */
         }
 
         @keyframes matrixFall {
@@ -108,7 +108,7 @@
             left: -150%;
             background: radial-gradient(circle at center, transparent 0%, var(--accent-purple) 10%, transparent 20%, var(--accent-cyan) 30%, transparent 40%, var(--accent-pink) 50%, transparent 60%);
             animation: rotate 60s linear infinite;
-            opacity: 0.05; /* Reduzido para ficar mais fosco */
+            opacity: 0.03; /* Reduzido ainda mais para ficar mais fosco */
         }
 
         @keyframes rotate {
@@ -729,14 +729,16 @@
 
         .slide-indicator {
             display: flex;
-            gap: 6px;
-            flex: 0;
+            gap: 8px;
+            flex: 1;
             margin: 0 20px;
+            justify-content: center;
+            align-items: center;
         }
 
         .indicator-dot {
-            width: 6px;
-            height: 6px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: var(--glass-border);
             cursor: pointer;
@@ -745,8 +747,9 @@
 
         .indicator-dot.active {
             background: var(--accent-purple);
-            width: 18px;
-            border-radius: 3px;
+            width: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 8px var(--accent-purple);
         }
         
         /* Copyright */
@@ -2630,8 +2633,10 @@ for post in social_data:
 
         // Go to specific slide
         function goToSlide(slideNumber) {
-            currentSlide = slideNumber;
-            updateSlide();
+            if (slideNumber >= 1 && slideNumber <= totalSlides) {
+                currentSlide = slideNumber;
+                updateSlide();
+            }
         }
 
         // Handle keyboard navigation

@@ -83,7 +83,7 @@
             left: -150%;
             background: radial-gradient(circle at center, transparent 0%, var(--accent-purple) 15%, transparent 30%, var(--accent-cyan) 45%, transparent 60%, var(--accent-pink) 75%, transparent 90%);
             animation: rotate 45s linear infinite;
-            opacity: 0.05;
+            opacity: 0.03; /* Reduzido para ficar mais fosco */
         }
 
         @keyframes rotate {
@@ -1237,12 +1237,10 @@
         function setupReadMode() {
             const readModeToggle = document.getElementById('readModeToggle');
             
-            // Check if read mode was previously enabled
-            const readModeEnabled = localStorage.getItem('readModeEnabled') === 'true';
-            if (readModeEnabled) {
-                document.body.classList.add('read-mode-active');
-                readModeToggle.checked = true;
-            }
+            // Por padrão, o modo leitura começa desativado
+            document.body.classList.remove('read-mode-active');
+            readModeToggle.checked = false;
+            localStorage.setItem('readModeEnabled', 'false');
             
             readModeToggle.addEventListener('change', () => {
                 if (readModeToggle.checked) {
