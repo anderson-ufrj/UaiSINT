@@ -18,7 +18,8 @@ const translations = {
             title2: "A Nova Fronteira Digital",
             subtitle: "Descubra como a Inteligência Artificial está revolucionando a coleta e análise de informações abertas",
             presentationBtn: "Ver Apresentação",
-            learnBtn: "Saiba Mais"
+            learnBtn: "Saiba Mais",
+            continueBtn: "Continuar no Site"
         },
         about: {
             title: "O Mundo Invisível dos Dados",
@@ -141,6 +142,24 @@ const translations = {
         gettingStarted: {
             title: "Mão na Massa!",
             subtitle: "Ferramentas para Começar Hoje"
+        },
+        detective: {
+            title: "Seja um Detetive Digital",
+            subtitle: "O caminho para dominar o OSINT e a Inteligência Artificial",
+            start: {
+                title: "Por onde começar?",
+                desc: "<strong>Cursos gratuitos:</strong> bellingcat.com/resources<br><strong>Ferramentas básicas:</strong> Google Dorking, OSINT Framework<br><strong>CTFs:</strong> Desafios práticos para treinar habilidades"
+            },
+            skills: {
+                title: "Habilidades Essenciais",
+                desc: "<strong>Python:</strong> Automação e análise de dados<br><strong>SQL:</strong> Gerenciamento de grandes datasets<br><strong>APIs:</strong> Integração com ferramentas"
+            },
+            mindset: {
+                title: "Mindset OSINT",
+                desc: "<strong>Curiosidade:</strong> Questione tudo<br><strong>Ética:</strong> Respeite a privacidade<br><strong>Persistência:</strong> A verdade está nos detalhes"
+            },
+            github: "Contribua no GitHub",
+            telegram: "Entre no Telegram"
         }
     },
     en: {
@@ -162,7 +181,7 @@ const translations = {
             subtitle: "Discover how Artificial Intelligence is revolutionizing open source information collection and analysis",
             presentationBtn: "View Presentation",
             learnBtn: "Learn More",
-            continueBtn: "Continue to Website"
+            continueBtn: "Continue on Website"
         },
         about: {
             title: "The Invisible World of Data",
@@ -285,6 +304,24 @@ const translations = {
         gettingStarted: {
             title: "Let's Get Started!",
             subtitle: "Tools to Begin Today"
+        },
+        detective: {
+            title: "Become a Digital Detective",
+            subtitle: "The path to mastering OSINT and Artificial Intelligence",
+            start: {
+                title: "Where to start?",
+                desc: "<strong>Free courses:</strong> bellingcat.com/resources<br><strong>Basic tools:</strong> Google Dorking, OSINT Framework<br><strong>CTFs:</strong> Practical challenges to train skills"
+            },
+            skills: {
+                title: "Essential Skills",
+                desc: "<strong>Python:</strong> Automation and data analysis<br><strong>SQL:</strong> Large dataset management<br><strong>APIs:</strong> Tool integration"
+            },
+            mindset: {
+                title: "OSINT Mindset",
+                desc: "<strong>Curiosity:</strong> Question everything<br><strong>Ethics:</strong> Respect privacy<br><strong>Persistence:</strong> The truth is in the details"
+            },
+            github: "Contribute on GitHub",
+            telegram: "Join Telegram"
         }
     },
     es: {
@@ -429,6 +466,24 @@ const translations = {
         gettingStarted: {
             title: "¡Manos a la Obra!",
             subtitle: "Herramientas para Comenzar Hoy"
+        },
+        detective: {
+            title: "Sé un Detective Digital",
+            subtitle: "El camino para dominar OSINT e Inteligencia Artificial",
+            start: {
+                title: "¿Por dónde empezar?",
+                desc: "<strong>Cursos gratuitos:</strong> bellingcat.com/resources<br><strong>Herramientas básicas:</strong> Google Dorking, OSINT Framework<br><strong>CTFs:</strong> Desafíos prácticos para entrenar habilidades"
+            },
+            skills: {
+                title: "Habilidades Esenciales",
+                desc: "<strong>Python:</strong> Automatización y análisis de datos<br><strong>SQL:</strong> Gestión de grandes datasets<br><strong>APIs:</strong> Integración con herramientas"
+            },
+            mindset: {
+                title: "Mentalidad OSINT",
+                desc: "<strong>Curiosidad:</strong> Cuestiona todo<br><strong>Ética:</strong> Respeta la privacidad<br><strong>Persistencia:</strong> La verdad está en los detalles"
+            },
+            github: "Contribuye en GitHub",
+            telegram: "Únete a Telegram"
         }
     }
 };

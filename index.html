@@ -2313,7 +2313,7 @@
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <h3 class="feature-title" data-i18n="detective.start.title">Por onde começar?</h3>
-                    <p class="feature-desc" data-i18n="detective.start.desc"></p>
+                    <p class="feature-desc" data-i18n="detective.start.desc"><strong>Cursos gratuitos:</strong> bellingcat.com/resources<br><strong>Ferramentas básicas:</strong> Google Dorking, OSINT Framework<br><strong>CTFs:</strong> Desafios práticos para treinar habilidades</p>
                 </div>
                 
                 <div class="feature-card">
@@ -2321,7 +2321,7 @@
                         <i class="fas fa-code"></i>
                     </div>
                     <h3 class="feature-title" data-i18n="detective.skills.title">Habilidades Essenciais</h3>
-                    <p class="feature-desc" data-i18n="detective.skills.desc"></p>
+                    <p class="feature-desc" data-i18n="detective.skills.desc"><strong>Python:</strong> Automação e análise de dados<br><strong>SQL:</strong> Gerenciamento de grandes datasets<br><strong>APIs:</strong> Integração com ferramentas</p>
                 </div>
                 
                 <div class="feature-card">
@@ -2329,7 +2329,7 @@
                         <i class="fas fa-brain"></i>
                     </div>
                     <h3 class="feature-title" data-i18n="detective.mindset.title">Mindset OSINT</h3>
-                    <p class="feature-desc" data-i18n="detective.mindset.desc"></p>
+                    <p class="feature-desc" data-i18n="detective.mindset.desc"><strong>Curiosidade:</strong> Questione tudo<br><strong>Ética:</strong> Respeite a privacidade<br><strong>Persistência:</strong> A verdade está nos detalhes</p>
                 </div>
             </div>
             
@@ -2999,7 +2999,7 @@
             
             // Update info panel if it's open
             const infoContent = document.getElementById('infoContent');
-            if (infoContent.classList.contains('show')) {
+            if (infoContent && infoContent.classList.contains('show')) {
                 updateInfoTranslations();
             }
             
