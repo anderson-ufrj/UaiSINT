@@ -82,7 +82,18 @@
         }
 
         @keyframes matrixFall {
-            to {
+            0% {
+                opacity: 0; /* Começa invisível */
+                transform: translateY(0);
+            }
+            10% {
+                opacity: 0.15; /* Fade in */
+            }
+            90% {
+                opacity: 0.15; /* Mantém visibilidade */
+            }
+            100% {
+                opacity: 0; /* Fade out no final */
                 transform: translateY(200vh);
             }
         }

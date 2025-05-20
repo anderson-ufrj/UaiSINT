@@ -67,11 +67,22 @@
             line-height: 12px;
             text-shadow: 0 0 5px #0f9d58;
             animation: matrixFall linear infinite;
-            opacity: 0.4;
+            opacity: 0.25; /* Reduzido para ficar mais sutil */
         }
 
         @keyframes matrixFall {
-            to {
+            0% {
+                opacity: 0; /* Começa invisível */
+                transform: translateY(0);
+            }
+            10% {
+                opacity: 0.25; /* Fade in */
+            }
+            90% {
+                opacity: 0.25; /* Mantém visibilidade */
+            }
+            100% {
+                opacity: 0; /* Fade out no final */
                 transform: translateY(200vh);
             }
         }
@@ -166,6 +177,8 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            white-space: nowrap; /* Evita quebra de linha nos controles */
+            margin-left: auto; /* Alinha à direita da barra de navegação */
         }
         .lang-selector {
             display: flex;
@@ -176,6 +189,8 @@
             border-radius: 24px;
             border: 1px solid var(--glass-border);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            flex-shrink: 0; /* Impede o seletor de encolher */
+            flex-wrap: nowrap; /* Mantém os botões na mesma linha */
         }
 
         .lang-btn {
@@ -213,6 +228,7 @@
             margin-left: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             min-width: 180px; /* Aumenta a largura mínima para evitar quebras de linha */
+            flex-shrink: 0; /* Impede o botão de encolher */
         }
         
         .read-mode-label {
@@ -1170,6 +1186,16 @@
 
             .mobile-menu-toggle {
                 display: block;
+            }
+            
+            .nav-controls {
+                flex-wrap: nowrap;
+                gap: 8px; /* Reduz o espaçamento em telas menores */
+            }
+            
+            .read-mode-toggle {
+                min-width: auto; /* Adapta o tamanho em telas menores */
+                flex: 0;
             }
             
             .hero-content {
