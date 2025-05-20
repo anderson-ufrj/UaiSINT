@@ -14,9 +14,6 @@
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
-    <!-- Load translations -->
-    <script src="./js/translations.js"></script>
-    
     <style>
         :root {
             --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -32,7 +29,6 @@
             --text-secondary: #a1a1aa;
             --glass-bg: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
-            --read-mode-overlay: rgba(10, 14, 39, 0.8);
         }
 
         * {
@@ -78,22 +74,11 @@
             line-height: 12px;
             text-shadow: 0 0 5px #0f9d58;
             animation: matrixFall linear infinite;
-            opacity: 0.15; /* Reduzido para ficar mais fosco por padrão */
+            opacity: 0.8;
         }
 
         @keyframes matrixFall {
-            0% {
-                opacity: 0; /* Começa invisível */
-                transform: translateY(0);
-            }
-            10% {
-                opacity: 0.15; /* Fade in */
-            }
-            90% {
-                opacity: 0.15; /* Mantém visibilidade */
-            }
-            100% {
-                opacity: 0; /* Fade out no final */
+            to {
                 transform: translateY(200vh);
             }
         }
@@ -119,7 +104,7 @@
             left: -150%;
             background: radial-gradient(circle at center, transparent 0%, var(--accent-purple) 10%, transparent 20%, var(--accent-cyan) 30%, transparent 40%, var(--accent-pink) 50%, transparent 60%);
             animation: rotate 60s linear infinite;
-            opacity: 0.03; /* Reduzido ainda mais para ficar mais fosco */
+            opacity: 0.1;
         }
 
         @keyframes rotate {
@@ -172,12 +157,12 @@
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
-            padding: 30px;
-            padding-bottom: 80px;
-            width: 95%;
+            padding: 40px;
+            padding-bottom: 100px;
+            width: 100%;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             overflow-y: auto;
-            max-height: 90vh;
+            max-height: 85vh;
             position: relative;
         }
 
@@ -214,19 +199,15 @@
         .language-selector {
             position: fixed;
             top: 30px;
-            right: 30px;
+            left: 30px;
             display: flex;
             gap: 5px;
             z-index: 200;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            padding: 5px;
-            border-radius: 30px;
-            border: 1px solid var(--glass-border);
         }
 
         .lang-btn {
-            background: transparent;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
             color: var(--text-secondary);
             padding: 8px 15px;
             border-radius: 25px;
@@ -234,7 +215,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 0.9rem;
-            border: none;
         }
 
         .lang-btn:hover {
@@ -252,11 +232,10 @@
         /* Grid Layouts */
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-top: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
             width: 100%;
-            padding: 0 5px;
         }
 
         .feature-card {
@@ -699,16 +678,15 @@
         /* Controls */
         .controls {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             gap: 15px;
             align-items: center;
-            background: rgba(6, 8, 24, 0.8);
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
-            padding: 10px 30px;
-            border-top: 1px solid var(--glass-border);
+            padding: 5px 30px;
             border-radius: 40px;
             border: 1px solid var(--glass-border);
             z-index: 10;
@@ -719,28 +697,19 @@
         }
 
         .control-btn {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
+            background: transparent;
+            border: none;
             color: var(--text-secondary);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            padding: 12px;
-            width: 50px;
-            height: 50px;
+            padding: 8px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .control-btn:hover {
-            color: white;
-            background: var(--accent-purple);
-            border-color: var(--accent-purple);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.3);
+            color: var(--accent-purple);
+            background: rgba(102, 126, 234, 0.1);
         }
 
         .control-btn:disabled {
@@ -750,36 +719,24 @@
 
         .slide-indicator {
             display: flex;
-            gap: 8px;
-            flex: 1;
+            gap: 6px;
+            flex: 0;
             margin: 0 20px;
-            justify-content: center;
-            align-items: center;
         }
 
         .indicator-dot {
-            min-width: 32px;
-            height: 32px;
-            border-radius: 16px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--glass-border);
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 600;
-            margin: 0 2px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .indicator-dot.active {
             background: var(--accent-purple);
-            color: white;
-            box-shadow: 0 0 8px var(--accent-purple);
-            border-color: var(--accent-purple);
+            width: 18px;
+            border-radius: 3px;
         }
         
         /* Copyright */
@@ -787,12 +744,13 @@
             font-size: 0.7rem;
             color: rgba(255, 255, 255, 0.4);
             text-align: right;
-            flex: 1;
+            flex: 0 0 auto;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
             justify-content: center;
-            margin-left: 20px;
+            margin-left: auto;
+            padding-left: 20px;
         }
         
         .copyright p {
@@ -804,18 +762,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            flex: 1;
-            justify-content: center;
-            overflow-x: auto;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 10px;
-            scrollbar-width: none; /* Esconde a barra de rolagem no Firefox */
-            -ms-overflow-style: none; /* Esconde a barra de rolagem no IE/Edge */
-        }
-        
-        .nav-group::-webkit-scrollbar {
-            display: none; /* Esconde a barra de rolagem no Chrome/Safari/Opera */
+            flex: 0 0 auto;
         }
         
         /* Responsive adjustments */
@@ -825,6 +772,7 @@
                 height: auto;
                 padding: 10px 20px;
                 width: 95%;
+                gap: 10px;
             }
             
             .nav-group {
@@ -862,13 +810,13 @@
         }
 
         /* Progress Bar */
-        .progress-bar, .progress-container {
+        .progress-bar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 4px;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--glass-border);
             z-index: 101;
         }
 
@@ -877,7 +825,6 @@
             background: var(--primary-gradient);
             width: 0;
             transition: width 0.5s ease;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
         }
 
         /* QR Code */
@@ -943,97 +890,6 @@
             margin-left: 2px;
             color: var(--accent-cyan);
             animation: blink-caret 0.75s step-end infinite;
-        }
-        
-        /* Read Mode Toggle */
-        .read-mode-toggle {
-            position: fixed;
-            top: 30px;
-            left: 30px; 
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            padding: 8px 15px;
-            border-radius: 30px;
-            border: 1px solid var(--glass-border);
-            z-index: 200;
-            min-width: 180px; /* Aumentado para acomodar textos mais longos */
-            justify-content: space-between;
-        }
-        
-        .read-mode-label {
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 14px;
-            white-space: nowrap; /* Evita quebra de linha no texto */
-            flex: 1; /* Faz o texto ocupar o espaço disponível */
-        }
-        
-        /* Toggle Switch */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-        }
-        
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--glass-bg);
-            transition: .4s;
-            border: 1px solid var(--glass-border);
-        }
-        
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 4px;
-            bottom: 3px;
-            background: var(--text-secondary);
-            transition: .4s;
-        }
-        
-        input:checked + .slider {
-            background: var(--primary-gradient);
-        }
-        
-        input:checked + .slider:before {
-            transform: translateX(26px);
-            background: white;
-        }
-        
-        .slider.round {
-            border-radius: 24px;
-        }
-        
-        .slider.round:before {
-            border-radius: 50%;
-        }
-        
-        /* Read Mode Overlay */
-        .read-mode-active .matrix-column {
-            opacity: 0.1 !important;
-            transition: opacity 0.5s ease;
-        }
-        
-        .read-mode-active .animated-bg::before {
-            opacity: 0.05 !important;
-            transition: opacity 0.5s ease;
         }
 
         /* UAISINT Logo */
@@ -1296,13 +1152,6 @@
         .developer-role {
             font-size: 0.85rem;
             color: var(--text-secondary);
-            margin-bottom: 3px;
-        }
-        
-        .developer-company {
-            font-size: 0.85rem;
-            color: var(--accent-cyan);
-            font-weight: 500;
         }
 
         .developer-skills {
@@ -1429,9 +1278,6 @@
         <i class="fas fa-clock timer-icon"></i>
         <span id="timer">00:00</span>
     </div>
-    
-    <!-- Read Mode Toggle Removido -->
-    <!-- O botão de modo leitura foi removido e o efeito de matriz está sempre fosco -->
 
     <!-- Slides Container -->
     <div class="slide-container">
@@ -2318,29 +2164,26 @@ for post in social_data:
     <!-- Controls -->
     <div class="controls">
         <div class="nav-group">
-            <button class="control-btn" id="prevBtn" aria-label="Slide anterior">
+            <button class="control-btn" onclick="previousSlide()" id="prevBtn">
                 <i class="fas fa-chevron-left"></i>
             </button>
             <div class="slide-indicator" id="slideIndicator">
                 <!-- Dots will be generated dynamically -->
             </div>
-            <button class="control-btn" id="nextBtn" aria-label="Próximo slide">
+            <button class="control-btn" onclick="nextSlide()" id="nextBtn">
                 <i class="fas fa-chevron-right"></i>
             </button>
         </div>
         <div class="copyright">
             <p>&copy; 2025 Anderson Henrique da Silva | UAISINT</p>
             <p><small>Feito com ❤️ em Minas Gerais</small></p>
-            <p><small>Apoio: <span style="color: var(--accent-purple);">Ruvixx</span></small></p>
         </div>
     </div>
-    
-    <!-- Já temos uma barra de progresso acima, removendo duplicada -->
 
     <script>
         // Global variables
         let currentSlide = 1;
-        const totalSlides = 18; // Atualizado para incluir o slide de compliance
+        const totalSlides = 17;
         let presentationStartTime = Date.now();
         let timerInterval;
         let currentLanguage = 'pt';
@@ -2477,84 +2320,8 @@ for post in social_data:
 
         // Initialize presentation
         function init() {
-            console.log('Inicializando apresentação...');
             createMatrixRain();
-            
-            // Garantir que todas as slides tenham o atributo data-slide
-            const slides = document.querySelectorAll('.slide');
-            console.log('Slides encontrados:', slides.length);
-            
-            slides.forEach((slide, index) => {
-                if (!slide.hasAttribute('data-slide')) {
-                    slide.setAttribute('data-slide', index + 1);
-                    console.log('Adicionado data-slide ao slide', index + 1);
-                }
-            });
-            
-            // Força o slide 1 como ativo inicialmente
-            currentSlide = 1;
-            
-            // Criar indicadores de slide
             createSlideIndicators();
-            
-            // Verificar se as traduções estão disponíveis
-            if (typeof window.translations === 'undefined') {
-                // Se não estiver disponível, vamos carregar diretamente
-                console.warn("Translations not loaded from external file, using local definitions");
-                window.translations = {
-                    pt: {
-                        readMode: { label: "Modo Leitura" },
-                        compliance: {
-                            title: "Conformidade Legal",
-                            subtitle: "Riscos de software não licenciado em ambiente corporativo",
-                            intro: "A pirataria de software é uma prática ilegal que prejudica desenvolvedores, empresas e usuários finais. Além de violar direitos autorais, expõe sistemas a sérios riscos de segurança.",
-                            stats: "No Brasil, cerca de 35% do software em uso é pirata, gerando prejuízos de mais de R$ 6 bilhões anualmente para a economia.",
-                            risk1: {
-                                title: "Riscos Legais",
-                                desc: "Multas que podem chegar a milhões, processos por violação de propriedade intelectual e responsabilidade criminal para gestores.",
-                                detail: "As penalidades por uso de software pirata podem incluir multas de até R$ 3.000 por cópia ilegal, além de penas de detenção de 1 a 4 anos para os responsáveis."
-                            },
-                            risk2: {
-                                title: "Segurança Comprometida",
-                                desc: "Software ilegal frequentemente contém malware e não recebe atualizações de segurança cruciais, expondo dados sensíveis a ataques.",
-                                detail: "Programas piratas são frequentemente modificados para incluir backdoors, ransomware e spyware, permitindo acesso não autorizado a dados confidenciais da empresa."
-                            },
-                            risk3: {
-                                title: "Reputação Corporativa",
-                                desc: "Danos irreparáveis à imagem da empresa e perda de confiança de clientes, parceiros e investidores.",
-                                detail: "Um escândalo envolvendo pirataria pode destruir a reputação de uma empresa em minutos, resultando em perda de clientes e dificuldade para fechar novos negócios."
-                            },
-                            solution: "Invista em licenças legítimas, implemente políticas claras de compliance de software e realize auditorias regulares para garantir conformidade e segurança.",
-                            benefits: "Software legal oferece suporte técnico, atualizações de segurança, garantia de funcionamento e proteção contra vulnerabilidades, além de contribuir para a inovação do setor."
-                        },
-                        contact: {
-                            connect: "Conecte-se no LinkedIn", 
-                            role: "Especialista em Inteligência Digital"
-                        },
-                        footer: {
-                            by: "em Minas Gerais",
-                            support: "Apoio"
-                        }
-                    },
-                    en: { 
-                        // versão em inglês aqui, resumida para não sobrecarregar o código
-                        readMode: { label: "Read Mode" }
-                    },
-                    es: { 
-                        // versão em espanhol aqui, resumida para não sobrecarregar o código
-                        readMode: { label: "Modo Lectura" }
-                    }
-                };
-            }
-            
-            // Load saved language preference
-            const savedLang = localStorage.getItem('selectedLanguage') || 'pt';
-            currentLanguage = savedLang;
-            
-            // Assegura que a tradução seja aplicada
-            updateLanguage();
-            createLanguageSelector();
-            
             updateSlide();
             startTimer();
             
@@ -2564,10 +2331,8 @@ for post in social_data:
             // Update progress bar
             updateProgressBar();
             
-            console.log("Presentation initialized with language: " + currentLanguage);
-            
-            // Garantir que o seletor de idioma seja adicionado
-            addLanguageSelector();
+            // Language selector disabled for GitHub Pages
+            // addLanguageSelector();
         }
 
         // Create Matrix Rain Effect
@@ -2598,28 +2363,12 @@ for post in social_data:
         // Create slide indicators
         function createSlideIndicators() {
             const indicator = document.getElementById('slideIndicator');
-            if (!indicator) {
-                console.error('Elemento slideIndicator não encontrado');
-                return;
-            }
-            
-            indicator.innerHTML = ''; // Limpa indicadores existentes
-            console.log('Criando indicadores para', totalSlides, 'slides');
-            
             for (let i = 1; i <= totalSlides; i++) {
                 const dot = document.createElement('div');
                 dot.className = 'indicator-dot';
-                dot.textContent = i.toString();
-                dot.setAttribute('title', 'Ir para o slide ' + i);
-                dot.onclick = function() {
-                    goToSlide(i);
-                    return false; // Previne propagação do evento
-                };
+                dot.onclick = () => goToSlide(i);
                 indicator.appendChild(dot);
             }
-            
-            // Atualiza o status inicial dos indicadores
-            setTimeout(updateSlide, 100);
         }
 
         // Update current slide
@@ -2633,14 +2382,11 @@ for post in social_data:
             const currentSlideElement = document.querySelector(`[data-slide="${currentSlide}"]`);
             if (currentSlideElement) {
                 currentSlideElement.classList.add('active');
-                console.log('Ativou slide:', currentSlide, currentSlideElement);
                 
                 // Initialize timeline if present
                 if (currentSlide === 3 || currentSlide === 12) {
-                    setTimeout(initializeTimeline, 100);
+                    initializeTimeline();
                 }
-            } else {
-                console.error('Slide não encontrado:', currentSlide);
             }
             
             // Update indicators
@@ -2649,10 +2395,8 @@ for post in social_data:
             });
             
             // Update controls
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            if (prevBtn) prevBtn.disabled = currentSlide === 1;
-            if (nextBtn) nextBtn.disabled = currentSlide === totalSlides;
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
             
             // Update progress bar
             updateProgressBar();
@@ -2704,7 +2448,6 @@ for post in social_data:
             if (currentSlide < totalSlides) {
                 currentSlide++;
                 updateSlide();
-                console.log('Avançou para o slide:', currentSlide);
             }
         }
 
@@ -2713,24 +2456,13 @@ for post in social_data:
             if (currentSlide > 1) {
                 currentSlide--;
                 updateSlide();
-                console.log('Voltou para o slide:', currentSlide);
             }
         }
 
         // Go to specific slide
         function goToSlide(slideNumber) {
-            if (slideNumber >= 1 && slideNumber <= totalSlides) {
-                currentSlide = slideNumber;
-                updateSlide();
-                
-                // Rolar para o indicador ativo na barra de navegação
-                setTimeout(() => {
-                    const activeIndicator = document.querySelector('.indicator-dot.active');
-                    if (activeIndicator) {
-                        activeIndicator.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                    }
-                }, 100);
-            }
+            currentSlide = slideNumber;
+            updateSlide();
         }
 
         // Handle keyboard navigation
@@ -2760,13 +2492,7 @@ for post in social_data:
         // Update progress bar
         function updateProgressBar() {
             const progress = (currentSlide / totalSlides) * 100;
-            const progressFill = document.getElementById('progressFill');
-            if (progressFill) {
-                progressFill.style.width = progress + '%';
-                console.log('Barra de progresso atualizada:', progress + '%');
-            } else {
-                console.error('Elemento progressFill não encontrado');
-            }
+            document.getElementById('progressFill').style.width = progress + '%';
         }
 
         // Start presentation timer
@@ -2858,12 +2584,6 @@ for post in social_data:
 
         // Add language selector
         function addLanguageSelector() {
-            // Remover seletor existente, se houver
-            const existingSelector = document.querySelector('.language-selector');
-            if (existingSelector) {
-                existingSelector.remove();
-            }
-            
             const selector = document.createElement('div');
             selector.className = 'language-selector';
             selector.innerHTML = `
@@ -2872,12 +2592,6 @@ for post in social_data:
                 <button onclick="changeLanguage('es')" class="lang-btn ${currentLanguage === 'es' ? 'active' : ''}">ES</button>
             `;
             document.body.appendChild(selector);
-            console.log("Language selector created with current language: " + currentLanguage);
-        }
-        
-        // Alias para manter compatibilidade
-        function createLanguageSelector() {
-            addLanguageSelector();
         }
 
         // Change language
@@ -2897,57 +2611,10 @@ for post in social_data:
 
         // Update all text elements with translations
         function updateLanguage() {
-            if (!translations || !translations[currentLanguage]) {
-                console.error('Translations not found for language: ' + currentLanguage);
-                return;
-            }
-            
             const t = translations[currentLanguage];
-            
-            // Update all elements with data-i18n attribute
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (!key) return;
-                
-                const keys = key.split('.');
-                let translation = translations[currentLanguage];
-                
-                for (const k of keys) {
-                    if (translation && k in translation) {
-                        translation = translation[k];
-                    } else {
-                        console.warn(`Translation key not found: ${key} (missing: ${k})`);
-                        translation = null;
-                        break;
-                    }
-                }
-                
-                if (translation) {
-                    // Preserve original inner HTML if it contains elements
-                    if (element.children.length === 0 || typeof translation !== 'string') {
-                        element.textContent = translation;
-                    }
-                }
-            });
             
             // Update slide titles and content dynamically
             updateSlide();
-            
-            // Update elements in the info panel
-            updateInfoPanel();
-            
-            // Save language preference
-            localStorage.setItem('selectedLanguage', currentLanguage);
-        }
-        
-        // Update text in the floating info panel
-        function updateInfoPanel() {
-            // Info panel specific translations if needed
-            // As most elements already use data-i18n, this is just a safety measure
-            const socialTexts = document.querySelectorAll('.developer-links .developer-link span[data-i18n]');
-            if (socialTexts.length > 0) {
-                // Already handled by the main translation loop
-            }
         }
 
         // Exit presentation
@@ -2961,30 +2628,7 @@ for post in social_data:
         }
 
         // Initialize on load
-        window.addEventListener('load', function() {
-            init();
-            
-            // Adiciona tratamento de eventos para botões de navegação após o carregamento
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            
-            if (prevBtn) {
-                prevBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    previousSlide();
-                });
-            }
-            
-            if (nextBtn) {
-                nextBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    nextSlide();
-                });
-            }
-            
-            // Força a atualização do slide inicial
-            setTimeout(updateSlide, 300);
-        });
+        window.addEventListener('load', init);
 
         // Toggle Info Panel
         function toggleInfo() {
@@ -3001,8 +2645,6 @@ for post in social_data:
                 infoContent.classList.remove('show');
             }
         });
-        
-        // Read Mode removido - matriz está sempre fosca
     </script>
 
     <!-- Floating Info Button -->
@@ -3016,20 +2658,18 @@ for post in social_data:
                 <div class="developer-details">
                     <h3 class="developer-name">Anderson Henrique da Silva</h3>
                     <p class="developer-role">Arquiteto Digital</p>
-                    <p class="developer-company">IA & OSINT Specialist @ Ruvixx</p>
                 </div>
             </div>
             <div class="developer-skills">
                 <span class="skill-tag">IA</span>
-                <span class="skill-tag">OSINT</span>
-                <span class="skill-tag">Cybersegurança</span>
                 <span class="skill-tag">Machine Learning</span>
-                <span class="skill-tag">Análise de Dados</span>
+                <span class="skill-tag">Cybersegurança</span>
+                <span class="skill-tag">OSINT</span>
             </div>
             <div class="developer-links">
                 <a href="https://linkedin.com/in/anderson-h-silva95" target="_blank" class="developer-link">
                     <i class="fab fa-linkedin"></i>
-                    <span data-i18n="contact.connect">Conecte-se no LinkedIn</span>
+                    <span>LinkedIn</span>
                 </a>
                 <a href="https://github.com/anderson-ufrj" target="_blank" class="developer-link">
                     <i class="fab fa-github"></i>
@@ -3045,67 +2685,22 @@ for post in social_data:
                 <img src="./assets/uaisint_logo.png" alt="UAISINT" class="event-logo">
                 <div class="event-details">
                     <h3 class="event-title">UAISINT</h3>
-                    <p class="event-subtitle" data-i18n="footer.by">em Minas Gerais</p>
+                    <p class="event-subtitle">Grupo de OSINT de Minas Gerais</p>
                 </div>
             </div>
             <div class="event-links">
                 <a href="https://www.linkedin.com/groups/10060469/" target="_blank" class="event-link">
                     <i class="fab fa-linkedin"></i>
-                    <span>LinkedIn</span>
+                    <span>Grupo no LinkedIn</span>
                 </a>
                 <a href="https://www.instagram.com/uaisint/" target="_blank" class="event-link">
                     <i class="fab fa-instagram"></i>
-                    <span>Instagram</span>
+                    <span>Instagram @uaisint</span>
                 </a>
                 <a href="https://twitter.com/uaisint" target="_blank" class="event-link">
                     <i class="fab fa-twitter"></i>
-                    <span>Twitter</span>
+                    <span>Twitter @uaisint</span>
                 </a>
-            </div>
-            <div class="sponsor-section">
-                <p data-i18n="footer.support">Apoio</p>
-                <img src="./assets/ruvixxlogo.png" alt="Ruvixx" class="sponsor-logo" style="max-width: 120px; margin-top: 10px;">
-            </div>
-        </div>
-        
-        <!-- Slide 18: Pirataria e Compliance -->
-        <div class="slide" data-slide="18">
-            <div class="slide-content">
-                <h1 class="slide-title" data-i18n="compliance.title">Conformidade Legal</h1>
-                <h3 class="slide-subtitle" data-i18n="compliance.subtitle">Riscos de software não licenciado em ambiente corporativo</h3>
-                
-                <p class="slide-text" data-i18n="compliance.intro">A pirataria de software é uma prática ilegal que prejudica desenvolvedores, empresas e usuários finais. Além de violar direitos autorais, expõe sistemas a sérios riscos de segurança.</p>
-                
-                <div class="stats-banner" style="background: var(--glass-bg); padding: 15px; border-radius: 10px; margin: 20px 0; text-align: center;">
-                    <p style="font-size: 1.1em; color: var(--accent-cyan);" data-i18n="compliance.stats">No Brasil, cerca de 35% do software em uso é pirata, gerando prejuízos de mais de R$ 6 bilhões anualmente para a economia.</p>
-                </div>
-                
-                <div class="ethics-grid">
-                    <div class="ethics-card">
-                        <h3 class="ethics-title" data-i18n="compliance.risk1.title">Riscos Legais</h3>
-                        <p class="ethics-desc" data-i18n="compliance.risk1.desc">Multas que podem chegar a milhões, processos por violação de propriedade intelectual e responsabilidade criminal para gestores.</p>
-                        <p class="ethics-detail" style="margin-top: 10px; font-size: 0.9em; color: var(--accent-pink); font-style: italic;" data-i18n="compliance.risk1.detail">As penalidades por uso de software pirata podem incluir multas de até R$ 3.000 por cópia ilegal, além de penas de detenção de 1 a 4 anos para os responsáveis.</p>
-                    </div>
-                    <div class="ethics-card">
-                        <h3 class="ethics-title" data-i18n="compliance.risk2.title">Segurança Comprometida</h3>
-                        <p class="ethics-desc" data-i18n="compliance.risk2.desc">Software ilegal frequentemente contém malware e não recebe atualizações de segurança cruciais, expondo dados sensíveis a ataques.</p>
-                        <p class="ethics-detail" style="margin-top: 10px; font-size: 0.9em; color: var(--accent-pink); font-style: italic;" data-i18n="compliance.risk2.detail">Programas piratas são frequentemente modificados para incluir backdoors, ransomware e spyware, permitindo acesso não autorizado a dados confidenciais da empresa.</p>
-                    </div>
-                    <div class="ethics-card">
-                        <h3 class="ethics-title" data-i18n="compliance.risk3.title">Reputação Corporativa</h3>
-                        <p class="ethics-desc" data-i18n="compliance.risk3.desc">Danos irreparáveis à imagem da empresa e perda de confiança de clientes, parceiros e investidores.</p>
-                        <p class="ethics-detail" style="margin-top: 10px; font-size: 0.9em; color: var(--accent-pink); font-style: italic;" data-i18n="compliance.risk3.detail">Um escândalo envolvendo pirataria pode destruir a reputação de uma empresa em minutos, resultando em perda de clientes e dificuldade para fechar novos negócios.</p>
-                    </div>
-                </div>
-                
-                <div class="compliance-solution" style="background: var(--glass-bg); padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid var(--accent-green);">
-                    <p style="font-size: 1.1em;" data-i18n="compliance.solution">Invista em licenças legítimas, implemente políticas claras de compliance de software e realize auditorias regulares para garantir conformidade e segurança.</p>
-                </div>
-                
-                <div class="sponsor-banner" style="text-align: center; margin-top: 20px;">
-                    <p data-i18n="footer.support">Apoio:</p>
-                    <img src="./assets/ruvixxlogo.png" alt="Ruvixx" style="max-width: 180px; margin-top: 10px;">
-                </div>
             </div>
         </div>
     </div>

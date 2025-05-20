@@ -8,9 +8,9 @@ Acesse a apresentação ao vivo:(https://anderson-ufrj.github.io/UaiSINT/)
 
 ## 📁 Estrutura do Projeto
 
-- `index.html` - Página inicial com seletor de modo (apresentação ou site)
+- `index.html` - Versão em formato de site único
 - `presentation.html` - Apresentação em slides sobre IA & OSINT
-- `website.html` - Versão em formato de site único
+- `index.html.bak` - Backup da antiga página inicial (descontinuada)
 - `/assets` - Imagens e recursos
 - `/js` - Scripts JavaScript, incluindo traduções
 - `/docs` - Documentação e scripts de validação/deploy
@@ -57,9 +57,8 @@ Acesse a apresentação ao vivo:(https://anderson-ufrj.github.io/UaiSINT/)
    ```
 
 3. Abra qualquer um dos arquivos HTML em seu navegador:
-   - `index.html` - Página inicial
+   - `index.html` - Site completo
    - `presentation.html` - Modo apresentação
-   - `website.html` - Modo site
 
 ## 🔄 Validação e Deploy
 

@@ -6,6 +6,8 @@ const translations = {
             about: "Sobre",
             journey: "Jornada",
             tools: "Ferramentas",
+            cases: "Casos",
+            brazil: "Brasil",
             ethics: "Ética",
             compliance: "Conformidade",
             contact: "Contato"
@@ -123,6 +125,22 @@ const translations = {
             made: "Feito com",
             by: "em Minas Gerais",
             support: "Apoio"
+        },
+        lgpd: {
+            title: "LGPD + OSINT",
+            subtitle: "Como a Lei 13.709/18 Impacta Nossa Prática"
+        },
+        digitalLife: {
+            title: "24/7 Online",
+            subtitle: "Sua Vida Digital em Números"
+        },
+        hybridIntel: {
+            title: "A Nova Inteligência Híbrida",
+            subtitle: "Humano + Máquina = Futuro"
+        },
+        gettingStarted: {
+            title: "Mão na Massa!",
+            subtitle: "Ferramentas para Começar Hoje"
         }
     },
     en: {
@@ -131,6 +149,8 @@ const translations = {
             about: "About",
             journey: "Journey",
             tools: "Tools",
+            cases: "Cases",
+            brazil: "Brazil",
             ethics: "Ethics",
             compliance: "Compliance",
             contact: "Contact"
@@ -141,7 +161,8 @@ const translations = {
             title2: "The New Digital Frontier",
             subtitle: "Discover how Artificial Intelligence is revolutionizing open source information collection and analysis",
             presentationBtn: "View Presentation",
-            learnBtn: "Learn More"
+            learnBtn: "Learn More",
+            continueBtn: "Continue to Website"
         },
         about: {
             title: "The Invisible World of Data",
@@ -248,6 +269,22 @@ const translations = {
             made: "Made with",
             by: "in Minas Gerais",
             support: "Support"
+        },
+        lgpd: {
+            title: "LGPD + OSINT",
+            subtitle: "How Law 13.709/18 Impacts Our Practice"
+        },
+        digitalLife: {
+            title: "24/7 Online",
+            subtitle: "Your Digital Life in Numbers"
+        },
+        hybridIntel: {
+            title: "The New Hybrid Intelligence",
+            subtitle: "Human + Machine = Future"
+        },
+        gettingStarted: {
+            title: "Let's Get Started!",
+            subtitle: "Tools to Begin Today"
         }
     },
     es: {
@@ -256,6 +293,8 @@ const translations = {
             about: "Acerca de",
             journey: "Jornada",
             tools: "Herramientas",
+            cases: "Casos",
+            brazil: "Brasil",
             ethics: "Ética",
             compliance: "Conformidad",
             contact: "Contacto"
@@ -266,7 +305,8 @@ const translations = {
             title2: "La Nueva Frontera Digital",
             subtitle: "Descubre cómo la Inteligencia Artificial está revolucionando la recolección y análisis de información abierta",
             presentationBtn: "Ver Presentación",
-            learnBtn: "Saber Más"
+            learnBtn: "Saber Más",
+            continueBtn: "Continuar al Sitio"
         },
         about: {
             title: "El Mundo Invisible de los Datos",
@@ -373,6 +413,22 @@ const translations = {
             made: "Hecho con",
             by: "en Minas Gerais",
             support: "Apoyo"
+        },
+        lgpd: {
+            title: "LGPD + OSINT",
+            subtitle: "Cómo la Ley 13.709/18 Impacta Nuestra Práctica"
+        },
+        digitalLife: {
+            title: "24/7 En Línea",
+            subtitle: "Tu Vida Digital en Números"
+        },
+        hybridIntel: {
+            title: "La Nueva Inteligencia Híbrida",
+            subtitle: "Humano + Máquina = Futuro"
+        },
+        gettingStarted: {
+            title: "¡Manos a la Obra!",
+            subtitle: "Herramientas para Comenzar Hoy"
         }
     }
 };
