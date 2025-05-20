@@ -1606,10 +1606,7 @@
                 
                 <div class="read-mode-toggle">
                     <span class="read-mode-label" data-i18n="readMode.label">Modo Leitura</span>
-                    <label class="switch">
-                        <input type="checkbox" id="readModeToggle">
-                        <span class="slider round"></span>
-                    </label>
+                    <label class="switch"><input type="checkbox" id="readModeToggle"><span class="slider round"></span></label>
                 </div>
             </div>
             
@@ -2152,6 +2149,34 @@
                     <i class="fas fa-play"></i>
                     <span data-i18n="cta.watchBtn">Assistir Apresentação</span>
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agradecimento à Ruvixx -->
+    <section id="thanks" class="fade-in">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Agradecimentos</h2>
+                <p class="section-subtitle">
+                    Empresas que apoiaram este projeto
+                </p>
+            </div>
+            
+            <div class="thanks-content" style="text-align: center; margin: 50px 0;">
+                <div class="thanks-card" style="background: var(--glass-bg); padding: 40px; border-radius: 20px; max-width: 800px; margin: 0 auto; border: 1px solid var(--glass-border); backdrop-filter: blur(10px);">
+                    <a href="https://ruvixx.com" target="_blank" style="text-decoration: none;">
+                        <img src="./assets/ruvixxlogo.png" alt="Ruvixx" style="max-width: 200px; margin-bottom: 20px;">
+                    </a>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--text-primary);">Ruvixx</h3>
+                    <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.7; max-width: 600px; margin: 0 auto; margin-bottom: 20px;">
+                        Agradecemos à Ruvixx pelo apoio ao desenvolvimento deste projeto educacional sobre IA & OSINT. 
+                        Sua contribuição foi fundamental para a criação deste conteúdo técnico e educativo.
+                    </p>
+                    <a href="https://ruvixx.com" target="_blank" class="cta-button" style="background: var(--primary-gradient); color: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 10px; transition: all 0.3s ease;">
+                        Visite ruvixx.com
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -2738,12 +2763,6 @@
             // Update all translated elements
             updateTranslations();
             
-            // Update read mode label specifically
-            const readModeLabel = document.querySelector('.read-mode-label');
-            if (readModeLabel && translations[lang].readMode) {
-                readModeLabel.textContent = translations[lang].readMode.label;
-            }
-            
             // Update info panel if it's open
             const infoContent = document.getElementById('infoContent');
             if (infoContent.classList.contains('show')) {
@@ -2882,12 +2901,10 @@
         function setupReadMode() {
             const readModeToggle = document.getElementById('readModeToggle');
             
-            // Check if read mode was previously enabled
-            const readModeEnabled = localStorage.getItem('readModeEnabled') === 'true';
-            if (readModeEnabled) {
-                document.body.classList.add('read-mode-active');
-                readModeToggle.checked = true;
-            }
+            // Por padrão, o modo leitura começa desativado
+            document.body.classList.remove('read-mode-active');
+            readModeToggle.checked = false;
+            localStorage.setItem('readModeEnabled', 'false');
             
             readModeToggle.addEventListener('change', () => {
                 if (readModeToggle.checked) {
@@ -2941,7 +2958,7 @@
                 <div class="developer-details">
                     <h3 class="developer-name">Anderson Henrique da Silva</h3>
                     <p class="developer-role">Arquiteto Digital</p>
-                    <p class="developer-company">IA & OSINT Specialist @ Ruvixx</p>
+                    <p class="developer-company">IA & OSINT Specialist @ <a href="https://ruvixx.com" target="_blank" style="color: var(--accent-cyan); text-decoration: none;">Ruvixx</a></p>
                 </div>
             </div>
             <div class="developer-skills">
