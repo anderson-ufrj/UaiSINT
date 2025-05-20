@@ -12,6 +12,38 @@ const translations = {
             compliance: "Conformidade",
             contact: "Contato"
         },
+        cases: {
+            title: "Impacto no Mundo Real",
+            subtitle: "Casos que mudaram o jogo",
+            security: {
+                title: "Segurança Cibernética",
+                desc: "Identificação proativa de vulnerabilidades e ameaças antes que sejam exploradas"
+            },
+            journalism: {
+                title: "Jornalismo Investigativo",
+                desc: "Verificação de fatos e descoberta de conexões ocultas - como o caso Bellingcat"
+            },
+            criminal: {
+                title: "Investigações Criminais",
+                desc: "Rastreamento de atividades ilícitas e identificação de redes criminosas"
+            }
+        },
+        brazil: {
+            title: "OSINT no Brasil",
+            subtitle: "Casos de sucesso nacionais",
+            lavajato: {
+                title: "Lava Jato",
+                desc: "OSINT usado para rastrear movimentações financeiras e conexões entre investigados"
+            },
+            amazon: {
+                title: "Incêndios na Amazônia",
+                desc: "Análise de dados satelitais e redes sociais para identificar focos criminosos"
+            },
+            pandemic: {
+                title: "Combate à Desinformação",
+                desc: "Rastreamento de fake news durante a pandemia usando IA e análise de redes"
+            }
+        },
         hero: {
             badge: "INTELIGÊNCIA DIGITAL",
             title1: "IA & OSINT",
@@ -129,15 +161,64 @@ const translations = {
         },
         lgpd: {
             title: "LGPD + OSINT",
-            subtitle: "Como a Lei 13.709/18 Impacta Nossa Prática"
+            subtitle: "Como a Lei 13.709/18 Impacta Nossa Prática",
+            principles: "10 Princípios LGPD",
+            penalties: "Penalidades",
+            penalty_simple: "Multa simples:",
+            penalty_simple_desc: "Até 2% do faturamento\nLimitada a R$ 50 milhões",
+            penalty_daily: "Multa diária:",
+            penalty_daily_desc: "Até R$ 50 mil por dia",
+            sanctions: "Sanções:",
+            sanctions_desc: "Bloqueio ou eliminação dos dados",
+            tip: "Dica OSINT:",
+            tip_desc: "Dados públicos ainda precisam de base legal para processamento!"
         },
         digitalLife: {
             title: "24/7 Online",
-            subtitle: "Sua Vida Digital em Números"
+            subtitle: "Sua Vida Digital em Números",
+            data_bytes: "Quintilhões de bytes/dia",
+            phone_checks: "Vezes checamos celular/dia",
+            online_percent: "Brasileiros online",
+            online_time: "Tempo médio online/dia",
+            trail_title: "Rastro Digital em 1 Minuto",
+            location: "Localização:",
+            location_desc: "GPS + Wi-Fi + Cell Tower",
+            search: "Buscas:",
+            search_desc: "Google, Bing, DuckDuckGo",
+            apps: "Apps:",
+            apps_desc: "30+ em background",
+            cookies: "Cookies:",
+            cookies_desc: "100+ rastreadores",
+            shopping: "Compras:",
+            shopping_desc: "Cartão + PIX",
+            photos: "Fotos:",
+            photos_desc: "Metadados EXIF",
+            voice: "Voz:",
+            voice_desc: "Assistentes sempre ouvindo",
+            biometrics: "Biometria:",
+            biometrics_desc: "Face + Digital"
         },
         hybridIntel: {
             title: "A Nova Inteligência Híbrida",
-            subtitle: "Humano + Máquina = Futuro"
+            subtitle: "Humano + Máquina = Futuro",
+            human_brings: "O Humano Traz",
+            human_list: [
+                "Criatividade e intuição",
+                "Percepção de contexto",
+                "Compreensão ética e valores",
+                "Adaptação a situações ambíguas",
+                "Decisões baseadas em experiência"
+            ],
+            ai_brings: "A IA Traz",
+            ai_list: [
+                "Processamento de grandes volumes",
+                "Eliminação de viés inconsciente",
+                "Análise de padrões complexos",
+                "Velocidade e escala",
+                "Decisões baseadas em dados"
+            ],
+            success_formula: "A Fórmula do Sucesso",
+            success_formula_text: "OSINT + IA + HUMANO = Insight + Escala + Julgamento"
         },
         gettingStarted: {
             title: "Mão na Massa!",
@@ -173,6 +254,38 @@ const translations = {
             ethics: "Ethics",
             compliance: "Compliance",
             contact: "Contact"
+        },
+        cases: {
+            title: "Real-World Impact",
+            subtitle: "Cases that changed the game",
+            security: {
+                title: "Cybersecurity",
+                desc: "Proactive identification of vulnerabilities and threats before they're exploited"
+            },
+            journalism: {
+                title: "Investigative Journalism",
+                desc: "Fact-checking and uncovering hidden connections - like the Bellingcat investigations"
+            },
+            criminal: {
+                title: "Criminal Investigations",
+                desc: "Tracking illicit activities and identifying criminal networks with digital evidence"
+            }
+        },
+        brazil: {
+            title: "OSINT in Brazil",
+            subtitle: "National success stories",
+            lavajato: {
+                title: "Operation Car Wash",
+                desc: "OSINT used to track financial transactions and connections between suspects"
+            },
+            amazon: {
+                title: "Amazon Rainforest Fires",
+                desc: "Analysis of satellite data and social networks to identify criminal hotspots"
+            },
+            pandemic: {
+                title: "Fighting Disinformation",
+                desc: "Tracking fake news during the pandemic using AI and network analysis techniques"
+            }
         },
         hero: {
             badge: "DIGITAL INTELLIGENCE",
@@ -291,15 +404,64 @@ const translations = {
         },
         lgpd: {
             title: "LGPD + OSINT",
-            subtitle: "How Law 13.709/18 Impacts Our Practice"
+            subtitle: "How Brazil's Data Protection Law Impacts Our Practice",
+            principles: "10 LGPD Principles",
+            penalties: "Penalties",
+            penalty_simple: "Standard fine:",
+            penalty_simple_desc: "Up to 2% of revenue\nCapped at R$50 million",
+            penalty_daily: "Daily fine:",
+            penalty_daily_desc: "Up to R$50,000 per day",
+            sanctions: "Sanctions:",
+            sanctions_desc: "Data blocking or deletion",
+            tip: "OSINT Tip:",
+            tip_desc: "Public data still requires a legal basis for processing!"
         },
         digitalLife: {
             title: "24/7 Online",
-            subtitle: "Your Digital Life in Numbers"
+            subtitle: "Your Digital Life in Numbers",
+            data_bytes: "Quintillion bytes/day",
+            phone_checks: "Times we check our phones/day",
+            online_percent: "People online in Brazil",
+            online_time: "Average hours online/day",
+            trail_title: "Digital Footprint in 1 Minute",
+            location: "Location:",
+            location_desc: "GPS + Wi-Fi + Cell Tower",
+            search: "Searches:",
+            search_desc: "Google, Bing, DuckDuckGo",
+            apps: "Apps:",
+            apps_desc: "30+ running in background",
+            cookies: "Cookies:",
+            cookies_desc: "100+ trackers",
+            shopping: "Shopping:",
+            shopping_desc: "Card + Digital Payment",
+            photos: "Photos:",
+            photos_desc: "EXIF Metadata",
+            voice: "Voice:",
+            voice_desc: "Always-listening assistants",
+            biometrics: "Biometrics:",
+            biometrics_desc: "Face + Fingerprint"
         },
         hybridIntel: {
             title: "The New Hybrid Intelligence",
-            subtitle: "Human + Machine = Future"
+            subtitle: "Human + Machine = Future",
+            human_brings: "Humans Bring",
+            human_list: [
+                "Creativity and intuition",
+                "Contextual awareness",
+                "Ethical understanding and values",
+                "Adaptation to ambiguous situations",
+                "Experience-based decisions"
+            ],
+            ai_brings: "AI Brings",
+            ai_list: [
+                "Processing of large data volumes",
+                "Elimination of unconscious bias",
+                "Analysis of complex patterns",
+                "Speed and scale",
+                "Data-driven decisions"
+            ],
+            success_formula: "The Formula for Success",
+            success_formula_text: "OSINT + AI + HUMAN = Insight + Scale + Judgment"
         },
         gettingStarted: {
             title: "Let's Get Started!",
@@ -335,6 +497,38 @@ const translations = {
             ethics: "Ética",
             compliance: "Conformidad",
             contact: "Contacto"
+        },
+        cases: {
+            title: "Impacto en el Mundo Real",
+            subtitle: "Casos que cambiaron las reglas del juego",
+            security: {
+                title: "Ciberseguridad",
+                desc: "Identificación proactiva de vulnerabilidades y amenazas antes de que sean explotadas"
+            },
+            journalism: {
+                title: "Periodismo de Investigación",
+                desc: "Verificación de hechos y descubrimiento de conexiones ocultas - como el caso Bellingcat"
+            },
+            criminal: {
+                title: "Investigaciones Criminales",
+                desc: "Rastreo de actividades ilícitas e identificación de redes criminales con evidencia digital"
+            }
+        },
+        brazil: {
+            title: "OSINT en Brasil",
+            subtitle: "Casos de éxito nacionales",
+            lavajato: {
+                title: "Operación Lava Jato",
+                desc: "OSINT utilizado para rastrear movimientos financieros y conexiones entre investigados"
+            },
+            amazon: {
+                title: "Incendios en la Amazonía",
+                desc: "Análisis de datos satelitales y redes sociales para identificar focos criminales"
+            },
+            pandemic: {
+                title: "Combate a la Desinformación",
+                desc: "Rastreo de noticias falsas durante la pandemia utilizando IA y análisis de redes"
+            }
         },
         hero: {
             badge: "INTELIGENCIA DIGITAL",
@@ -453,15 +647,64 @@ const translations = {
         },
         lgpd: {
             title: "LGPD + OSINT",
-            subtitle: "Cómo la Ley 13.709/18 Impacta Nuestra Práctica"
+            subtitle: "Cómo la Ley de Protección de Datos de Brasil Impacta Nuestra Práctica",
+            principles: "10 Principios LGPD",
+            penalties: "Sanciones",
+            penalty_simple: "Multa básica:",
+            penalty_simple_desc: "Hasta el 2% de la facturación\nLímite de R$50 millones",
+            penalty_daily: "Multa diaria:",
+            penalty_daily_desc: "Hasta R$50.000 por día",
+            sanctions: "Sanciones:",
+            sanctions_desc: "Bloqueo o eliminación de datos",
+            tip: "Consejo OSINT:",
+            tip_desc: "¡Los datos públicos aún requieren una base legal para su procesamiento!"
         },
         digitalLife: {
             title: "24/7 En Línea",
-            subtitle: "Tu Vida Digital en Números"
+            subtitle: "Tu Vida Digital en Números",
+            data_bytes: "Quintillones de bytes/día",
+            phone_checks: "Veces que revisamos el móvil/día",
+            online_percent: "Personas conectadas en Brasil",
+            online_time: "Horas promedio en línea/día",
+            trail_title: "Huella Digital en 1 Minuto",
+            location: "Ubicación:",
+            location_desc: "GPS + Wi-Fi + Antenas de telefonía",
+            search: "Búsquedas:",
+            search_desc: "Google, Bing, DuckDuckGo",
+            apps: "Aplicaciones:",
+            apps_desc: "30+ funcionando en segundo plano",
+            cookies: "Cookies:",
+            cookies_desc: "100+ rastreadores",
+            shopping: "Compras:",
+            shopping_desc: "Tarjeta + Pago Digital",
+            photos: "Fotos:",
+            photos_desc: "Metadatos EXIF",
+            voice: "Voz:",
+            voice_desc: "Asistentes siempre escuchando",
+            biometrics: "Biometría:",
+            biometrics_desc: "Rostro + Huella Digital"
         },
         hybridIntel: {
             title: "La Nueva Inteligencia Híbrida",
-            subtitle: "Humano + Máquina = Futuro"
+            subtitle: "Humano + Máquina = Futuro",
+            human_brings: "El Humano Aporta",
+            human_list: [
+                "Creatividad e intuición",
+                "Percepción contextual",
+                "Comprensión ética y valores",
+                "Adaptación a situaciones ambiguas",
+                "Decisiones basadas en experiencia"
+            ],
+            ai_brings: "La IA Aporta",
+            ai_list: [
+                "Procesamiento de grandes volúmenes",
+                "Eliminación de sesgos inconscientes",
+                "Análisis de patrones complejos",
+                "Velocidad y escala",
+                "Decisiones basadas en datos"
+            ],
+            success_formula: "La Fórmula del Éxito",
+            success_formula_text: "OSINT + IA + HUMANO = Perspicacia + Escala + Criterio"
         },
         gettingStarted: {
             title: "¡Manos a la Obra!",
