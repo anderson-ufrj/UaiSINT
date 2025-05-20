@@ -758,9 +758,9 @@
         }
 
         .indicator-dot {
-            min-width: 28px;
-            height: 28px;
-            border-radius: 14px;
+            min-width: 32px;
+            height: 32px;
+            border-radius: 16px;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             cursor: pointer;
@@ -769,8 +769,10 @@
             align-items: center;
             justify-content: center;
             color: var(--text-secondary);
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 600;
+            margin: 0 2px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .indicator-dot.active {
@@ -808,6 +810,12 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 10px;
+            scrollbar-width: none; /* Esconde a barra de rolagem no Firefox */
+            -ms-overflow-style: none; /* Esconde a barra de rolagem no IE/Edge */
+        }
+        
+        .nav-group::-webkit-scrollbar {
+            display: none; /* Esconde a barra de rolagem no Chrome/Safari/Opera */
         }
         
         /* Responsive adjustments */
@@ -854,13 +862,13 @@
         }
 
         /* Progress Bar */
-        .progress-bar {
+        .progress-bar, .progress-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 4px;
-            background: var(--glass-border);
+            background: rgba(255, 255, 255, 0.1);
             z-index: 101;
         }
 
@@ -869,6 +877,7 @@
             background: var(--primary-gradient);
             width: 0;
             transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
         }
 
         /* QR Code */
@@ -2309,13 +2318,13 @@ for post in social_data:
     <!-- Controls -->
     <div class="controls">
         <div class="nav-group">
-            <button class="control-btn" onclick="previousSlide()" id="prevBtn">
+            <button class="control-btn" id="prevBtn" aria-label="Slide anterior">
                 <i class="fas fa-chevron-left"></i>
             </button>
             <div class="slide-indicator" id="slideIndicator">
                 <!-- Dots will be generated dynamically -->
             </div>
-            <button class="control-btn" onclick="nextSlide()" id="nextBtn">
+            <button class="control-btn" id="nextBtn" aria-label="Próximo slide">
                 <i class="fas fa-chevron-right"></i>
             </button>
         </div>
@@ -2325,6 +2334,8 @@ for post in social_data:
             <p><small>Apoio: <span style="color: var(--accent-purple);">Ruvixx</span></small></p>
         </div>
     </div>
+    
+    <!-- Já temos uma barra de progresso acima, removendo duplicada -->
 
     <script>
         // Global variables
@@ -2466,16 +2477,24 @@ for post in social_data:
 
         // Initialize presentation
         function init() {
+            console.log('Inicializando apresentação...');
             createMatrixRain();
             
             // Garantir que todas as slides tenham o atributo data-slide
             const slides = document.querySelectorAll('.slide');
+            console.log('Slides encontrados:', slides.length);
+            
             slides.forEach((slide, index) => {
                 if (!slide.hasAttribute('data-slide')) {
                     slide.setAttribute('data-slide', index + 1);
+                    console.log('Adicionado data-slide ao slide', index + 1);
                 }
             });
             
+            // Força o slide 1 como ativo inicialmente
+            currentSlide = 1;
+            
+            // Criar indicadores de slide
             createSlideIndicators();
             
             // Verificar se as traduções estão disponíveis
@@ -2579,15 +2598,28 @@ for post in social_data:
         // Create slide indicators
         function createSlideIndicators() {
             const indicator = document.getElementById('slideIndicator');
+            if (!indicator) {
+                console.error('Elemento slideIndicator não encontrado');
+                return;
+            }
+            
             indicator.innerHTML = ''; // Limpa indicadores existentes
+            console.log('Criando indicadores para', totalSlides, 'slides');
             
             for (let i = 1; i <= totalSlides; i++) {
                 const dot = document.createElement('div');
                 dot.className = 'indicator-dot';
                 dot.textContent = i.toString();
-                dot.onclick = () => goToSlide(i);
+                dot.setAttribute('title', 'Ir para o slide ' + i);
+                dot.onclick = function() {
+                    goToSlide(i);
+                    return false; // Previne propagação do evento
+                };
                 indicator.appendChild(dot);
             }
+            
+            // Atualiza o status inicial dos indicadores
+            setTimeout(updateSlide, 100);
         }
 
         // Update current slide
@@ -2601,11 +2633,14 @@ for post in social_data:
             const currentSlideElement = document.querySelector(`[data-slide="${currentSlide}"]`);
             if (currentSlideElement) {
                 currentSlideElement.classList.add('active');
+                console.log('Ativou slide:', currentSlide, currentSlideElement);
                 
                 // Initialize timeline if present
                 if (currentSlide === 3 || currentSlide === 12) {
-                    initializeTimeline();
+                    setTimeout(initializeTimeline, 100);
                 }
+            } else {
+                console.error('Slide não encontrado:', currentSlide);
             }
             
             // Update indicators
@@ -2614,8 +2649,10 @@ for post in social_data:
             });
             
             // Update controls
-            document.getElementById('prevBtn').disabled = currentSlide === 1;
-            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            if (prevBtn) prevBtn.disabled = currentSlide === 1;
+            if (nextBtn) nextBtn.disabled = currentSlide === totalSlides;
             
             // Update progress bar
             updateProgressBar();
@@ -2667,6 +2704,7 @@ for post in social_data:
             if (currentSlide < totalSlides) {
                 currentSlide++;
                 updateSlide();
+                console.log('Avançou para o slide:', currentSlide);
             }
         }
 
@@ -2675,6 +2713,7 @@ for post in social_data:
             if (currentSlide > 1) {
                 currentSlide--;
                 updateSlide();
+                console.log('Voltou para o slide:', currentSlide);
             }
         }
 
@@ -2721,7 +2760,13 @@ for post in social_data:
         // Update progress bar
         function updateProgressBar() {
             const progress = (currentSlide / totalSlides) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
+            const progressFill = document.getElementById('progressFill');
+            if (progressFill) {
+                progressFill.style.width = progress + '%';
+                console.log('Barra de progresso atualizada:', progress + '%');
+            } else {
+                console.error('Elemento progressFill não encontrado');
+            }
         }
 
         // Start presentation timer
@@ -2916,7 +2961,30 @@ for post in social_data:
         }
 
         // Initialize on load
-        window.addEventListener('load', init);
+        window.addEventListener('load', function() {
+            init();
+            
+            // Adiciona tratamento de eventos para botões de navegação após o carregamento
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    previousSlide();
+                });
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    nextSlide();
+                });
+            }
+            
+            // Força a atualização do slide inicial
+            setTimeout(updateSlide, 300);
+        });
 
         // Toggle Info Panel
         function toggleInfo() {
