@@ -272,18 +272,26 @@
         
         /* Read Mode Overlay */
         .read-mode-active {
-            background-color: #000;
-            transition: background-color 0.5s ease;
+            background: linear-gradient(135deg, #0a1128 0%, #111536 50%, #13162c 100%);
+            transition: all 0.5s ease;
         }
         
         .read-mode-active .matrix-column {
-            opacity: 0 !important;
+            opacity: 0.03 !important;
             transition: opacity 0.5s ease;
         }
         
         .read-mode-active .animated-bg::before {
-            opacity: 0 !important;
+            opacity: 0.04 !important;
             transition: opacity 0.5s ease;
+            filter: saturate(0.5) brightness(0.6);
+        }
+        
+        .read-mode-active .feature-card,
+        .read-mode-active .ethics-card,
+        .read-mode-active .tool-card {
+            background: rgba(17, 21, 54, 0.6);
+            border-color: rgba(102, 126, 234, 0.15);
         }
 
         /* Hero Section */
@@ -865,10 +873,17 @@
             color: var(--text-primary);
             margin-bottom: 5px;
         }
+        
+        .developer-company {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            font-weight: 500;
+        }
 
         .developer-role {
             font-size: 0.9rem;
             color: var(--text-secondary);
+            margin-bottom: 3px;
         }
 
         .developer-skills {
@@ -2713,11 +2728,26 @@
             // Update all translated elements
             updateTranslations();
             
+            // Update read mode label specifically
+            const readModeLabel = document.querySelector('.read-mode-label');
+            if (readModeLabel && translations[lang].readMode) {
+                readModeLabel.textContent = translations[lang].readMode.label;
+            }
+            
+            // Update info panel if it's open
+            const infoContent = document.getElementById('infoContent');
+            if (infoContent.classList.contains('show')) {
+                updateInfoTranslations();
+            }
+            
             // Update modal if it's visible
             const modal = document.getElementById('welcomeModal');
-            if (modal.classList.contains('show')) {
+            if (modal && modal.classList.contains('show')) {
                 updateModalTranslations();
             }
+            
+            // Save language preference
+            localStorage.setItem('selectedLanguage', lang);
         }
 
         function updateTranslations() {
@@ -2901,18 +2931,20 @@
                 <div class="developer-details">
                     <h3 class="developer-name">Anderson Henrique da Silva</h3>
                     <p class="developer-role">Arquiteto Digital</p>
+                    <p class="developer-company">IA & OSINT Specialist @ Ruvixx</p>
                 </div>
             </div>
             <div class="developer-skills">
                 <span class="skill-tag">IA</span>
-                <span class="skill-tag">Machine Learning</span>
-                <span class="skill-tag">Cybersegurança</span>
                 <span class="skill-tag">OSINT</span>
+                <span class="skill-tag">Cybersegurança</span>
+                <span class="skill-tag">Machine Learning</span>
+                <span class="skill-tag" data-i18n="contact.data">Análise de Dados</span>
             </div>
             <div class="developer-links">
                 <a href="https://linkedin.com/in/anderson-h-silva95" target="_blank" class="developer-link">
                     <i class="fab fa-linkedin"></i>
-                    <span>LinkedIn</span>
+                    <span data-i18n="contact.connect">Conecte-se no LinkedIn</span>
                 </a>
                 <a href="https://github.com/anderson-ufrj" target="_blank" class="developer-link">
                     <i class="fab fa-github"></i>
@@ -2973,7 +3005,40 @@
         // Toggle Info Panel
         function toggleInfo() {
             const infoContent = document.getElementById('infoContent');
+            
+            // Atualizar traduções do painel de informações quando aberto
+            if (!infoContent.classList.contains('show')) {
+                updateInfoTranslations();
+            }
+            
             infoContent.classList.toggle('show');
+        }
+        
+        // Função para atualizar traduções do painel de informações
+        function updateInfoTranslations() {
+            const infoElements = document.querySelectorAll('#infoContent [data-i18n]');
+            const currentLang = localStorage.getItem('selectedLanguage') || 'pt';
+            
+            infoElements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (!key) return;
+                
+                const keys = key.split('.');
+                let translation = translations[currentLang];
+                
+                for (const k of keys) {
+                    if (translation && k in translation) {
+                        translation = translation[k];
+                    } else {
+                        translation = null;
+                        break;
+                    }
+                }
+                
+                if (translation) {
+                    element.textContent = translation;
+                }
+            });
         }
 
         // Close info panel when clicking outside

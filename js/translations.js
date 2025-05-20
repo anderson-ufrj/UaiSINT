@@ -108,7 +108,8 @@ const translations = {
             subtitle: "Entre em contato e faça parte desta jornada",
             role: "Especialista em Inteligência Digital",
             connect: "Conecte-se no LinkedIn",
-            scan: "Escaneie para conectar"
+            scan: "Escaneie para conectar",
+            data: "Análise de Dados"
         },
         readMode: {
             label: "Modo Leitura"
@@ -232,7 +233,8 @@ const translations = {
             subtitle: "Get in touch and be part of this journey",
             role: "Digital Intelligence Specialist",
             connect: "Connect on LinkedIn",
-            scan: "Scan to connect"
+            scan: "Scan to connect",
+            data: "Data Analysis"
         },
         readMode: {
             label: "Read Mode"
@@ -356,7 +358,8 @@ const translations = {
             subtitle: "Contáctanos y sé parte de esta jornada",
             role: "Especialista en Inteligencia Digital",
             connect: "Conéctate en LinkedIn",
-            scan: "Escanea para conectar"
+            scan: "Escanea para conectar",
+            data: "Análisis de Datos"
         },
         readMode: {
             label: "Modo Lectura"
