@@ -4,7 +4,7 @@ Apresentação interativa sobre Inteligência Artificial e OSINT (Open Source In
 
 ## 🚀 Demonstração
 
-Acesse a apresentação ao vivo: [GitHub Pages URL]
+Acesse a apresentação ao vivo: [https://anderson-ufrj.github.io/UaiSINT/](https://anderson-ufrj.github.io/UaiSINT/)
 
 ## 📁 Estrutura do Projeto
 
@@ -12,6 +12,8 @@ Acesse a apresentação ao vivo: [GitHub Pages URL]
 - `presentation.html` - Apresentação em slides sobre IA & OSINT
 - `website.html` - Versão em formato de site único
 - `/assets` - Imagens e recursos
+- `/js` - Scripts JavaScript, incluindo traduções
+- `/docs` - Documentação e scripts de validação/deploy
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -20,6 +22,7 @@ Acesse a apresentação ao vivo: [GitHub Pages URL]
 - JavaScript vanilla
 - Matrix Rain Effect
 - Glassmorphism UI
+- GitHub Pages para hosting
 
 ## 📋 Recursos
 
@@ -29,6 +32,7 @@ Acesse a apresentação ao vivo: [GitHub Pages URL]
 - Matrix rain effect
 - Timeline interativa
 - Cards com hover effects
+- Modo de apresentação e website em uma só base de código
 
 ## 🎯 Conteúdo
 
@@ -37,18 +41,56 @@ Acesse a apresentação ao vivo: [GitHub Pages URL]
 3. **Ferramentas Práticas**
 4. **Casos de Uso Real**
 5. **Aspectos Legais e Éticos**
-6. **Como Começar**
+6. **Compliance e Riscos de Software Pirata**
+7. **Como Começar**
+
+## 🖥️ Como Executar Localmente
+
+1. Clone o repositório:
+   ```
+   git clone https://github.com/anderson-ufrj/UaiSINT.git
+   ```
+
+2. Navegue até a pasta do projeto:
+   ```
+   cd UaiSINT
+   ```
+
+3. Abra qualquer um dos arquivos HTML em seu navegador:
+   - `index.html` - Página inicial
+   - `presentation.html` - Modo apresentação
+   - `website.html` - Modo site
+
+## 🔄 Validação e Deploy
+
+O projeto inclui scripts para validação e deploy:
+
+1. Para validar a configuração:
+   ```
+   bash docs/validate.sh
+   ```
+
+2. Para fazer deploy no GitHub Pages:
+   ```
+   bash docs/deploy-improved.sh
+   ```
 
 ## 👤 Autor
 
 **Anderson Henrique da Silva**
+- Arquiteto Digital
+- IA & OSINT Specialist @ Ruvixx
 - LinkedIn: [/anderson-h-silva95](https://linkedin.com/in/anderson-h-silva95)
-- Twitter: [@neural_thinker](https://twitter.com/neural_thinker)
+- GitHub: [/anderson-ufrj](https://github.com/anderson-ufrj)
 - Email: andersonhs27@gmail.com
 
 ## 🏢 UAISINT
 
 Grupo de OSINT de Minas Gerais focado em inteligência digital e análise de dados.
+
+## 🧰 Apoio
+
+<img src="./assets/ruvixxlogo.png" alt="Ruvixx" width="120">
 
 ## 📄 Licença
 

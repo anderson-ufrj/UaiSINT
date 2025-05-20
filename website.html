@@ -29,6 +29,7 @@
             --text-secondary: #a1a1aa;
             --glass-bg: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
+            --read-mode-overlay: rgba(10, 14, 39, 0.8);
         }
 
         * {
@@ -158,7 +159,12 @@
             width: 100%;
         }
 
-        /* Language Selector */
+        /* Nav Controls, Language Selector & Read Mode Toggle */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
         .lang-selector {
             display: flex;
             gap: 10px;
@@ -189,6 +195,85 @@
         .lang-btn:hover:not(.active) {
             background: rgba(102, 126, 234, 0.1);
             color: var(--accent-purple);
+        }
+        
+        /* Read Mode Toggle */
+        .read-mode-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 8px 15px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            margin-left: 15px;
+        }
+        
+        .read-mode-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        /* Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--glass-bg);
+            transition: .4s;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 3px;
+            background: var(--text-secondary);
+            transition: .4s;
+        }
+        
+        input:checked + .slider {
+            background: var(--primary-gradient);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+            background: white;
+        }
+        
+        .slider.round {
+            border-radius: 24px;
+        }
+        
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        
+        /* Read Mode Overlay */
+        .read-mode-active .matrix-column {
+            opacity: 0.1 !important;
+            transition: opacity 0.5s ease;
         }
 
         /* Hero Section */
@@ -1471,13 +1556,24 @@
                 <li><a href="#cases" class="nav-link" data-i18n="nav.cases">Casos</a></li>
                 <li><a href="#brazil" class="nav-link" data-i18n="nav.brazil">Brasil</a></li>
                 <li><a href="#ethics" class="nav-link" data-i18n="nav.ethics">Ética</a></li>
+                <li><a href="#compliance" class="nav-link" data-i18n="nav.compliance">Conformidade</a></li>
                 <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contato</a></li>
             </ul>
             
-            <div class="lang-selector">
-                <button class="lang-btn active" data-lang="pt">PT</button>
-                <button class="lang-btn" data-lang="en">EN</button>
-                <button class="lang-btn" data-lang="es">ES</button>
+            <div class="nav-controls">
+                <div class="lang-selector">
+                    <button class="lang-btn active" data-lang="pt">PT</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="es">ES</button>
+                </div>
+                
+                <div class="read-mode-toggle">
+                    <span class="read-mode-label" data-i18n="readMode.label">Modo Leitura</span>
+                    <label class="switch">
+                        <input type="checkbox" id="readModeToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
             </div>
             
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
@@ -1839,6 +1935,100 @@
                     </p>
                 </div>
             </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <blockquote style="font-size: 1.5rem; font-style: italic; color: var(--accent-cyan); line-height: 1.6; max-width: 800px; margin: 0 auto; background: var(--glass-bg); padding: 30px; border-radius: 16px; backdrop-filter: blur(10px); border: 1px solid var(--glass-border);">
+                    <span data-i18n="ethics.quote">"A integridade ética não é uma opção, mas uma obrigação no campo da inteligência digital."</span>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- License Compliance Section -->
+    <section id="compliance" class="fade-in">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="compliance.title">Conformidade Legal</h2>
+                <p class="section-subtitle" data-i18n="compliance.subtitle">
+                    Riscos de software não licenciado em ambiente corporativo
+                </p>
+            </div>
+            
+            <div style="text-align: center; margin-bottom: 30px;">
+                <p style="font-size: 1.2rem; color: var(--text-secondary); max-width: 800px; margin: 0 auto; line-height: 1.8;" data-i18n="compliance.intro">
+                    A pirataria de software é uma prática ilegal que prejudica desenvolvedores, empresas e usuários finais. 
+                    Além de violar direitos autorais, expõe sistemas a sérios riscos de segurança.
+                </p>
+            </div>
+            
+            <div class="stats-panel" style="background: var(--glass-bg); padding: 25px; border-radius: 15px; margin: 30px auto; max-width: 800px; text-align: center; border: 1px solid var(--glass-border);">
+                <p style="font-size: 1.1rem; color: var(--accent-cyan); margin: 0;" data-i18n="compliance.stats">
+                    No Brasil, cerca de 35% do software em uso é pirata, gerando prejuízos de mais de R$ 6 bilhões anualmente para a economia.
+                </p>
+            </div>
+            
+            <div class="ethics-grid">
+                <div class="ethics-card">
+                    <div class="ethics-icon" style="background: var(--secondary-gradient);">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3 class="ethics-title" data-i18n="compliance.risk1.title">Riscos Legais</h3>
+                    <p class="ethics-desc" data-i18n="compliance.risk1.desc">
+                        Multas que podem chegar a milhões, processos por violação de propriedade intelectual
+                        e responsabilidade criminal para gestores.
+                    </p>
+                    <p style="font-size: 0.9rem; color: var(--accent-pink); margin-top: 15px; font-style: italic;" data-i18n="compliance.risk1.detail">
+                        As penalidades por uso de software pirata podem incluir multas de até R$ 3.000 por cópia ilegal,
+                        além de penas de detenção de 1 a 4 anos para os responsáveis.
+                    </p>
+                </div>
+                
+                <div class="ethics-card">
+                    <div class="ethics-icon" style="background: var(--secondary-gradient);">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3 class="ethics-title" data-i18n="compliance.risk2.title">Segurança Comprometida</h3>
+                    <p class="ethics-desc" data-i18n="compliance.risk2.desc">
+                        Software ilegal frequentemente contém malware e não recebe atualizações de segurança
+                        cruciais, expondo dados sensíveis a ataques.
+                    </p>
+                    <p style="font-size: 0.9rem; color: var(--accent-pink); margin-top: 15px; font-style: italic;" data-i18n="compliance.risk2.detail">
+                        Programas piratas são frequentemente modificados para incluir backdoors, ransomware e spyware,
+                        permitindo acesso não autorizado a dados confidenciais da empresa.
+                    </p>
+                </div>
+                
+                <div class="ethics-card">
+                    <div class="ethics-icon" style="background: var(--secondary-gradient);">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="ethics-title" data-i18n="compliance.risk3.title">Reputação Corporativa</h3>
+                    <p class="ethics-desc" data-i18n="compliance.risk3.desc">
+                        Danos irreparáveis à imagem da empresa e perda de confiança de clientes, parceiros
+                        e investidores.
+                    </p>
+                    <p style="font-size: 0.9rem; color: var(--accent-pink); margin-top: 15px; font-style: italic;" data-i18n="compliance.risk3.detail">
+                        Um escândalo envolvendo pirataria pode destruir a reputação de uma empresa em minutos,
+                        resultando em perda de clientes e dificuldade para fechar novos negócios.
+                    </p>
+                </div>
+            </div>
+            
+            <div style="background: var(--glass-bg); padding: 25px; border-radius: 15px; margin: 40px auto; max-width: 800px; border-left: 5px solid var(--accent-green);">
+                <p style="font-size: 1.1rem; color: var(--text-primary); margin: 0; line-height: 1.6;" data-i18n="compliance.solution">
+                    Invista em licenças legítimas, implemente políticas claras de compliance de software e realize auditorias 
+                    regulares para garantir conformidade e segurança.
+                </p>
+                <p style="font-size: 0.95rem; color: var(--text-secondary); margin-top: 15px; line-height: 1.6;" data-i18n="compliance.benefits">
+                    Software legal oferece suporte técnico, atualizações de segurança, garantia de funcionamento e proteção
+                    contra vulnerabilidades, além de contribuir para a inovação do setor.
+                </p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 60px; margin-bottom: 20px;">
+                <p data-i18n="footer.support" style="font-size: 1.2rem; margin-bottom: 15px;">Apoio</p>
+                <img src="./assets/ruvixxlogo.png" alt="Ruvixx" style="max-width: 180px;">
+            </div>
         </div>
     </section>
 
@@ -1907,13 +2097,18 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <h2 class="cta-title" data-i18n="cta.title">Pronto para se tornar um Detetive Digital?</h2>
+            <h2 class="cta-title" data-i18n="cta.title">Proteja-se com IA & OSINT</h2>
             <p class="cta-subtitle" data-i18n="cta.subtitle">
-                Junte-se à comunidade UAISINT e faça parte desta revolução
+                Use o poder da inteligência digital para fortalecer sua segurança e conformidade
             </p>
+            <div style="text-align: center; margin-bottom: 40px;">
+                <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.1rem; max-width: 800px; margin: 0 auto; font-weight: 600;">
+                    Descubra como profissionais de cibersegurança estão usando IA & OSINT para identificar ameaças antes que causem danos.
+                </p>
+            </div>
             <div class="hero-buttons">
                 <a href="#contact" class="btn btn-secondary">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-shield-alt"></i>
                     <span data-i18n="cta.joinBtn">Junte-se a Nós</span>
                 </a>
                 <a href="./presentation.html" class="btn btn-secondary">
@@ -2008,13 +2203,22 @@
                 <p style="margin-top: 10px;">
                     <small data-i18n="footer.made">Feito com</small> ❤️ <small data-i18n="footer.by">em Minas Gerais</small>
                 </p>
+                <p style="margin-top: 10px;">
+                    <small><span data-i18n="footer.support">Apoio</span>:</small>
+                </p>
+                <div style="margin-top: 5px;">
+                    <a href="#" target="_blank">
+                        <img src="./assets/ruvixxlogo.png" alt="Ruvixx" style="height: 30px;">
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Translations
-        const translations = {
+        // As traduções foram movidas para o arquivo externo js/translations.js
+        // Esta definição está aqui apenas como fallback
+        let translationsFallback = {
             pt: {
                 nav: {
                     home: "Início",
@@ -2622,10 +2826,33 @@
             });
         });
 
+        // Read Mode functionality
+        function setupReadMode() {
+            const readModeToggle = document.getElementById('readModeToggle');
+            
+            // Check if read mode was previously enabled
+            const readModeEnabled = localStorage.getItem('readModeEnabled') === 'true';
+            if (readModeEnabled) {
+                document.body.classList.add('read-mode-active');
+                readModeToggle.checked = true;
+            }
+            
+            readModeToggle.addEventListener('change', () => {
+                if (readModeToggle.checked) {
+                    document.body.classList.add('read-mode-active');
+                    localStorage.setItem('readModeEnabled', 'true');
+                } else {
+                    document.body.classList.remove('read-mode-active');
+                    localStorage.setItem('readModeEnabled', 'false');
+                }
+            });
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             createMatrixRain();
             setupLanguageSelector();
+            setupReadMode();
             setLanguage('pt');
             checkFirstVisit();
         });
@@ -2712,6 +2939,25 @@
     <!-- Translation Script -->
     <script src="js/translations.js"></script>
     <script>
+        // Garantir que as traduções são inicializadas corretamente
+        window.addEventListener('load', function() {
+            // Verificar se o arquivo externo foi carregado
+            if (typeof window.translations === 'undefined') {
+                console.warn("External translations not loaded, using fallback");
+                window.translations = translationsFallback;
+            }
+            
+            // Inicializar com idioma salvo
+            const savedLang = localStorage.getItem('selectedLanguage') || 'pt';
+            if (typeof window.setLanguage === 'function') {
+                window.setLanguage(savedLang);
+            } else {
+                console.error("setLanguage function not available");
+            }
+            
+            console.log("Website initialized with language: " + savedLang);
+        });
+        
         // Toggle Info Panel
         function toggleInfo() {
             const infoContent = document.getElementById('infoContent');

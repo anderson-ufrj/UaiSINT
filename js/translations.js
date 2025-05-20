@@ -7,6 +7,7 @@ const translations = {
             journey: "Jornada",
             tools: "Ferramentas",
             ethics: "Ética",
+            compliance: "Conformidade",
             contact: "Contato"
         },
         hero: {
@@ -69,20 +70,48 @@ const translations = {
             misuse: {
                 title: "Uso Responsável",
                 desc: "As mesmas ferramentas que protegem podem ser usadas para prejudicar. A responsabilidade está em quem as utiliza."
-            }
+            },
+            quote: "\"A integridade ética não é uma opção, mas uma obrigação no campo da inteligência digital.\""
+        },
+        compliance: {
+            title: "Conformidade Legal",
+            subtitle: "Riscos de software não licenciado em ambiente corporativo",
+            desc: "O uso de software pirata representa sério risco legal e de segurança para corporações, podendo resultar em multas significativas, vulnerabilidades de segurança e danos à reputação.",
+            intro: "A pirataria de software é uma prática ilegal que prejudica desenvolvedores, empresas e usuários finais. Além de violar direitos autorais, expõe sistemas a sérios riscos de segurança.",
+            stats: "No Brasil, cerca de 35% do software em uso é pirata, gerando prejuízos de mais de R$ 6 bilhões anualmente para a economia.",
+            risk1: {
+                title: "Riscos Legais",
+                desc: "Multas que podem chegar a milhões, processos por violação de propriedade intelectual e responsabilidade criminal para gestores.",
+                detail: "As penalidades por uso de software pirata podem incluir multas de até R$ 3.000 por cópia ilegal, além de penas de detenção de 1 a 4 anos para os responsáveis."
+            },
+            risk2: {
+                title: "Segurança Comprometida",
+                desc: "Software ilegal frequentemente contém malware e não recebe atualizações de segurança cruciais, expondo dados sensíveis a ataques.",
+                detail: "Programas piratas são frequentemente modificados para incluir backdoors, ransomware e spyware, permitindo acesso não autorizado a dados confidenciais da empresa."
+            },
+            risk3: {
+                title: "Reputação Corporativa",
+                desc: "Danos irreparáveis à imagem da empresa e perda de confiança de clientes, parceiros e investidores.",
+                detail: "Um escândalo envolvendo pirataria pode destruir a reputação de uma empresa em minutos, resultando em perda de clientes e dificuldade para fechar novos negócios."
+            },
+            solution: "Invista em licenças legítimas, implemente políticas claras de compliance de software e realize auditorias regulares para garantir conformidade e segurança.",
+            benefits: "Software legal oferece suporte técnico, atualizações de segurança, garantia de funcionamento e proteção contra vulnerabilidades, além de contribuir para a inovação do setor."
         },
         cta: {
-            title: "Pronto para se tornar um Detetive Digital?",
-            subtitle: "Junte-se à comunidade UAISINT e faça parte desta revolução",
+            title: "Proteja-se com IA & OSINT",
+            subtitle: "Use o poder da inteligência digital para fortalecer sua segurança e conformidade",
             joinBtn: "Junte-se a Nós",
             watchBtn: "Assistir Apresentação"
         },
         contact: {
             title: "Vamos Conversar",
             subtitle: "Entre em contato e faça parte desta jornada",
-            role: "Arquiteto de Inteligência Digital",
+            role: "Especialista em Inteligência Digital",
             connect: "Conecte-se no LinkedIn",
             scan: "Escaneie para conectar"
+        },
+        readMode: {
+            label: "Modo Leitura"
         },
         footer: {
             home: "Início",
@@ -91,7 +120,8 @@ const translations = {
             contact: "Contato",
             rights: "Todos os direitos reservados.",
             made: "Feito com",
-            by: "em Minas Gerais"
+            by: "em Minas Gerais",
+            support: "Apoio"
         }
     },
     en: {
@@ -101,6 +131,7 @@ const translations = {
             journey: "Journey",
             tools: "Tools",
             ethics: "Ethics",
+            compliance: "Compliance",
             contact: "Contact"
         },
         hero: {
@@ -163,20 +194,48 @@ const translations = {
             misuse: {
                 title: "Responsible Use",
                 desc: "The same tools that protect can be used to harm. The responsibility lies with those who use them."
-            }
+            },
+            quote: "\"Ethical integrity is not an option, but an obligation in the field of digital intelligence.\""
+        },
+        compliance: {
+            title: "Legal Compliance",
+            subtitle: "Risks of unlicensed software in corporate settings",
+            desc: "The use of pirated software poses serious legal and security risks for corporations, potentially resulting in significant fines, security vulnerabilities, and reputational damage.",
+            intro: "Software piracy is an illegal practice that harms developers, companies and end users. Besides violating copyright, it exposes systems to serious security risks.",
+            stats: "Globally, around 37% of software in use is pirated, resulting in economic losses of over $46 billion annually.",
+            risk1: {
+                title: "Legal Risks",
+                desc: "Fines that can reach millions, intellectual property infringement lawsuits, and criminal liability for managers.",
+                detail: "Penalties for using pirated software can include fines of up to $150,000 per illegal copy, along with potential imprisonment for those responsible."
+            },
+            risk2: {
+                title: "Compromised Security",
+                desc: "Illegal software often contains malware and doesn't receive crucial security updates, exposing sensitive data to attacks.",
+                detail: "Pirated programs are frequently modified to include backdoors, ransomware, and spyware, allowing unauthorized access to company confidential data."
+            },
+            risk3: {
+                title: "Corporate Reputation",
+                desc: "Irreparable damage to company image and loss of trust from customers, partners, and investors.",
+                detail: "A scandal involving piracy can destroy a company's reputation in minutes, resulting in customer loss and difficulty in closing new business."
+            },
+            solution: "Invest in legitimate licenses, implement clear software compliance policies, and conduct regular audits to ensure compliance and security.",
+            benefits: "Legal software offers technical support, security updates, performance guarantees and protection against vulnerabilities, while also contributing to industry innovation."
         },
         cta: {
-            title: "Ready to become a Digital Detective?",
-            subtitle: "Join the UAISINT community and be part of this revolution",
+            title: "Protect Yourself with AI & OSINT",
+            subtitle: "Use the power of digital intelligence to strengthen your security and compliance",
             joinBtn: "Join Us",
             watchBtn: "Watch Presentation"
         },
         contact: {
             title: "Let's Talk",
             subtitle: "Get in touch and be part of this journey",
-            role: "Digital Intelligence Architect",
+            role: "Digital Intelligence Specialist",
             connect: "Connect on LinkedIn",
             scan: "Scan to connect"
+        },
+        readMode: {
+            label: "Read Mode"
         },
         footer: {
             home: "Home",
@@ -185,7 +244,8 @@ const translations = {
             contact: "Contact",
             rights: "All rights reserved.",
             made: "Made with",
-            by: "in Minas Gerais"
+            by: "in Minas Gerais",
+            support: "Support"
         }
     },
     es: {
@@ -195,6 +255,7 @@ const translations = {
             journey: "Jornada",
             tools: "Herramientas",
             ethics: "Ética",
+            compliance: "Conformidad",
             contact: "Contacto"
         },
         hero: {
@@ -257,20 +318,48 @@ const translations = {
             misuse: {
                 title: "Uso Responsable",
                 desc: "Las mismas herramientas que protegen pueden usarse para dañar. La responsabilidad recae en quienes las utilizan."
-            }
+            },
+            quote: "\"La integridad ética no es una opción, sino una obligación en el campo de la inteligencia digital.\""
+        },
+        compliance: {
+            title: "Conformidad Legal",
+            subtitle: "Riesgos de software sin licencia en entornos corporativos",
+            desc: "El uso de software pirata representa un serio riesgo legal y de seguridad para las corporaciones, pudiendo resultar en multas significativas, vulnerabilidades de seguridad y daños a la reputación.",
+            intro: "La piratería de software es una práctica ilegal que perjudica a desarrolladores, empresas y usuarios finales. Además de violar derechos de autor, expone los sistemas a graves riesgos de seguridad.",
+            stats: "En Latinoamérica, aproximadamente el 52% del software en uso es pirata, generando pérdidas económicas de más de $5 mil millones de dólares al año.",
+            risk1: {
+                title: "Riesgos Legales",
+                desc: "Multas que pueden llegar a millones, procesos por violación de propiedad intelectual y responsabilidad criminal para gestores.",
+                detail: "Las sanciones por el uso de software pirata pueden incluir multas de hasta $150,000 por copia ilegal, además de penas de cárcel para los responsables."
+            },
+            risk2: {
+                title: "Seguridad Comprometida",
+                desc: "Software ilegal frecuentemente contiene malware y no recibe actualizaciones de seguridad cruciales, exponiendo datos sensibles a ataques.",
+                detail: "Los programas piratas a menudo son modificados para incluir puertas traseras, ransomware y spyware, permitiendo acceso no autorizado a datos confidenciales de la empresa."
+            },
+            risk3: {
+                title: "Reputación Corporativa",
+                desc: "Daños irreparables a la imagen de la empresa y pérdida de confianza de clientes, socios e inversionistas.",
+                detail: "Un escándalo relacionado con la piratería puede destruir la reputación de una empresa en minutos, resultando en pérdida de clientes y dificultad para cerrar nuevos negocios."
+            },
+            solution: "Invierta en licencias legítimas, implemente políticas claras de conformidad de software y realice auditorías regulares para garantizar el cumplimiento y la seguridad.",
+            benefits: "El software legal ofrece soporte técnico, actualizaciones de seguridad, garantías de funcionamiento y protección contra vulnerabilidades, además de contribuir a la innovación del sector."
         },
         cta: {
-            title: "¿Listo para convertirte en Detective Digital?",
-            subtitle: "Únete a la comunidad UAISINT y sé parte de esta revolución",
+            title: "Protégete con IA & OSINT",
+            subtitle: "Usa el poder de la inteligencia digital para fortalecer tu seguridad y conformidad",
             joinBtn: "Únete a Nosotros",
             watchBtn: "Ver Presentación"
         },
         contact: {
             title: "Hablemos",
             subtitle: "Contáctanos y sé parte de esta jornada",
-            role: "Arquitecto de Inteligencia Digital",
+            role: "Especialista en Inteligencia Digital",
             connect: "Conéctate en LinkedIn",
             scan: "Escanea para conectar"
+        },
+        readMode: {
+            label: "Modo Lectura"
         },
         footer: {
             home: "Inicio",
@@ -279,7 +368,8 @@ const translations = {
             contact: "Contacto",
             rights: "Todos los derechos reservados.",
             made: "Hecho con",
-            by: "en Minas Gerais"
+            by: "en Minas Gerais",
+            support: "Apoyo"
         }
     }
 };
@@ -299,20 +389,39 @@ function setLanguage(lang) {
 }
 
 function updateTranslations(lang) {
+    if (!translations || !translations[lang]) {
+        console.error('Translations not found for language: ' + lang);
+        return;
+    }
+    
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(element => {
         const key = element.getAttribute('data-i18n');
+        if (!key) return;
+        
         const keys = key.split('.');
         let translation = translations[lang];
         
         for (const k of keys) {
-            translation = translation?.[k];
+            if (translation && k in translation) {
+                translation = translation[k];
+            } else {
+                console.warn(`Translation key not found: ${key} (missing: ${k})`);
+                translation = null;
+                break;
+            }
         }
         
         if (translation) {
-            element.textContent = translation;
+            // Preserve original inner HTML if it contains elements
+            if (element.children.length === 0 || typeof translation !== 'string') {
+                element.textContent = translation;
+            }
         }
     });
+    
+    // Atualizar elementos específicos se necessário
+    // Por exemplo, texto do botão de modo leitura, etc.
 }
 
 // Initialize language
