@@ -1,6 +1,12 @@
 // Translations for the website
 const translations = {
     pt: {
+        modal: {
+            title: "Bem-vindo ao IA & OSINT",
+            subtitle: "Bem-vindo à apresentação",
+            presentation: "Apresentação",
+            presentationDesc: "Slides interativos para palestra"
+        },
         nav: {
             home: "Início",
             about: "Sobre",
@@ -126,6 +132,12 @@ const translations = {
         }
     },
     en: {
+        modal: {
+            title: "Welcome to AI & OSINT",
+            subtitle: "Welcome to the presentation",
+            presentation: "Presentation",
+            presentationDesc: "Interactive slides for lecture"
+        },
         nav: {
             home: "Home",
             about: "About",
@@ -251,6 +263,12 @@ const translations = {
         }
     },
     es: {
+        modal: {
+            title: "Bienvenido a IA & OSINT",
+            subtitle: "Bienvenido a la presentación",
+            presentation: "Presentación",
+            presentationDesc: "Diapositivas interactivas para conferencia"
+        },
         nav: {
             home: "Inicio",
             about: "Acerca de",
