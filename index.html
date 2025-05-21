@@ -629,7 +629,7 @@
         /* Timeline */
         .timeline {
             position: relative;
-            padding: 40px 0;
+            padding: 10px 0;
         }
 
         .timeline::before {
@@ -647,7 +647,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 80px;
+            margin-bottom: 15px;
             position: relative;
         }
 
@@ -660,8 +660,8 @@
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 40px;
+            border-radius: 12px;
+            padding: 15px;
             position: relative;
         }
 
@@ -670,11 +670,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             background: var(--primary-gradient);
-            border: 6px solid var(--dark-bg);
+            border: 4px solid var(--dark-bg);
             z-index: 1;
         }
 
@@ -682,19 +682,20 @@
             font-size: 1.4rem;
             font-weight: 700;
             color: var(--accent-cyan);
-            margin-bottom: 10px;
+            margin-bottom: 2px;
         }
 
         .timeline-title {
             font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             color: var(--text-primary);
         }
 
         .timeline-desc {
             color: var(--text-secondary);
-            line-height: 1.8;
+            line-height: 1.3;
+            margin-bottom: 0;
         }
 
         /* Tools Section */
@@ -763,13 +764,12 @@
         .ethics-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, var(--accent-purple), transparent, var(--accent-cyan), transparent);
-            animation: spin 8s linear infinite;
-            opacity: 0.05;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.03), rgba(118, 75, 162, 0.03));
+            opacity: 0.1;
         }
 
         @keyframes spin {
@@ -1583,6 +1583,29 @@
             z-index: 1001;
             transition: width 0.3s ease;
         }
+        
+        /* Responsividade do novo footer */
+        @media (max-width: 768px) {
+            footer, 
+            div[style*="gradient"] {
+                margin-left: 0 !important;
+            }
+            
+            footer .container {
+                margin: 0 auto !important;
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+            }
+            
+            .floating-button {
+                width: 55px !important;
+                height: 55px !important;
+            }
+            
+            .floating-button i {
+                font-size: 22px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1711,65 +1734,95 @@
     </section>
 
     <!-- Journey Section -->
-    <section id="journey" class="fade-in">
+    <section id="journey" class="fade-in" style="padding-top: 40px; padding-bottom: 30px;">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" style="margin-bottom: 20px;">
                 <h2 class="section-title" data-i18n="journey.title">A Jornada do OSINT</h2>
                 <p class="section-subtitle" data-i18n="journey.subtitle">
                     Do dado bruto à inteligência acionável
                 </p>
             </div>
             
-            <div class="timeline">
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-time">Fase 1</h3>
-                        <h4 class="timeline-title" data-i18n="journey.phase1.title">Coleta de Dados</h4>
-                        <p class="timeline-desc" data-i18n="journey.phase1.desc">
-                            Identificação e coleta de informações de fontes públicas: redes sociais, 
-                            sites, registros públicos, metadados e muito mais.
+            <div class="timeline" style="position: relative; padding: 15px 0;">
+                <!-- Linha vertical central -->
+                <div style="content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 3px; height: 100%; background: var(--glass-border);"></div>
+                
+                <!-- Fase 1 -->
+                <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 35px; position: relative;">
+                    <!-- Ponto na timeline -->
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 24px; height: 24px; border-radius: 50%; background: var(--primary-gradient); border: 4px solid var(--dark-bg); z-index: 1;"></div>
+                    
+                    <!-- Conteúdo -->
+                    <div style="width: 45%; background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 12px; padding: 15px; position: relative;">
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <i class="fas fa-search" style="font-size: 1.5rem; color: var(--accent-cyan); margin-right: 10px;"></i>
+                            <div>
+                                <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin: 0; font-weight: 700;"><span data-i18n="journey.phase_label">Fase</span> 1</h3>
+                                <h4 style="font-size: 1.6rem; margin: 0; color: var(--text-primary);" data-i18n="journey.phase1.title">Coleta de Dados</h4>
+                            </div>
+                        </div>
+                        <p style="color: var(--text-secondary); line-height: 1.4; margin: 0; font-size: 1rem;" data-i18n="journey.phase1.desc">
+                            Identificação e coleta de informações de fontes públicas: redes sociais, registros e metadados.
                         </p>
                     </div>
                 </div>
                 
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-time">Fase 2</h3>
-                        <h4 class="timeline-title" data-i18n="journey.phase2.title">Processamento com IA</h4>
-                        <p class="timeline-desc" data-i18n="journey.phase2.desc">
-                            Aplicação de algoritmos de Machine Learning para processar, classificar e 
-                            correlacionar dados em escala massiva. Ferramentas como 
-                            <a href="https://www.maltego.com" target="_blank" style="color: var(--accent-cyan);">Maltego</a> 
-                            exemplificam essa capacidade.
+                <!-- Fase 2 -->
+                <div style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 35px; position: relative;">
+                    <!-- Ponto na timeline -->
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 24px; height: 24px; border-radius: 50%; background: var(--primary-gradient); border: 4px solid var(--dark-bg); z-index: 1;"></div>
+                    
+                    <!-- Conteúdo -->
+                    <div style="width: 45%; background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 12px; padding: 15px; position: relative;">
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <i class="fas fa-brain" style="font-size: 1.5rem; color: var(--accent-cyan); margin-right: 10px;"></i>
+                            <div>
+                                <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin: 0; font-weight: 700;"><span data-i18n="journey.phase_label">Fase</span> 2</h3>
+                                <h4 style="font-size: 1.6rem; margin: 0; color: var(--text-primary);" data-i18n="journey.phase2.title">Processamento com IA</h4>
+                            </div>
+                        </div>
+                        <p style="color: var(--text-secondary); line-height: 1.4; margin: 0; font-size: 1rem;" data-i18n="journey.phase2.desc">
+                            Algoritmos de ML para processar dados em escala. Ex: <a href="https://www.maltego.com" style="color: var(--accent-cyan);">Maltego</a>.
                         </p>
                     </div>
                 </div>
                 
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-time">Fase 3</h3>
-                        <h4 class="timeline-title" data-i18n="journey.phase3.title">Análise Inteligente</h4>
-                        <p class="timeline-desc" data-i18n="journey.phase3.desc">
-                            Identificação de padrões, anomalias e conexões ocultas através de análise 
-                            preditiva e processamento de linguagem natural usando ferramentas como 
-                            <a href="https://github.com/smicallef/spiderfoot" target="_blank" style="color: var(--accent-cyan);">SpiderFoot</a>.
+                <!-- Fase 3 -->
+                <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 35px; position: relative;">
+                    <!-- Ponto na timeline -->
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 24px; height: 24px; border-radius: 50%; background: var(--primary-gradient); border: 4px solid var(--dark-bg); z-index: 1;"></div>
+                    
+                    <!-- Conteúdo -->
+                    <div style="width: 45%; background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 12px; padding: 15px; position: relative;">
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <i class="fas fa-network-wired" style="font-size: 1.5rem; color: var(--accent-cyan); margin-right: 10px;"></i>
+                            <div>
+                                <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin: 0; font-weight: 700;"><span data-i18n="journey.phase_label">Fase</span> 3</h3>
+                                <h4 style="font-size: 1.6rem; margin: 0; color: var(--text-primary);" data-i18n="journey.phase3.title">Análise Inteligente</h4>
+                            </div>
+                        </div>
+                        <p style="color: var(--text-secondary); line-height: 1.4; margin: 0; font-size: 1rem;" data-i18n="journey.phase3.desc">
+                            Identificação de padrões via NLP. Ex: <a href="https://github.com/smicallef/spiderfoot" style="color: var(--accent-cyan);">SpiderFoot</a>.
                         </p>
                     </div>
                 </div>
                 
-                <div class="timeline-item fade-in">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-time">Fase 4</h3>
-                        <h4 class="timeline-title" data-i18n="journey.phase4.title">Inteligência Acionável</h4>
-                        <p class="timeline-desc" data-i18n="journey.phase4.desc">
-                            Transformação de insights em decisões estratégicas, prevenção de riscos e 
-                            oportunidades de negócio. Casos como a 
-                            <a href="https://en.wikipedia.org/wiki/Operation_Car_Wash" target="_blank" style="color: var(--accent-cyan);">Operação Lava Jato</a> 
-                            mostram o impacto real dessa inteligência.
+                <!-- Fase 4 -->
+                <div style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 0; position: relative;">
+                    <!-- Ponto na timeline -->
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 24px; height: 24px; border-radius: 50%; background: var(--primary-gradient); border: 4px solid var(--dark-bg); z-index: 1;"></div>
+                    
+                    <!-- Conteúdo -->
+                    <div style="width: 45%; background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 12px; padding: 15px; position: relative;">
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <i class="fas fa-lightbulb" style="font-size: 1.5rem; color: var(--accent-cyan); margin-right: 10px;"></i>
+                            <div>
+                                <h3 style="color: var(--accent-cyan); font-size: 1.3rem; margin: 0; font-weight: 700;"><span data-i18n="journey.phase_label">Fase</span> 4</h3>
+                                <h4 style="font-size: 1.6rem; margin: 0; color: var(--text-primary);" data-i18n="journey.phase4.title">Inteligência Acionável</h4>
+                            </div>
+                        </div>
+                        <p style="color: var(--text-secondary); line-height: 1.4; margin: 0; font-size: 1rem;" data-i18n="journey.phase4.desc">
+                            Insights estratégicos e preventivos. Ex: <a href="https://en.wikipedia.org/wiki/Operation_Car_Wash" style="color: var(--accent-cyan);">Lava Jato</a>.
                         </p>
                     </div>
                 </div>
@@ -1876,6 +1929,9 @@
                     <p class="feature-desc" data-i18n="cases.security.desc">
                         Identificação proativa de vulnerabilidades e ameaças antes que sejam exploradas
                     </p>
+                    <a href="https://www.cisecurity.org/insights/white-papers/security-primer-open-source-intelligence-osint" target="_blank" style="display: inline-block; margin-top: 15px; padding: 5px 10px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.8rem; color: #10b981; text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> <span data-i18n="common.learn_more">Saiba mais</span>
+                    </a>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
@@ -1885,6 +1941,9 @@
                     <p class="feature-desc" data-i18n="cases.journalism.desc">
                         Verificação de fatos e descoberta de conexões ocultas - como o caso Bellingcat
                     </p>
+                    <a href="https://www.bellingcat.com/category/resources/how-tos/" target="_blank" style="display: inline-block; margin-top: 15px; padding: 5px 10px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.8rem; color: #f59e0b; text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> <span data-i18n="common.learn_more">Saiba mais</span>
+                    </a>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
@@ -1894,6 +1953,9 @@
                     <p class="feature-desc" data-i18n="cases.criminal.desc">
                         Rastreamento de atividades ilícitas e identificação de redes criminosas
                     </p>
+                    <a href="https://www.policiacivil.pr.gov.br/Noticia/Laboratorio-de-Combate-Crimes-Ciberneticos-da-Policia-Civil-do-Parana-e-referencia" target="_blank" style="display: inline-block; margin-top: 15px; padding: 5px 10px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.8rem; color: #ef4444; text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> <span data-i18n="common.learn_more">Saiba mais</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1918,6 +1980,9 @@
                     <p class="feature-desc" data-i18n="brazil.lavajato.desc">
                         OSINT usado para rastrear movimentações financeiras e conexões entre investigados
                     </p>
+                    <a href="https://www.gov.br/pf/pt-br/assuntos/noticias/2021/12/operacao-lava-jato-completa-7-anos" target="_blank" style="display: inline-block; margin-top: 15px; padding: 5px 10px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.8rem; color: #2563eb; text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> <span data-i18n="common.learn_more">Saiba mais</span>
+                    </a>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon" style="background: linear-gradient(135deg, #dc2626, #991b1b);">
@@ -1927,6 +1992,9 @@
                     <p class="feature-desc" data-i18n="brazil.amazon.desc">
                         Análise de dados satelitais e redes sociais para identificar focos criminosos
                     </p>
+                    <a href="https://queimadas.dgi.inpe.br/queimadas/portal-static/sobre-o-bdqueimadas/" target="_blank" style="display: inline-block; margin-top: 15px; padding: 5px 10px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.8rem; color: #f97316; text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> <span data-i18n="common.learn_more">Saiba mais</span>
+                    </a>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon" style="background: linear-gradient(135deg, #059669, #047857);">
@@ -1936,6 +2004,9 @@
                     <p class="feature-desc" data-i18n="brazil.pandemic.desc">
                         Rastreamento de fake news durante a pandemia usando IA e análise de redes
                     </p>
+                    <a href="https://www.gov.br/saude/pt-br/vacinacao/semanacontradesinformacao" target="_blank" style="display: inline-block; margin-top: 15px; padding: 5px 10px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.8rem; color: #059669; text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> <span data-i18n="common.learn_more">Saiba mais</span>
+                    </a>
                 </div>
             </div>
             
@@ -1967,6 +2038,9 @@
                         O equilíbrio delicado entre proteger a sociedade e preservar direitos individuais. 
                         Até onde podemos ir sem cruzar linhas éticas?
                     </p>
+                    <a href="https://www.serpro.gov.br/lgpd/menu/a-lgpd/lei-geral-de-protecao-de-dados-pessoais" target="_blank" style="display: inline-block; margin-top: 15px; padding: 5px 10px; background: rgba(255,255,255,0.05); border-radius: 20px; font-size: 0.8rem; color: var(--accent-cyan); text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> <span data-i18n="common.lgpd">LGPD</span>
+                    </a>
                 </div>
                 
                 <div class="ethics-card">
@@ -1978,6 +2052,9 @@
                         Como garantir que nossas ferramentas de IA não perpetuem ou amplifiquem 
                         preconceitos existentes na sociedade?
                     </p>
+                    <a href="https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/transformacaodigital/inteligencia-artificial" target="_blank" style="display: inline-block; margin-top: 15px; padding: 5px 10px; background: rgba(255,255,255,0.05); border-radius: 20px; font-size: 0.8rem; color: var(--accent-cyan); text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> <span data-i18n="common.ai_brazil">IA no Brasil</span>
+                    </a>
                 </div>
                 
                 <div class="ethics-card">
@@ -1989,6 +2066,23 @@
                         As mesmas ferramentas que protegem podem ser usadas para prejudicar. 
                         A responsabilidade está em quem as utiliza.
                     </p>
+                    <a href="https://www.gov.br/governodigital/pt-br/seguranca-e-protecao-de-dados/diretrizes-etica-ia" target="_blank" style="display: inline-block; margin-top: 15px; padding: 5px 10px; background: rgba(255,255,255,0.05); border-radius: 20px; font-size: 0.8rem; color: var(--accent-cyan); text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> <span data-i18n="common.ethical_guidelines">Diretrizes Éticas</span>
+                    </a>
+                </div>
+                
+                <div class="ethics-card">
+                    <div class="ethics-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="ethics-title" data-i18n="ethics.transparency.title">Transparência e Consentimento</h3>
+                    <p class="ethics-desc" data-i18n="ethics.transparency.desc">
+                        A coleta e análise de dados devem ser transparentes e baseadas em consentimento,
+                        especialmente quando afetam indivíduos e comunidades inteiras.
+                    </p>
+                    <a href="https://www.gov.br/anpd/pt-br" target="_blank" style="display: inline-block; margin-top: 15px; padding: 5px 10px; background: rgba(255,255,255,0.05); border-radius: 20px; font-size: 0.8rem; color: var(--accent-cyan); text-decoration: none;">
+                        <i class="fas fa-external-link-alt"></i> <span data-i18n="common.anpd_guide">Guia ANPD</span>
+                    </a>
                 </div>
             </div>
             
@@ -2021,6 +2115,9 @@
                 <p style="font-size: 1.1rem; color: var(--accent-cyan); margin: 0;" data-i18n="compliance.stats">
                     No Brasil, cerca de 35% do software em uso é pirata, gerando prejuízos de mais de R$ 6 bilhões anualmente para a economia.
                 </p>
+                <a href="https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/noticias/2022/05/mcti-e-bsa-juntos-no-combate-a-pirataria-de-software-e-a-favor-da-competitividade" target="_blank" style="display: inline-block; margin-top: 15px; padding: 5px 15px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.8rem; color: var(--accent-cyan); text-decoration: none;">
+                    <i class="fas fa-link"></i> Fonte: MCTI/BSA
+                </a>
             </div>
             
             <div class="ethics-grid">
@@ -2037,6 +2134,9 @@
                         As penalidades por uso de software pirata podem incluir multas de até R$ 3.000 por cópia ilegal,
                         além de penas de detenção de 1 a 4 anos para os responsáveis.
                     </p>
+                    <a href="https://www.gov.br/pf/pt-br/assuntos/noticias/2022/02/policia-federal-deflagra-operacao-contra-crimes-de-violacao-de-direito-autoral-e-concorrencia-desleal" target="_blank" style="display: inline-block; margin-top: 10px; padding: 3px 8px; background: rgba(255,255,255,0.05); border-radius: 15px; font-size: 0.7rem; color: var(--accent-pink); text-decoration: none;">
+                        <i class="fas fa-link"></i> Fonte: Lei 9.609/98 e PF
+                    </a>
                 </div>
                 
                 <div class="ethics-card">
@@ -2052,6 +2152,9 @@
                         Programas piratas são frequentemente modificados para incluir backdoors, ransomware e spyware,
                         permitindo acesso não autorizado a dados confidenciais da empresa.
                     </p>
+                    <a href="https://www.gvmultimidia.com.br/noticias/usar-softwares-piratas-pode-trazer-prejuizos-para-as-empresas/" target="_blank" style="display: inline-block; margin-top: 10px; padding: 3px 8px; background: rgba(255,255,255,0.05); border-radius: 15px; font-size: 0.7rem; color: var(--accent-pink); text-decoration: none;">
+                        <i class="fas fa-link"></i> Fonte: GV Multimídia
+                    </a>
                 </div>
                 
                 <div class="ethics-card">
@@ -2067,23 +2170,54 @@
                         Um escândalo envolvendo pirataria pode destruir a reputação de uma empresa em minutos,
                         resultando em perda de clientes e dificuldade para fechar novos negócios.
                     </p>
+                    <a href="https://computerworld.com.br/plataformas/sao-paulo-lidera-ranking-de-denuncias-de-pirataria-de-software/" target="_blank" style="display: inline-block; margin-top: 10px; padding: 3px 8px; background: rgba(255,255,255,0.05); border-radius: 15px; font-size: 0.7rem; color: var(--accent-pink); text-decoration: none;">
+                        <i class="fas fa-link"></i> Fonte: Computer World
+                    </a>
+                </div>
+                
+                <div class="ethics-card">
+                    <div class="ethics-icon" style="background: var(--secondary-gradient);">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3 class="ethics-title" data-i18n="compliance.risk4.title">Incompatibilidade Técnica</h3>
+                    <p class="ethics-desc" data-i18n="compliance.risk4.desc">
+                        Software pirata frequentemente apresenta falhas de desempenho, incompatibilidade com outros sistemas
+                        e limitações para integrações corporativas.
+                    </p>
+                    <p style="font-size: 0.9rem; color: var(--accent-pink); margin-top: 15px; font-style: italic;" data-i18n="compliance.risk4.detail">
+                        Versões não licenciadas podem causar perda de dados importantes, interrupções de serviço e 
+                        comprometer a produtividade de equipes inteiras durante falhas críticas.
+                    </p>
+                    <a href="https://techinbrazil.com.br/os-perigos-do-uso-de-softwares-piratas-nas-empresas" target="_blank" style="display: inline-block; margin-top: 10px; padding: 3px 8px; background: rgba(255,255,255,0.05); border-radius: 15px; font-size: 0.7rem; color: var(--accent-pink); text-decoration: none;">
+                        <i class="fas fa-link"></i> Fonte: Tech in Brazil
+                    </a>
                 </div>
             </div>
             
-            <div style="background: var(--glass-bg); padding: 25px; border-radius: 15px; margin: 40px auto; max-width: 800px; border-left: 5px solid var(--accent-green);">
-                <p style="font-size: 1.1rem; color: var(--text-primary); margin: 0; line-height: 1.6;" data-i18n="compliance.solution">
-                    Invista em licenças legítimas, implemente políticas claras de compliance de software e realize auditorias 
-                    regulares para garantir conformidade e segurança.
-                </p>
-                <p style="font-size: 0.95rem; color: var(--text-secondary); margin-top: 15px; line-height: 1.6;" data-i18n="compliance.benefits">
-                    Software legal oferece suporte técnico, atualizações de segurança, garantia de funcionamento e proteção
-                    contra vulnerabilidades, além de contribuir para a inovação do setor.
-                </p>
+            <div style="background: var(--glass-bg); padding: 25px; border-radius: 15px; margin: 40px auto; max-width: 900px; border-left: 5px solid var(--accent-green); display: flex; align-items: center; gap: 20px;">
+                <div style="flex: 1;">
+                    <p style="font-size: 1.1rem; color: var(--text-primary); margin: 0; line-height: 1.6;" data-i18n="compliance.solution">
+                        Invista em licenças legítimas, implemente políticas claras de compliance de software e realize auditorias 
+                        regulares para garantir conformidade e segurança.
+                    </p>
+                    <p style="font-size: 0.95rem; color: var(--text-secondary); margin-top: 15px; line-height: 1.6;" data-i18n="compliance.benefits">
+                        Software legal oferece suporte técnico, atualizações de segurança, garantia de funcionamento e proteção
+                        contra vulnerabilidades, além de contribuir para a inovação do setor.
+                    </p>
+                    <a href="https://abpi.org.br/noticias/artigo-a-importancia-do-software-legal/" target="_blank" style="display: inline-block; margin-top: 15px; padding: 5px 15px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.8rem; color: var(--accent-cyan); text-decoration: none;">
+                        <i class="fas fa-link"></i> Fonte: ABPI
+                    </a>
+                </div>
+                <a href="https://ruvixx.com" target="_blank" style="display: block; width: 120px; transition: transform 0.3s ease; flex-shrink: 0;" class="hover-scale">
+                    <img src="./assets/ruvixxlogo.png" alt="Ruvixx" style="width: 100%; height: auto;">
+                </a>
             </div>
             
             <div style="text-align: center; margin-top: 60px; margin-bottom: 20px;">
                 <p data-i18n="footer.support" style="font-size: 1.2rem; margin-bottom: 15px;">Apoio</p>
-                <img src="./assets/ruvixxlogo.png" alt="Ruvixx" style="max-width: 180px;">
+                <a href="https://ruvixx.com" target="_blank">
+                    <img src="./assets/ruvixxlogo.png" alt="Ruvixx" style="max-width: 180px;">
+                </a>
             </div>
         </div>
     </section>
@@ -2103,7 +2237,7 @@
                     <div style="text-align: center; margin-bottom: 20px;">
                         <i class="fas fa-lock" style="font-size: 3rem; color: var(--accent-purple);"></i>
                     </div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--accent-cyan);">10 Princípios LGPD</h3>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--accent-cyan);" data-i18n="lgpd.principles">10 Princípios LGPD</h3>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left;">
                         <span class="scale-in">✓ Finalidade</span>
                         <span class="scale-in" style="animation-delay: 0.1s;">✓ Adequação</span>
@@ -2121,20 +2255,20 @@
                     <div style="text-align: center; margin-bottom: 20px;">
                         <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--accent-pink);"></i>
                     </div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--accent-pink);">Penalidades</h3>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--accent-pink);" data-i18n="lgpd.penalties">Penalidades</h3>
                     <div class="fade-in" style="text-align: left;">
                         <p style="margin: 15px 0; font-size: 1.1rem;">
-                            <strong>💰 Multa simples:</strong><br>
+                            <strong data-i18n="lgpd.penalty_simple">💰 Multa simples:</strong><br><span data-i18n="lgpd.penalty_simple_desc">
                             Até 2% do faturamento<br>
-                            Limitada a R$ 50 milhões
+                            Limitada a R$ 50 milhões</span>
                         </p>
                         <p style="margin: 15px 0; font-size: 1.1rem;">
-                            <strong>🚫 Multa diária:</strong><br>
-                            Até R$ 50 mil por dia
+                            <strong data-i18n="lgpd.penalty_daily">🚫 Multa diária:</strong><br><span data-i18n="lgpd.penalty_daily_desc">
+                            Até R$ 50 mil por dia</span>
                         </p>
                         <p style="margin: 15px 0; font-size: 1.1rem;">
-                            <strong>⛔ Sanções:</strong><br>
-                            Bloqueio ou eliminação dos dados
+                            <strong data-i18n="lgpd.sanctions">⛔ Sanções:</strong><br><span data-i18n="lgpd.sanctions_desc">
+                            Bloqueio ou eliminação dos dados</span>
                         </p>
                     </div>
                 </div>
@@ -2143,8 +2277,7 @@
             <div style="background: var(--glass-bg); border-radius: 16px; padding: 20px; margin-top: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
                 <p style="font-size: 1.3rem; text-align: center;">
                     <i class="fas fa-info-circle" style="color: var(--accent-cyan);"></i>
-                    <strong>Dica OSINT:</strong> Dados públicos ainda precisam de 
-                    <span class="gradient-text">base legal</span> para processamento!
+                    <strong data-i18n="lgpd.tip">Dica OSINT:</strong> <span data-i18n="lgpd.tip_desc">Dados públicos ainda precisam de <span class="gradient-text">base legal</span> para processamento!</span>
                 </p>
             </div>
         </div>
@@ -2161,42 +2294,59 @@
             </div>
             
             <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-                <div class="feature-card scale-in" style="padding: 20px;">
+                <div class="feature-card scale-in" style="padding: 20px; position: relative;">
                     <div style="font-size: 3rem; font-weight: 900; color: var(--accent-cyan);">2.5</div>
-                    <p style="font-size: 0.9rem;">Quintilhões de bytes/dia</p>
+                    <p style="font-size: 0.9rem;" data-i18n="digitalLife.data_bytes">Quintilhões de bytes/dia</p>
+                    <a href="https://www.idc.com/getdoc.jsp?containerId=prUS46286020" target="_blank" style="position: absolute; bottom: 5px; right: 5px; font-size: 0.7rem; color: var(--accent-cyan); text-decoration: none;">
+                        <i class="fas fa-link"></i>
+                    </a>
                 </div>
-                <div class="feature-card scale-in" style="animation-delay: 0.2s; padding: 20px;">
+                <div class="feature-card scale-in" style="animation-delay: 0.2s; padding: 20px; position: relative;">
                     <div style="font-size: 3rem; font-weight: 900; color: var(--accent-purple);">147</div>
-                    <p style="font-size: 0.9rem;">Vezes checamos celular/dia</p>
+                    <p style="font-size: 0.9rem;" data-i18n="digitalLife.phone_checks">Vezes checamos celular/dia</p>
+                    <a href="https://www.tecmundo.com.br/dispositivos-moveis/131392-usuarios-olham-celular-150-vezes-dia-comprova-levantamento.htm" target="_blank" style="position: absolute; bottom: 5px; right: 5px; font-size: 0.7rem; color: var(--accent-purple); text-decoration: none;">
+                        <i class="fas fa-link"></i>
+                    </a>
                 </div>
-                <div class="feature-card scale-in" style="animation-delay: 0.4s; padding: 20px;">
+                <div class="feature-card scale-in" style="animation-delay: 0.4s; padding: 20px; position: relative;">
                     <div style="font-size: 3rem; font-weight: 900; color: var(--accent-pink);">96%</div>
-                    <p style="font-size: 0.9rem;">Brasileiros online</p>
+                    <p style="font-size: 0.9rem;" data-i18n="digitalLife.online_percent">Brasileiros online</p>
+                    <a href="https://agenciabrasil.ebc.com.br/geral/noticia/2022-06/brasil-tem-9023-de-domicilios-com-acesso-internet" target="_blank" style="position: absolute; bottom: 5px; right: 5px; font-size: 0.7rem; color: var(--accent-pink); text-decoration: none;">
+                        <i class="fas fa-link"></i>
+                    </a>
                 </div>
-                <div class="feature-card scale-in" style="animation-delay: 0.6s; padding: 20px;">
+                <div class="feature-card scale-in" style="animation-delay: 0.6s; padding: 20px; position: relative;">
                     <div style="font-size: 3rem; font-weight: 900; color: var(--accent-green);">5h</div>
-                    <p style="font-size: 0.9rem;">Tempo médio online/dia</p>
+                    <p style="font-size: 0.9rem;" data-i18n="digitalLife.online_time">Tempo médio online/dia</p>
+                    <a href="https://datareportal.com/reports/digital-2023-brazil" target="_blank" style="position: absolute; bottom: 5px; right: 5px; font-size: 0.7rem; color: var(--accent-green); text-decoration: none;">
+                        <i class="fas fa-link"></i>
+                    </a>
                 </div>
             </div>
             
             <div class="code-block" style="max-width: 800px; margin: 40px auto 0;">
                 <div class="code-header">
-                    <span class="code-lang">Rastro Digital em 1 Minuto</span>
+                    <span class="code-lang" data-i18n="digitalLife.trail_title">Rastro Digital em 1 Minuto</span>
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px;">
                     <div class="fade-in" style="text-align: left;">
-                        <p>📍 <strong>Localização:</strong> GPS + Wi-Fi + Cell Tower</p>
-                        <p>🔍 <strong>Buscas:</strong> Google, Bing, DuckDuckGo</p>
-                        <p>📱 <strong>Apps:</strong> 30+ em background</p>
-                        <p>🍪 <strong>Cookies:</strong> 100+ rastreadores</p>
+                        <p>📍 <strong data-i18n="digitalLife.location">Localização:</strong> <span data-i18n="digitalLife.location_desc">GPS + Wi-Fi + Cell Tower</span></p>
+                        <p>🔍 <strong data-i18n="digitalLife.search">Buscas:</strong> <span data-i18n="digitalLife.search_desc">Google, Bing, DuckDuckGo</span></p>
+                        <p>📱 <strong data-i18n="digitalLife.apps">Apps:</strong> <span data-i18n="digitalLife.apps_desc">30+ em background</span> <a href="https://www.kaspersky.com.br/blog/aplicativos-em-segundo-plano/14356/" target="_blank" style="font-size: 0.7rem; color: var(--accent-cyan);"><i class="fas fa-link"></i></a></p>
+                        <p>🍪 <strong data-i18n="digitalLife.cookies">Cookies:</strong> <span data-i18n="digitalLife.cookies_desc">100+ rastreadores</span> <a href="https://www.gov.br/cidadania/pt-br/acesso-a-informacao/lgpd/cookies" target="_blank" style="font-size: 0.7rem; color: var(--accent-cyan);"><i class="fas fa-link"></i></a></p>
                     </div>
                     <div class="fade-in" style="text-align: left; animation-delay: 0.3s;">
-                        <p>👓 <strong>Compras:</strong> Cartão + PIX</p>
-                        <p>📸 <strong>Fotos:</strong> Metadados EXIF</p>
-                        <p>🗣️ <strong>Voz:</strong> Assistentes sempre ouvindo</p>
-                        <p>👁️ <strong>Biometria:</strong> Face + Digital</p>
+                        <p>👓 <strong data-i18n="digitalLife.shopping">Compras:</strong> <span data-i18n="digitalLife.shopping_desc">Cartão + PIX</span> <a href="https://www.bcb.gov.br/estabilidadefinanceira/estatisticaspix" target="_blank" style="font-size: 0.7rem; color: var(--accent-cyan);"><i class="fas fa-link"></i></a></p>
+                        <p>📸 <strong data-i18n="digitalLife.photos">Fotos:</strong> <span data-i18n="digitalLife.photos_desc">Metadados EXIF</span> <a href="https://www.aborla.com.br/blog/forensics-exif/" target="_blank" style="font-size: 0.7rem; color: var(--accent-cyan);"><i class="fas fa-link"></i></a></p>
+                        <p>🗣️ <strong data-i18n="digitalLife.voice">Voz:</strong> <span data-i18n="digitalLife.voice_desc">Assistentes sempre ouvindo</span> <a href="https://canaltech.com.br/seguranca/alexa-siri-e-google-assistente-como-eles-lidam-com-sua-privacidade-139715/" target="_blank" style="font-size: 0.7rem; color: var(--accent-cyan);"><i class="fas fa-link"></i></a></p>
+                        <p>👁️ <strong data-i18n="digitalLife.biometrics">Biometria:</strong> <span data-i18n="digitalLife.biometrics_desc">Face + Digital</span> <a href="https://www.gov.br/pt-br/servicos/obter-a-carteira-de-identidade" target="_blank" style="font-size: 0.7rem; color: var(--accent-cyan);"><i class="fas fa-link"></i></a></p>
                     </div>
                 </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
+                <a href="https://www.pewresearch.org/internet/fact-sheet/mobile/" target="_blank" style="display: inline-block; padding: 8px 15px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.8rem; color: var(--accent-cyan); text-decoration: none;">
+                    <i class="fas fa-link"></i> Fonte principal: Pew Research Center
+                </a>
             </div>
         </div>
     </section>
@@ -2213,32 +2363,32 @@
             
             <div class="ethics-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
                 <div class="ethics-card fade-in">
-                    <h3 class="feature-title">O Humano Traz</h3>
+                    <h3 class="feature-title" data-i18n="hybridIntel.human_brings">O Humano Traz</h3>
                     <ul style="text-align: left; color: var(--text-secondary);">
-                        <li>✨ Criatividade e intuição</li>
-                        <li>🔍 Percepção de contexto</li>
-                        <li>📚 Compreensão ética e valores</li>
-                        <li>🛠️ Adaptação a situações ambiguas</li>
-                        <li>👇 Decisões baseadas em experiência</li>
+                        <li data-i18n="hybridIntel.human_list.0">✨ Criatividade e intuição</li>
+                        <li data-i18n="hybridIntel.human_list.1">🔍 Percepção de contexto</li>
+                        <li data-i18n="hybridIntel.human_list.2">📚 Compreensão ética e valores</li>
+                        <li data-i18n="hybridIntel.human_list.3">🛠️ Adaptação a situações ambiguas</li>
+                        <li data-i18n="hybridIntel.human_list.4">👇 Decisões baseadas em experiência</li>
                     </ul>
                 </div>
                 
                 <div class="ethics-card fade-in" style="animation-delay: 0.3s;">
-                    <h3 class="feature-title">A IA Traz</h3>
+                    <h3 class="feature-title" data-i18n="hybridIntel.ai_brings">A IA Traz</h3>
                     <ul style="text-align: left; color: var(--text-secondary);">
-                        <li>🧠 Processamento de grandes volumes</li>
-                        <li>📋 Eliminação de viés inconsciente</li>
-                        <li>📈 Análise de padrões complexos</li>
-                        <li>⏰ Velocidade e escala</li>
-                        <li>💾 Decisões baseadas em dados</li>
+                        <li data-i18n="hybridIntel.ai_list.0">🧠 Processamento de grandes volumes</li>
+                        <li data-i18n="hybridIntel.ai_list.1">📋 Eliminação de viés inconsciente</li>
+                        <li data-i18n="hybridIntel.ai_list.2">📈 Análise de padrões complexos</li>
+                        <li data-i18n="hybridIntel.ai_list.3">⏰ Velocidade e escala</li>
+                        <li data-i18n="hybridIntel.ai_list.4">💾 Decisões baseadas em dados</li>
                     </ul>
                 </div>
             </div>
             
             <div style="text-align: center; margin-top: 40px;">
-                <h3 style="color: var(--accent-cyan); font-size: 1.6rem; margin-bottom: 20px;">A Fórmula do Sucesso</h3>
+                <h3 style="color: var(--accent-cyan); font-size: 1.6rem; margin-bottom: 20px;" data-i18n="hybridIntel.success_formula">A Fórmula do Sucesso</h3>
                 <div style="background: var(--glass-bg); padding: 20px; border-radius: 16px; max-width: 80%; margin: 0 auto; display: inline-block; font-size: 1.2rem;">
-                    <span class="gradient-text" style="font-weight: bold;">OSINT + IA + HUMANO</span> = Insight + Escala + Julgamento
+                    <span data-i18n="hybridIntel.success_formula_text"><span class="gradient-text" style="font-weight: bold;">OSINT + IA + HUMANO</span> = Insight + Escala + Julgamento</span>
                 </div>
             </div>
         </div>
@@ -2260,7 +2410,7 @@
                         <i class="fas fa-project-diagram"></i>
                     </div>
                     <h3 class="tool-name">OSINT Framework</h3>
-                    <p class="tool-desc">Coleção organizada de 500+ ferramentas OSINT</p>
+                    <p class="tool-desc" data-i18n="tools_extra.osintframework">Coleção organizada de 500+ ferramentas OSINT</p>
                 </a>
                 
                 <a href="https://osintcurio.us/" target="_blank" class="tool-card">
@@ -2268,7 +2418,7 @@
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <h3 class="tool-name">OSINT Curious</h3>
-                    <p class="tool-desc">Tutoriais e estudos de caso completos</p>
+                    <p class="tool-desc" data-i18n="tools_extra.bellingcat">Tutoriais e estudos de caso completos</p>
                 </a>
                 
                 <a href="https://www.youtube.com/c/TheOSINTCurious" target="_blank" class="tool-card">
@@ -2276,7 +2426,7 @@
                         <i class="fab fa-youtube"></i>
                     </div>
                     <h3 class="tool-name">YouTube</h3>
-                    <p class="tool-desc">Canais com tutoriais e demonstrações práticas</p>
+                    <p class="tool-desc" data-i18n="tools_extra.youtube">Canais com tutoriais e demonstrações práticas</p>
                 </a>
                 
                 <a href="https://chat.openai.com/" target="_blank" class="tool-card">
@@ -2284,7 +2434,7 @@
                         <i class="fas fa-robot"></i>
                     </div>
                     <h3 class="tool-name">ChatGPT</h3>
-                    <p class="tool-desc">Assistente que ajuda a avaliar e processar dados</p>
+                    <p class="tool-desc" data-i18n="tools_extra.ai_assistant">Assistente que ajuda a avaliar e processar dados</p>
                 </a>
             </div>
             
@@ -2384,127 +2534,122 @@
         </div>
     </section>
 
-    <!-- Agradecimento à Ruvixx -->
-    <section id="thanks" class="fade-in">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Agradecimentos</h2>
-                <p class="section-subtitle">
-                    Empresas que apoiaram este projeto
-                </p>
-            </div>
-            
-            <div class="thanks-content" style="text-align: center; margin: 50px 0;">
-                <div class="thanks-card" style="background: var(--glass-bg); padding: 40px; border-radius: 20px; max-width: 800px; margin: 0 auto; border: 1px solid var(--glass-border); backdrop-filter: blur(10px);">
-                    <a href="https://ruvixx.com" target="_blank" style="text-decoration: none;">
-                        <img src="./assets/ruvixxlogo.png" alt="Ruvixx" style="max-width: 200px; margin-bottom: 20px;">
-                    </a>
-                    <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--text-primary);">Ruvixx</h3>
-                    <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.7; max-width: 600px; margin: 0 auto; margin-bottom: 20px;">
-                        Agradecemos à Ruvixx pelo apoio ao desenvolvimento deste projeto educacional sobre IA & OSINT. 
-                        Sua contribuição foi fundamental para a criação deste conteúdo técnico e educativo.
-                    </p>
-                    <a href="https://ruvixx.com" target="_blank" class="cta-button" style="background: var(--primary-gradient); color: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 600; display: inline-block; margin-top: 10px; transition: all 0.3s ease;">
-                        Visite ruvixx.com
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Continue the Conversation Section -->
-    <section id="continue-conversation" class="fade-in">
+    <section id="continue-conversation" class="fade-in" style="padding: 40px 0;">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-i18n="contact.title">Vamos Continuar a Conversa</h2>
-                <p class="section-subtitle" data-i18n="contact.subtitle">
+            <div class="section-header" style="margin-bottom: 15px;">
+                <h2 class="section-title" data-i18n="contact.title" style="margin-bottom: 5px;">Vamos Continuar a Conversa</h2>
+                <p class="section-subtitle" data-i18n="contact.subtitle" style="font-size: 1rem;">
                     Entre em contato e faça parte desta jornada
                 </p>
             </div>
             
-            <div class="contact-content" style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; align-items: center; margin-top: 40px;">
-                <div class="contact-info" style="flex: 1; min-width: 300px; max-width: 500px;">
-                    <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Anderson H. Silva</h3>
-                    <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 25px;" data-i18n="contact.role">
-                        Arquiteto de Inteligência Digital<br>
-                        Machine Learning | IA | Análise de Dados | Filosofia
-                    </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: center; background: var(--glass-bg); backdrop-filter: blur(10px); border-radius: 15px; border: 1px solid var(--glass-border); padding: 20px; max-width: 900px; margin: 0 auto;">
+                <!-- Informações de Contato -->
+                <div style="flex: 2; min-width: 280px;">
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--primary-gradient); display: flex; justify-content: center; align-items: center; margin-right: 15px;">
+                            <span style="font-weight: bold; color: white; font-size: 20px;">AH</span>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 1.4rem; margin: 0;">Anderson H. Silva</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;" data-i18n="contact.role">
+                                Arquiteto de Inteligência Digital | ML | IA | Dados
+                            </p>
+                        </div>
+                    </div>
                     
-                    <div class="contact-buttons">
-                        <a href="mailto:andersonhs27@gmail.com" class="contact-btn">
-                            <i class="fas fa-envelope"></i>
-                            <span>andersonhs27@gmail.com</span>
+                    <!-- Links Compactos -->
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <a href="mailto:andersonhs27@gmail.com" style="display: inline-flex; align-items: center; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px; text-decoration: none; color: var(--accent-cyan); transition: all 0.3s ease;">
+                            <i class="fas fa-envelope" style="margin-right: 5px;"></i>
+                            <span style="font-size: 0.85rem;">E-mail</span>
                         </a>
                         
-                        <a href="https://linkedin.com/in/anderson-h-silva95" target="_blank" class="contact-btn">
-                            <i class="fab fa-linkedin"></i>
-                            <span>/anderson-h-silva95</span>
+                        <a href="https://linkedin.com/in/anderson-h-silva95" target="_blank" style="display: inline-flex; align-items: center; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px; text-decoration: none; color: var(--accent-cyan); transition: all 0.3s ease;">
+                            <i class="fab fa-linkedin" style="margin-right: 5px;"></i>
+                            <span style="font-size: 0.85rem;">LinkedIn</span>
                         </a>
                         
-                        <a href="https://twitter.com/neural_thinker" target="_blank" class="contact-btn">
-                            <i class="fab fa-twitter"></i>
-                            <span>@neural_thinker</span>
+                        <a href="https://twitter.com/neural_thinker" target="_blank" style="display: inline-flex; align-items: center; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px; text-decoration: none; color: var(--accent-cyan); transition: all 0.3s ease;">
+                            <i class="fab fa-twitter" style="margin-right: 5px;"></i>
+                            <span style="font-size: 0.85rem;">Twitter</span>
                         </a>
                         
-                        <a href="https://github.com/anderson-ufrj" target="_blank" class="contact-btn">
-                            <i class="fab fa-github"></i>
-                            <span>/anderson-ufrj</span>
+                        <a href="https://github.com/anderson-ufrj" target="_blank" style="display: inline-flex; align-items: center; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 8px; text-decoration: none; color: var(--accent-cyan); transition: all 0.3s ease;">
+                            <i class="fab fa-github" style="margin-right: 5px;"></i>
+                            <span style="font-size: 0.85rem;">GitHub</span>
                         </a>
                     </div>
                 </div>
                 
-                <div class="contact-qr" style="text-align: center; flex: 1; min-width: 200px;">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: 15px;" data-i18n="contact.connect">Conecte-se no LinkedIn</h3>
-                    <div class="qr-code">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://linkedin.com/in/anderson-h-silva95" 
-                             alt="QR Code LinkedIn" style="border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                <!-- QR Code -->
+                <div style="flex: 1; min-width: 120px; text-align: center; padding-left: 15px; border-left: 1px solid var(--glass-border);">
+                    <div style="width: 80px; height: 80px; overflow: hidden; border-radius: 8px; margin: 0 auto;">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://linkedin.com/in/anderson-h-silva95" 
+                             alt="QR Code LinkedIn" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
-                    <p style="margin-top: 10px;" data-i18n="contact.scan">Escaneie para conectar</p>
+                    <p style="margin: 8px 0 0; font-size: 0.75rem; color: var(--text-secondary);" data-i18n="contact.scan">LinkedIn QR</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Gradiente de transição para o rodapé -->
+    <div style="height: 100px; margin-left: 250px; background: linear-gradient(to bottom, transparent, rgba(10, 14, 39, 0.5)); position: relative; z-index: 1500;"></div>
+    
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <img src="./assets/uaisint_logo.png" 
-                 alt="UAISINT Logo" 
-                 class="footer-logo">
-            
-            <div class="footer-links">
-                <a href="#home" class="footer-link" data-i18n="footer.home">Início</a>
-                <a href="#about" class="footer-link" data-i18n="footer.about">Sobre</a>
-                <a href="#tools" class="footer-link" data-i18n="footer.tools">Ferramentas</a>
-                <a href="#contact" class="footer-link" data-i18n="footer.contact">Contato</a>
+    <footer style="background: var(--glass-bg); background-image: url('./assets/minasgerais.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-blend-mode: overlay; backdrop-filter: blur(3px); border-top: none; padding: 50px 0 30px; text-align: center; position: relative; z-index: 1500; margin-left: 250px; margin-top: -5px;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(10, 14, 39, 0.4); z-index: -1;"></div>
+        <div class="container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; align-items: start; padding: 0 20px; position: relative; z-index: 2;">
+            <!-- Coluna 1: Informações do Projeto -->
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
+                <p style="color: rgba(255,255,255,0.9); font-size: 1rem; line-height: 1.6; max-width: 350px; margin: 10px auto 20px;">
+                    <span data-i18n="footer.description">Transformando dados em inteligência através da união entre OSINT e Inteligência Artificial.</span>
+                </p>
+                <img src="./assets/uaisint_logo.png" alt="UAISINT Logo" style="width: 80px; height: 80px; margin: 15px 0 20px;">
+                
+                <div style="margin-top: 5px; display: flex; gap: 20px; justify-content: center;">
+                    <a href="https://linkedin.com/in/anderson-h-silva95" target="_blank" style="color: white; font-size: 1.3rem; transition: all 0.3s ease; opacity: 0.8; hover:opacity: 1;">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/neural_thinker" target="_blank" style="color: white; font-size: 1.3rem; transition: all 0.3s ease; opacity: 0.8; hover:opacity: 1;">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://github.com/anderson-ufrj" target="_blank" style="color: white; font-size: 1.3rem; transition: all 0.3s ease; opacity: 0.8; hover:opacity: 1;">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://instagram.com/andhenrique_" target="_blank" style="color: white; font-size: 1.3rem; transition: all 0.3s ease; opacity: 0.8; hover:opacity: 1;">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                
+                <div style="margin-top: 25px;">
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.6; margin: 0;">
+                        &copy; 2025 Anderson Henrique | IA & OSINT
+                    </p>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 5px;">
+                        <span data-i18n="footer.made">Feito com</span> ❤️ <span data-i18n="footer.by">em Minas Gerais</span> 🧀
+                    </p>
+                </div>
             </div>
             
-            <div class="social-links">
-                <a href="https://linkedin.com/in/anderson-h-silva95" target="_blank" class="social-link">
-                    <i class="fab fa-linkedin"></i>
+            <!-- Coluna 2: Agradecimentos -->
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
+                <h3 style="color: white; font-size: 1.3rem; margin-bottom: 20px; letter-spacing: 1px; font-weight: 700;" data-i18n="footer.thanks">Agradecimentos</h3>
+                <a href="https://ruvixx.com" target="_blank" style="margin-bottom: 10px;">
+                    <img src="./assets/ruvixxlogo.png" alt="Ruvixx" style="height: 45px; opacity: 0.95; transition: opacity 0.3s ease;">
                 </a>
-                <a href="https://twitter.com/neural_thinker" target="_blank" class="social-link">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://github.com/anderson-ufrj" target="_blank" class="social-link">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://instagram.com/andhenrique_" target="_blank" class="social-link">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2025 Anderson Henrique da Silva | IA & OSINT - UAISINT. <span data-i18n="footer.rights">Todos os direitos reservados.</span></p>
-                <p style="margin-top: 10px;">
-                    <small data-i18n="footer.made">Feito com</small> ❤️ <small data-i18n="footer.by">em Minas Gerais</small>
+                <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem; line-height: 1.5; max-width: 500px; margin: 15px auto 15px; text-align: center;" data-i18n="footer.thanksText">
+                    Agradecimentos à Ruvixx pelo apoio. A empresa tem contribuído ativamente para ajudar profissionais no Brasil e no Mundo a atuarem de forma legal, responsável e ética, enfrentando a pirataria com inteligência e tecnologia e garantindo a segurança de todos os usuários de software.
                 </p>
-                <p style="margin-top: 10px;">
-                    <small><span data-i18n="footer.support">Apoio</span>:</small>
-                </p>
-                <div style="margin-top: 5px;">
-                    <a href="#" target="_blank">
-                        <img src="./assets/ruvixxlogo.png" alt="Ruvixx" style="height: 30px;">
+                <div style="display: flex; justify-content: center; gap: 15px; margin: 10px 0;">
+                    <a href="https://ruvixx.com" target="_blank" class="cta-button" style="background: rgba(255,255,255,0.15); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.3);" data-i18n="footer.visitRuvixx">
+                        Visite ruvixx.com
+                    </a>
+                    <a href="https://www.linkedin.com/company/ruvixx-inc-/" target="_blank" class="cta-button" style="background: rgba(255,255,255,0.15); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.3);">
+                        <i class="fab fa-linkedin" style="margin-right: 5px;"></i> <span data-i18n="footer.linkedin">LinkedIn</span>
                     </a>
                 </div>
             </div>
@@ -3014,6 +3159,7 @@
         }
 
         function updateTranslations() {
+            // Usar nossa implementação melhorada para arrays e HTML
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(element => {
                 const key = element.getAttribute('data-i18n');
@@ -3021,18 +3167,23 @@
                 let translation = translations[currentLang];
                 
                 for (const k of keys) {
-                    translation = translation?.[k];
+                    // Tratar o caso especial de arrays com índices numéricos
+                    if (translation && (k in translation || (Array.isArray(translation) && !isNaN(parseInt(k))))) {
+                        translation = translation[k];
+                    } else {
+                        console.warn(`Translation missing for key: ${key} in language: ${currentLang}`);
+                        translation = null;
+                        break;
+                    }
                 }
                 
                 if (translation) {
-                    // Check if the key includes HTML content
-                    if (key.includes('desc') && key.includes('detective')) {
+                    // Usar innerHTML para todos os elementos para preservar formatação HTML
+                    if (typeof translation === 'string') {
                         element.innerHTML = translation;
                     } else {
                         element.textContent = translation;
                     }
-                } else {
-                    console.warn(`Translation missing for key: ${key} in language: ${currentLang}`);
                 }
             });
             
@@ -3164,58 +3315,65 @@
 
     <!-- Floating Info Button -->
     <div class="floating-info">
-        <button class="floating-button" onclick="toggleInfo()">
-            <i class="fas fa-info"></i>
+        <button class="floating-button" onclick="toggleInfo()" style="width: 65px; height: 65px;">
+            <i class="fas fa-info" style="font-size: 28px;"></i>
         </button>
-        <div class="info-content" id="infoContent">
+        <div class="info-content" id="infoContent" style="width: 400px; max-width: 90vw;">
             <div class="developer-header">
-                <div class="developer-avatar">AH</div>
+                <div class="developer-avatar" style="width: 60px; height: 60px; font-size: 22px;">AH</div>
                 <div class="developer-details">
-                    <h3 class="developer-name">Anderson Henrique da Silva</h3>
-                    <p class="developer-role">Arquiteto Digital</p>
-                    <p class="developer-company">IA & OSINT Specialist @ <a href="https://ruvixx.com" target="_blank" style="color: var(--accent-cyan); text-decoration: none;">Ruvixx</a></p>
+                    <h3 class="developer-name" style="font-size: 1.4rem; margin-bottom: 5px;">Anderson Henrique da Silva</h3>
+                    <p class="developer-role" style="font-size: 1.1rem;" data-i18n="developer.role">Arquiteto Digital</p>
+                    <p class="developer-company" style="font-size: 1rem;"><span data-i18n="developer.specialist">IA & OSINT Specialist @</span> <a href="https://ruvixx.com" target="_blank" style="color: var(--accent-cyan); text-decoration: none;">Ruvixx</a></p>
                 </div>
             </div>
-            <div class="developer-skills">
-                <span class="skill-tag">IA</span>
-                <span class="skill-tag">OSINT</span>
-                <span class="skill-tag">Cybersegurança</span>
-                <span class="skill-tag">Machine Learning</span>
-                <span class="skill-tag" data-i18n="contact.data">Análise de Dados</span>
+            <div class="developer-skills" style="margin: 15px 0;">
+                <span class="skill-tag" style="font-size: 0.95rem; padding: 6px 12px;">IA</span>
+                <span class="skill-tag" style="font-size: 0.95rem; padding: 6px 12px;">OSINT</span>
+                <span class="skill-tag" style="font-size: 0.95rem; padding: 6px 12px;">Cybersegurança</span>
+                <span class="skill-tag" style="font-size: 0.95rem; padding: 6px 12px;">Machine Learning</span>
+                <span class="skill-tag" style="font-size: 0.95rem; padding: 6px 12px;" data-i18n="contact.data">Análise de Dados</span>
             </div>
-            <div class="developer-links">
-                <a href="https://linkedin.com/in/anderson-h-silva95" target="_blank" class="developer-link">
-                    <i class="fab fa-linkedin"></i>
+            <div class="developer-links" style="margin-top: 15px;">
+                <a href="https://linkedin.com/in/anderson-h-silva95" target="_blank" class="developer-link" style="font-size: 1.05rem; padding: 10px 12px; display: flex; align-items: center;">
+                    <i class="fab fa-linkedin" style="font-size: 1.2rem; margin-right: 8px;"></i>
                     <span data-i18n="contact.connect">Conecte-se no LinkedIn</span>
                 </a>
-                <a href="https://github.com/anderson-ufrj" target="_blank" class="developer-link">
-                    <i class="fab fa-github"></i>
+                <a href="https://github.com/anderson-ufrj" target="_blank" class="developer-link" style="font-size: 1.05rem; padding: 10px 12px; display: flex; align-items: center;">
+                    <i class="fab fa-github" style="font-size: 1.2rem; margin-right: 8px;"></i>
                     <span>GitHub</span>
                 </a>
-                <a href="mailto:andersonhs27@gmail.com" class="developer-link">
-                    <i class="fas fa-envelope"></i>
+                <a href="mailto:andersonhs27@gmail.com" class="developer-link" style="font-size: 1.05rem; padding: 10px 12px; display: flex; align-items: center;">
+                    <i class="fas fa-envelope" style="font-size: 1.2rem; margin-right: 8px;"></i>
                     <span>Email</span>
                 </a>
             </div>
-            <hr style="margin: 12px 0; border: 1px solid var(--glass-border);">
-            <div class="event-header">
-                <img src="./assets/uaisint_logo.png" alt="UAISINT" class="event-logo" style="width: 40px; height: 40px;">
+            
+            <div style="text-align: center; margin-top: 15px; margin-bottom: 15px;">
+                <a href="https://ruvixx.com" target="_blank">
+                    <img src="./assets/ruvixxlogo.png" alt="Ruvixx" style="height: 30px; opacity: 0.9;">
+                </a>
+            </div>
+            
+            <hr style="margin: 15px 0; border: 1px solid var(--glass-border);">
+            <div class="event-header" style="margin-top: 5px;">
+                <img src="./assets/uaisint_logo.png" alt="UAISINT" class="event-logo" style="width: 50px; height: 50px;">
                 <div class="event-details">
-                    <h3 class="event-title" style="font-size: 0.95rem;">UAISINT</h3>
-                    <p class="event-subtitle" style="font-size: 0.7rem;">Grupo de OSINT de Minas Gerais</p>
+                    <h3 class="event-title" style="font-size: 1.2rem; margin-bottom: 5px;">UAISINT</h3>
+                    <p class="event-subtitle" style="font-size: 0.9rem;" data-i18n="footer.osintGroup">Grupo de OSINT de Minas Gerais</p>
                 </div>
             </div>
-            <div class="event-links">
-                <a href="https://www.linkedin.com/groups/10060469/" target="_blank" class="event-link">
-                    <i class="fab fa-linkedin"></i>
+            <div class="event-links" style="margin-top: 10px;">
+                <a href="https://www.linkedin.com/groups/10060469/" target="_blank" class="event-link" style="font-size: 1rem; padding: 8px 10px;">
+                    <i class="fab fa-linkedin" style="font-size: 1.15rem; margin-right: 6px;"></i>
                     <span>Grupo no LinkedIn</span>
                 </a>
-                <a href="https://www.instagram.com/uaisint/" target="_blank" class="event-link">
-                    <i class="fab fa-instagram"></i>
+                <a href="https://www.instagram.com/uaisint/" target="_blank" class="event-link" style="font-size: 1rem; padding: 8px 10px;">
+                    <i class="fab fa-instagram" style="font-size: 1.15rem; margin-right: 6px;"></i>
                     <span>Instagram @uaisint</span>
                 </a>
-                <a href="https://twitter.com/uaisint" target="_blank" class="event-link">
-                    <i class="fab fa-twitter"></i>
+                <a href="https://twitter.com/uaisint" target="_blank" class="event-link" style="font-size: 1rem; padding: 8px 10px;">
+                    <i class="fab fa-twitter" style="font-size: 1.15rem; margin-right: 6px;"></i>
                     <span>Twitter @uaisint</span>
                 </a>
             </div>

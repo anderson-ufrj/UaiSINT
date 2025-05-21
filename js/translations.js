@@ -1,6 +1,13 @@
 // Translations for the website
 const translations = {
     pt: {
+        common: {
+            learn_more: "Saiba mais",
+            lgpd: "LGPD",
+            ai_brazil: "IA no Brasil",
+            ethical_guidelines: "Diretrizes Éticas",
+            anpd_guide: "Guia ANPD"
+        },
         nav: {
             home: "Início",
             about: "Sobre",
@@ -64,6 +71,7 @@ const translations = {
         journey: {
             title: "A Jornada do OSINT",
             subtitle: "Do dado bruto à inteligência acionável",
+            phase_label: "Fase",
             phase1: {
                 title: "Coleta de Dados",
                 desc: "Identificação e coleta de informações de fontes públicas: redes sociais, sites, registros públicos, metadados e muito mais."
@@ -106,6 +114,10 @@ const translations = {
                 title: "Uso Responsável",
                 desc: "As mesmas ferramentas que protegem podem ser usadas para prejudicar. A responsabilidade está em quem as utiliza."
             },
+            transparency: {
+                title: "Transparência e Consentimento",
+                desc: "A coleta e análise de dados devem ser transparentes e baseadas em consentimento, especialmente quando afetam indivíduos e comunidades inteiras."
+            },
             quote: "\"A integridade ética não é uma opção, mas uma obrigação no campo da inteligência digital.\""
         },
         compliance: {
@@ -128,6 +140,11 @@ const translations = {
                 title: "Reputação Corporativa",
                 desc: "Danos irreparáveis à imagem da empresa e perda de confiança de clientes, parceiros e investidores.",
                 detail: "Um escândalo envolvendo pirataria pode destruir a reputação de uma empresa em minutos, resultando em perda de clientes e dificuldade para fechar novos negócios."
+            },
+            risk4: {
+                title: "Incompatibilidade Técnica",
+                desc: "Software pirata frequentemente apresenta falhas de desempenho, incompatibilidade com outros sistemas e limitações para integrações corporativas.",
+                detail: "Versões não licenciadas podem causar perda de dados importantes, interrupções de serviço e comprometer a produtividade de equipes inteiras durante falhas críticas."
             },
             solution: "Invista em licenças legítimas, implemente políticas claras de compliance de software e realize auditorias regulares para garantir conformidade e segurança.",
             benefits: "Software legal oferece suporte técnico, atualizações de segurança, garantia de funcionamento e proteção contra vulnerabilidades, além de contribuir para a inovação do setor."
@@ -157,11 +174,18 @@ const translations = {
             rights: "Todos os direitos reservados.",
             made: "Feito com",
             by: "em Minas Gerais",
-            support: "Apoio"
+            support: "Apoio",
+            description: "Transformando dados em inteligência através da união entre OSINT e Inteligência Artificial.",
+            quickLinks: "Links Rápidos",
+            thanks: "Agradecimentos",
+            osintGroup: "Grupo de OSINT de Minas Gerais",
+            thanksText: "Agradecimentos à Ruvixx pelo apoio. A empresa tem contribuído ativamente para ajudar profissionais no Brasil e no Mundo a atuarem de forma legal, responsável e ética, enfrentando a pirataria com inteligência e tecnologia e garantindo a segurança de todos os usuários de software.",
+            visitRuvixx: "Visite ruvixx.com",
+            linkedin: "LinkedIn"
         },
         lgpd: {
             title: "LGPD + OSINT",
-            subtitle: "Como a Lei 13.709/18 Impacta Nossa Prática",
+            subtitle: "Como a Lei Geral de Proteção de Dados (13.709/18) Impacta Nossa Prática",
             principles: "10 Princípios LGPD",
             penalties: "Penalidades",
             penalty_simple: "Multa simples:",
@@ -197,6 +221,12 @@ const translations = {
             voice_desc: "Assistentes sempre ouvindo",
             biometrics: "Biometria:",
             biometrics_desc: "Face + Digital"
+        },
+        tools_extra: {
+            osintframework: "Coleção organizada de 500+ ferramentas OSINT",
+            bellingcat: "Tutoriais e estudos de caso completos",
+            youtube: "Canais com tutoriais e demonstrações práticas",
+            ai_assistant: "Assistente que ajuda a avaliar e processar dados"
         },
         hybridIntel: {
             title: "A Nova Inteligência Híbrida",
@@ -241,9 +271,20 @@ const translations = {
             },
             github: "Contribua no GitHub",
             telegram: "Entre no Telegram"
+        },
+        developer: {
+            role: "Arquiteto Digital",
+            specialist: "IA & OSINT Specialist @"
         }
     },
     en: {
+        common: {
+            learn_more: "Learn more",
+            lgpd: "GDPR",
+            ai_brazil: "AI in Brazil",
+            ethical_guidelines: "Ethical Guidelines",
+            anpd_guide: "ANPD Guide"
+        },
         nav: {
             home: "Home",
             about: "About",
@@ -307,6 +348,7 @@ const translations = {
         journey: {
             title: "The OSINT Journey",
             subtitle: "From raw data to actionable intelligence",
+            phase_label: "Phase",
             phase1: {
                 title: "Data Collection",
                 desc: "Identification and collection of information from public sources: social media, websites, public records, metadata, and more."
@@ -349,6 +391,10 @@ const translations = {
                 title: "Responsible Use",
                 desc: "The same tools that protect can be used to harm. The responsibility lies with those who use them."
             },
+            transparency: {
+                title: "Transparency and Consent",
+                desc: "Data collection and analysis must be transparent and based on consent, especially when they affect individuals and entire communities."
+            },
             quote: "\"Ethical integrity is not an option, but an obligation in the field of digital intelligence.\""
         },
         compliance: {
@@ -371,6 +417,11 @@ const translations = {
                 title: "Corporate Reputation",
                 desc: "Irreparable damage to company image and loss of trust from customers, partners, and investors.",
                 detail: "A scandal involving piracy can destroy a company's reputation in minutes, resulting in customer loss and difficulty in closing new business."
+            },
+            risk4: {
+                title: "Technical Incompatibility",
+                desc: "Pirated software often has performance issues, incompatibility with other systems, and limitations for corporate integrations.",
+                detail: "Unlicensed versions can cause important data loss, service interruptions, and compromise the productivity of entire teams during critical failures."
             },
             solution: "Invest in legitimate licenses, implement clear software compliance policies, and conduct regular audits to ensure compliance and security.",
             benefits: "Legal software offers technical support, security updates, performance guarantees and protection against vulnerabilities, while also contributing to industry innovation."
@@ -400,11 +451,18 @@ const translations = {
             rights: "All rights reserved.",
             made: "Made with",
             by: "in Minas Gerais",
-            support: "Support"
+            support: "Support",
+            description: "Transforming data into intelligence through the fusion of OSINT and Artificial Intelligence.",
+            quickLinks: "Quick Links",
+            thanks: "Acknowledgements",
+            osintGroup: "OSINT Group from Minas Gerais",
+            thanksText: "Special thanks to Ruvixx for their support. The company has actively contributed to helping professionals in Brazil and worldwide to work legally, responsibly and ethically, combating piracy through intelligence and technology while ensuring the security of all software users.",
+            visitRuvixx: "Visit ruvixx.com",
+            linkedin: "LinkedIn"
         },
         lgpd: {
             title: "LGPD + OSINT",
-            subtitle: "How Brazil's Data Protection Law Impacts Our Practice",
+            subtitle: "How Brazil's General Data Protection Law (13.709/18) Impacts Our Practice",
             principles: "10 LGPD Principles",
             penalties: "Penalties",
             penalty_simple: "Standard fine:",
@@ -440,6 +498,12 @@ const translations = {
             voice_desc: "Always-listening assistants",
             biometrics: "Biometrics:",
             biometrics_desc: "Face + Fingerprint"
+        },
+        tools_extra: {
+            osintframework: "Organized collection of 500+ OSINT tools",
+            bellingcat: "Tutorials and comprehensive case studies",
+            youtube: "Channels with tutorials and practical demonstrations",
+            ai_assistant: "Assistant that helps evaluate and process data"
         },
         hybridIntel: {
             title: "The New Hybrid Intelligence",
@@ -484,9 +548,20 @@ const translations = {
             },
             github: "Contribute on GitHub",
             telegram: "Join Telegram"
+        },
+        developer: {
+            role: "Digital Architect",
+            specialist: "AI & OSINT Specialist @"
         }
     },
     es: {
+        common: {
+            learn_more: "Saber más",
+            lgpd: "LGPD",
+            ai_brazil: "IA en Brasil",
+            ethical_guidelines: "Directrices Éticas",
+            anpd_guide: "Guía ANPD"
+        },
         nav: {
             home: "Inicio",
             about: "Acerca de",
@@ -550,6 +625,7 @@ const translations = {
         journey: {
             title: "La Jornada del OSINT",
             subtitle: "Del dato crudo a la inteligencia accionable",
+            phase_label: "Fase",
             phase1: {
                 title: "Recolección de Datos",
                 desc: "Identificación y recolección de información de fuentes públicas: redes sociales, sitios web, registros públicos, metadatos y más."
@@ -592,6 +668,10 @@ const translations = {
                 title: "Uso Responsable",
                 desc: "Las mismas herramientas que protegen pueden usarse para dañar. La responsabilidad recae en quienes las utilizan."
             },
+            transparency: {
+                title: "Transparencia y Consentimiento",
+                desc: "La recopilación y el análisis de datos deben ser transparentes y basados en el consentimiento, especialmente cuando afectan a individuos y comunidades enteras."
+            },
             quote: "\"La integridad ética no es una opción, sino una obligación en el campo de la inteligencia digital.\""
         },
         compliance: {
@@ -614,6 +694,11 @@ const translations = {
                 title: "Reputación Corporativa",
                 desc: "Daños irreparables a la imagen de la empresa y pérdida de confianza de clientes, socios e inversionistas.",
                 detail: "Un escándalo relacionado con la piratería puede destruir la reputación de una empresa en minutos, resultando en pérdida de clientes y dificultad para cerrar nuevos negocios."
+            },
+            risk4: {
+                title: "Incompatibilidad Técnica",
+                desc: "El software pirata frecuentemente presenta fallos de rendimiento, incompatibilidad con otros sistemas y limitaciones para integraciones corporativas.",
+                detail: "Las versiones no licenciadas pueden causar pérdida de datos importantes, interrupciones de servicio y comprometer la productividad de equipos enteros durante fallos críticos."
             },
             solution: "Invierta en licencias legítimas, implemente políticas claras de conformidad de software y realice auditorías regulares para garantizar el cumplimiento y la seguridad.",
             benefits: "El software legal ofrece soporte técnico, actualizaciones de seguridad, garantías de funcionamiento y protección contra vulnerabilidades, además de contribuir a la innovación del sector."
@@ -643,11 +728,18 @@ const translations = {
             rights: "Todos los derechos reservados.",
             made: "Hecho con",
             by: "en Minas Gerais",
-            support: "Apoyo"
+            support: "Apoyo",
+            description: "Transformando datos en inteligencia a través de la unión entre OSINT e Inteligencia Artificial.",
+            quickLinks: "Enlaces Rápidos",
+            thanks: "Agradecimientos",
+            osintGroup: "Grupo de OSINT de Minas Gerais",
+            thanksText: "Agradecimientos a Ruvixx por su apoyo. La empresa ha contribuido activamente a ayudar a profesionales en Brasil y en todo el mundo a actuar de forma legal, responsable y ética, enfrentando la piratería con inteligencia y tecnología y garantizando la seguridad de todos los usuarios de software.",
+            visitRuvixx: "Visite ruvixx.com",
+            linkedin: "LinkedIn"
         },
         lgpd: {
             title: "LGPD + OSINT",
-            subtitle: "Cómo la Ley de Protección de Datos de Brasil Impacta Nuestra Práctica",
+            subtitle: "Cómo la Ley General de Protección de Datos de Brasil (13.709/18) Impacta Nuestra Práctica",
             principles: "10 Principios LGPD",
             penalties: "Sanciones",
             penalty_simple: "Multa básica:",
@@ -683,6 +775,12 @@ const translations = {
             voice_desc: "Asistentes siempre escuchando",
             biometrics: "Biometría:",
             biometrics_desc: "Rostro + Huella Digital"
+        },
+        tools_extra: {
+            osintframework: "Colección organizada de más de 500 herramientas OSINT",
+            bellingcat: "Tutoriales y estudios de caso completos",
+            youtube: "Canales con tutoriales y demostraciones prácticas",
+            ai_assistant: "Asistente que ayuda a evaluar y procesar datos"
         },
         hybridIntel: {
             title: "La Nueva Inteligencia Híbrida",
@@ -727,6 +825,10 @@ const translations = {
             },
             github: "Contribuye en GitHub",
             telegram: "Únete a Telegram"
+        },
+        developer: {
+            role: "Arquitecto Digital",
+            specialist: "Especialista en IA & OSINT @"
         }
     }
 };
@@ -760,7 +862,8 @@ function updateTranslations(lang) {
         let translation = translations[lang];
         
         for (const k of keys) {
-            if (translation && k in translation) {
+            // Tratar casos especiais como arrays com índices (human_list.0)
+            if (translation && (k in translation || (Array.isArray(translation) && !isNaN(parseInt(k))))) {
                 translation = translation[k];
             } else {
                 console.warn(`Translation key not found: ${key} (missing: ${k})`);
@@ -770,8 +873,10 @@ function updateTranslations(lang) {
         }
         
         if (translation) {
-            // Preserve original inner HTML if it contains elements
-            if (element.children.length === 0 || typeof translation !== 'string') {
+            // Aplicar tradução independentemente dos elementos filhos
+            if (typeof translation === 'string') {
+                element.innerHTML = translation;
+            } else {
                 element.textContent = translation;
             }
         }
@@ -783,6 +888,16 @@ function updateTranslations(lang) {
 
 // Initialize language
 function initializeLanguage() {
+    // Verificar a estrutura dos arrays de tradução para humanos e IA
+    console.log('Checking human_list PT:', translations.pt.hybridIntel.human_list);
+    console.log('Checking human_list EN:', translations.en.hybridIntel.human_list);
+    console.log('Checking human_list ES:', translations.es.hybridIntel.human_list);
+    
+    // Verificar se podemos acessar os índices dos arrays
+    console.log('PT human_list[0]:', translations.pt.hybridIntel.human_list[0]);
+    console.log('EN human_list[0]:', translations.en.hybridIntel.human_list[0]);
+    console.log('ES human_list[0]:', translations.es.hybridIntel.human_list[0]);
+    
     const savedLang = localStorage.getItem('selectedLanguage') || 'pt';
     setLanguage(savedLang);
 }
@@ -791,3 +906,14 @@ function initializeLanguage() {
 window.translations = translations;
 window.setLanguage = setLanguage;
 window.initializeLanguage = initializeLanguage;
+
+// Garantir que as traduções sejam aplicadas após o carregamento da página
+document.addEventListener('DOMContentLoaded', function() {
+    initializeLanguage();
+    
+    // Forçar uma nova verificação após um pequeno atraso para capturar elementos dinâmicos
+    setTimeout(function() {
+        const savedLang = localStorage.getItem('selectedLanguage') || 'pt';
+        updateTranslations(savedLang);
+    }, 500);
+});
