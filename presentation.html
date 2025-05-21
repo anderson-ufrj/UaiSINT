@@ -944,6 +944,94 @@
                 margin-top: 10px;
             }
         }
+        /* Controls & Navigation */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+            z-index: 100;
+        }
+        
+        .nav-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(10, 14, 39, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            width: 90%;
+            max-width: 800px;
+            justify-content: space-between;
+        }
+        
+        .control-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 50%;
+        }
+        
+        .control-btn:hover {
+            color: var(--accent-purple);
+            background: rgba(102, 126, 234, 0.1);
+        }
+        
+        .control-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .slide-indicator {
+            display: flex;
+            gap: 6px;
+            flex: 0;
+            margin: 0 20px;
+        }
+        
+        .indicator-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--glass-border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicator-dot.active {
+            background: var(--accent-purple);
+            width: 18px;
+            border-radius: 3px;
+        }
+        
+        /* Copyright */
+        .copyright {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: right;
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            margin-left: auto;
+            padding-left: 20px;
+        }
+        
+        .copyright p {
+            margin: 0;
+            line-height: 1.2;
+        }
     </style>
 </head>
 <body>
@@ -1971,5 +2059,25 @@ pip install -r requirements.txt</div>
             initializeLanguage();
         });
     </script>
+    
+    <!-- Controls -->
+    <div class="controls">
+        <div class="nav-group">
+            <button class="control-btn" id="prev-btn" disabled>
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="slide-indicator" id="slide-indicator">
+                <!-- Will be populated by JavaScript -->
+            </div>
+            <button class="control-btn" id="next-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 UAISINT</p>
+            <p>Feito com ❤️ em Minas Gerais</p>
+        </div>
+    </div>
 </body>
 </html>
