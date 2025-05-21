@@ -78,7 +78,18 @@
         }
 
         @keyframes matrixFall {
-            to {
+            0% {
+                opacity: 0; /* Começa invisível */
+                transform: translateY(0);
+            }
+            10% {
+                opacity: 0.8; /* Fade in */
+            }
+            90% {
+                opacity: 0.8; /* Mantém visibilidade */
+            }
+            100% {
+                opacity: 0; /* Fade out no final */
                 transform: translateY(200vh);
             }
         }
@@ -102,9 +113,9 @@
             height: 400%;
             top: -150%;
             left: -150%;
-            background: radial-gradient(circle at center, transparent 0%, var(--accent-purple) 10%, transparent 20%, var(--accent-cyan) 30%, transparent 40%, var(--accent-pink) 50%, transparent 60%);
+            background: radial-gradient(circle at center, transparent 0%, var(--accent-purple) 8%, transparent 15%, var(--accent-cyan) 25%, transparent 35%, var(--accent-pink) 45%, transparent 55%);
             animation: rotate 60s linear infinite;
-            opacity: 0.1;
+            opacity: 0.15;
         }
 
         @keyframes rotate {
@@ -862,6 +873,37 @@
             margin-top: 30px;
         }
 
+        /* Código Python */
+        .code-block {
+            background: rgba(10, 25, 47, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: #e6f1ff;
+            white-space: pre;
+            overflow-x: auto;
+            line-height: 1.5;
+            margin: 15px 0;
+            border-left: 3px solid var(--accent-cyan);
+        }
+        
+        .code-block .comment {
+            color: #637777;
+        }
+        
+        .code-block .keyword {
+            color: #ff79c6;
+        }
+        
+        .code-block .function {
+            color: #50fa7b;
+        }
+        
+        .code-block .string {
+            color: #f1fa8c;
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .process-steps {
@@ -1352,9 +1394,66 @@
                 </div>
             </div>
         </div>
-
-        <!-- Slide 14: Casos de Uso Práticos -->
+        
+        <!-- Slide 13.5: Exemplos de Código Python para OSINT -->
         <div class="slide" data-slide="14">
+            <div class="slide-content">
+                <h1 class="slide-title">Código Python para OSINT</h1>
+                <p class="slide-text">
+                    Python é a linguagem preferida para automação de tarefas OSINT. Alguns exemplos simples demonstram seu poder:
+                </p>
+                
+                <div style="display: flex; flex-direction: column; gap: 30px; margin-top: 30px;">
+                    <!-- Exemplo 1: Web Scraping -->
+                    <div style="background: rgba(10, 25, 47, 0.6); border-radius: 10px; padding: 20px; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #e6f1ff; white-space: pre; overflow-x: auto;">
+# Web Scraping básico com BeautifulSoup
+import requests
+from bs4 import BeautifulSoup
+
+def extrair_manchetes(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    # Encontra elementos de manchete (personalizar para cada site)
+    manchetes = soup.find_all('h2', class_='headline')
+    
+    for manchete in manchetes:
+        print(manchete.text.strip())
+        
+# Exemplo: extrair_manchetes('https://www.site-de-noticias.com')</div>
+
+                    <!-- Exemplo 2: Análise de Redes Sociais -->
+                    <div style="background: rgba(10, 25, 47, 0.6); border-radius: 10px; padding: 20px; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #e6f1ff; white-space: pre; overflow-x: auto;">
+# Análise de redes sociais usando tweepy (Twitter/X)
+import tweepy
+import pandas as pd
+
+def analisar_tweets(query, count=100):
+    # Configurar autenticação
+    auth = tweepy.OAuthHandler("CONSUMER_KEY", "CONSUMER_SECRET")
+    auth.set_access_token("ACCESS_TOKEN", "ACCESS_SECRET")
+    api = tweepy.API(auth)
+    
+    # Coletar tweets
+    tweets = tweepy.Cursor(api.search_tweets, q=query, lang="pt").items(count)
+    
+    # Processar e analisar
+    dados = []
+    for tweet in tweets:
+        dados.append({
+            'usuario': tweet.user.screen_name,
+            'texto': tweet.text,
+            'seguidores': tweet.user.followers_count,
+            'data': tweet.created_at
+        })
+    
+    return pd.DataFrame(dados)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Casos de Uso Práticos -->
+        <div class="slide" data-slide="15">
             <div class="slide-content">
                 <h1 class="slide-title" data-i18n="presentation.casos_uso">Casos de Uso Práticos</h1>
                 <p class="slide-text" data-i18n="presentation.casos_uso_content">
@@ -1387,8 +1486,8 @@
             </div>
         </div>
 
-        <!-- Slide 15: Estratégias de Melhores Práticas -->
-        <div class="slide" data-slide="15">
+        <!-- Slide 16: Estratégias de Melhores Práticas -->
+        <div class="slide" data-slide="16">
             <div class="slide-content">
                 <h1 class="slide-title" data-i18n="presentation.estrategias">Estratégias de Melhores Práticas</h1>
                 <p class="slide-text" data-i18n="presentation.estrategias_content">
@@ -1427,8 +1526,8 @@
             </div>
         </div>
 
-        <!-- Slide 16: Roadmap Futuro -->
-        <div class="slide" data-slide="16">
+        <!-- Slide 17: Roadmap Futuro -->
+        <div class="slide" data-slide="17">
             <div class="slide-content">
                 <h1 class="slide-title" data-i18n="presentation.roadmap">Roadmap Futuro</h1>
                 <p class="slide-text" data-i18n="presentation.roadmap_content">
@@ -1461,8 +1560,8 @@
             </div>
         </div>
 
-        <!-- Slide 17: Desafios & Lições Aprendidas -->
-        <div class="slide" data-slide="17">
+        <!-- Slide 18: Desafios & Lições Aprendidas -->
+        <div class="slide" data-slide="18">
             <div class="slide-content">
                 <h1 class="slide-title" data-i18n="presentation.desafios">Desafios & Lições Aprendidas</h1>
                 <p class="slide-text" data-i18n="presentation.desafios_content">
@@ -1495,8 +1594,8 @@
             </div>
         </div>
 
-        <!-- Slide 18: Perguntas & Respostas -->
-        <div class="slide" data-slide="18">
+        <!-- Slide 19: Perguntas & Respostas -->
+        <div class="slide" data-slide="19">
             <div class="slide-content">
                 <h1 class="slide-title" data-i18n="presentation.perguntas">Perguntas & Respostas</h1>
                 <p class="slide-text" data-i18n="presentation.perguntas_content">
@@ -1515,8 +1614,8 @@
             </div>
         </div>
 
-        <!-- Slide 19: Próximos Passos -->
-        <div class="slide" data-slide="19">
+        <!-- Slide 20: Próximos Passos -->
+        <div class="slide" data-slide="20">
             <div class="slide-content">
                 <h1 class="slide-title" data-i18n="presentation.proximos_passos">Próximos Passos</h1>
                 <p class="slide-text" data-i18n="presentation.proximos_passos_content">
@@ -1560,8 +1659,44 @@
             </div>
         </div>
 
-        <!-- Slide 20: Obrigado & Contato -->
-        <div class="slide" data-slide="20">
+        <!-- Slide 21: Recursos de Código Aberto -->
+        <div class="slide" data-slide="21">
+            <div class="slide-content">
+                <h1 class="slide-title">Recursos de Código Aberto</h1>
+                <p class="slide-text">
+                    Projetos Python de código aberto para OSINT que você pode contribuir e utilizar:
+                </p>
+                
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 30px;">
+                    <!-- Projeto 1 -->
+                    <div style="background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 25px; width: 45%; min-width: 280px;">
+                        <h3 style="color: var(--accent-cyan); margin-bottom: 15px; font-size: 1.3rem;">OSINT-SPY</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 15px;">Framework Python que coleta informações de fontes públicas para inteligência cibernética.</p>
+                        <div style="background: rgba(10, 25, 47, 0.6); border-radius: 8px; padding: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #e6f1ff; white-space: pre; overflow-x: auto;">
+git clone https://github.com/SharadKumar97/OSINT-SPY.git
+cd OSINT-SPY
+pip install -r requirements.txt</div>
+                    </div>
+                    
+                    <!-- Projeto 2 -->
+                    <div style="background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 25px; width: 45%; min-width: 280px;">
+                        <h3 style="color: var(--accent-cyan); margin-bottom: 15px; font-size: 1.3rem;">theHarvester</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 15px;">Ferramenta para coletar e-mails, subdomínios, hosts, nomes de funcionários, portas abertas e banners de múltiplas fontes.</p>
+                        <div style="background: rgba(10, 25, 47, 0.6); border-radius: 8px; padding: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #e6f1ff; white-space: pre; overflow-x: auto;">
+git clone https://github.com/laramies/theHarvester
+cd theHarvester
+pip install -r requirements.txt</div>
+                    </div>
+                </div>
+                
+                <div class="mineiro-badge" style="margin-top: 30px;">
+                    <span class="mineiro-text">Conteúdo aberto, conhecimento compartilhado!</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 22: Obrigado & Contato -->
+        <div class="slide" data-slide="22">
             <div class="slide-content">
                 <div class="thank-you-container">
                     <div class="logo-container">
@@ -1648,7 +1783,7 @@
                 
                 let content = '';
                 for (let i = 0; i < 50; i++) {
-                    // Apenas 0s e 1s
+                    // Apenas 0s e 1s como na matrix original
                     const chars = '01';
                     content += chars.charAt(Math.floor(Math.random() * chars.length)) + '<br>';
                 }
