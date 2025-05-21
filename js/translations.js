@@ -1,6 +1,37 @@
 // Translations for the website
 const translations = {
     pt: {
+        hybridIntel: {
+            title: "A Nova Inteligência Híbrida",
+            subtitle: "Humano + Máquina = Futuro",
+            description: "Combinando habilidades humanas e máquinas para superar limitações de ambos e criar capacidades superiores."
+        },
+        brazil: {
+            title: "OSINT no Brasil",
+            subtitle: "Casos de sucesso nacionais",
+            description: "Casos de aplicação em contexto nacional com características e desafios próprios do cenário brasileiro."
+        },
+        slide1: {
+            title: "IA & OSINT",
+            subtitle: "A Nova Fronteira Digital",
+            welcome: "Sejam bem-vindos!",
+            description: "Explorando as possibilidades, desafios e implicações éticas da integração entre Inteligência Artificial e OSINT.",
+            insight_title: "Insights Poderosos",
+            insight_desc: "Descobrindo conexões ocultas em dados públicos com o poder da IA",
+            approach_title: "Abordagem Ética",
+            approach_desc: "Explorando o equilíbrio entre inovação e responsabilidade"
+        },
+        slide2: {
+            title: "Agenda",
+            item1: "O que é OSINT e qual sua relevância",
+            item2: "O mundo invisível dos dados",
+            item3: "A vida digital 24/7",
+            item4: "A jornada do OSINT",
+            item5: "Integração com IA",
+            item6: "Arsenal digital",
+            item7: "Considerações éticas e legais",
+            item8: "Futuro e próximos passos"
+        },
         common: {
             learn_more: "Saiba mais",
             lgpd: "LGPD",
@@ -164,7 +195,9 @@ const translations = {
             data: "Análise de Dados"
         },
         readMode: {
-            label: "Modo Leitura"
+            label: "Modo Leitura",
+            activate: "Ativar Modo Leitura",
+            deactivate: "Desativar Modo Leitura"
         },
         footer: {
             home: "Início",
@@ -200,6 +233,8 @@ const translations = {
         digitalLife: {
             title: "24/7 Online",
             subtitle: "Sua Vida Digital em Números",
+            description: "Nossa vida digital está sempre ativa e acessível, gerando dados constantemente mesmo quando não estamos cientes. Cada interação deixa um rastro digital permanente.",
+            conclusion: "Esta realidade cria tanto oportunidades quanto desafios para a pesquisa OSINT, exigindo ferramentas mais sofisticadas para processamento.",
             data_bytes: "Quintilhões de bytes/dia",
             phone_checks: "Vezes checamos celular/dia",
             online_percent: "Brasileiros online",
@@ -278,8 +313,10 @@ const translations = {
         },
         // Novas traduções para a apresentação
         presentation: {
+            doc_title: "IA & OSINT — Apresentação UAISINT",
             title: "IA & OSINT – A Nova Fronteira Digital",
             subtitle: "Pipeline, Algoritmos e Dilemas Éticos",
+            osint_subtitle: "Open Source Intelligence",
             agenda: "Agenda",
             mundo_dados: "O Mundo Invisível dos Dados",
             o_que_e_osint: "O Que é OSINT?",
@@ -299,6 +336,23 @@ const translations = {
             perguntas: "Perguntas & Respostas",
             proximos_passos: "Próximos Passos",
             obrigado: "Obrigado & Contato",
+            journey: "A Jornada do OSINT",
+            code: "Código Python para OSINT",
+            code_content: "Exemplos práticos de automação para coleta e análise de dados abertos.",
+            ferramentas_content: "Ferramentas e tecnologias que compõem o ecossistema moderno de OSINT + IA.",
+            data_potential: "Para profissionais de segurança, jornalistas investigativos e analistas, esses dados representam uma fonte inesgotável de inteligência potencial.",
+            step1_title: "Fontes Abertas",
+            step1_desc: "Informações legalmente acessíveis ao público",
+            step2_title: "Metodologia",
+            step2_desc: "Processo sistemático de coleta e análise",
+            step3_title: "Inteligência",
+            step3_desc: "Insights acionáveis para tomada de decisão",
+            processo_description: "Um ciclo contínuo de coleta, processamento, análise e disseminação de informações.",
+            processo_conclusion: "Este processo estruturado permite transformar fragmentos de informação em um panorama conectado e significativo, revelando conexões antes invisíveis.",
+            coleta_dados_description: "Diversas fontes de informação compõem o ecossistema OSINT, cada uma oferecendo uma peça única do quebra-cabeça.",
+            coleta_dados_conclusion: "A diversidade de fontes é crucial para validação cruzada e construção de uma visão abrangente do objeto de análise.",
+            enriquecimento_description: "Processo crítico de verificação e contextualização de dados brutos para garantir a qualidade da análise.",
+            enriquecimento_conclusion: "A qualidade dos insights gerados é diretamente proporcional à qualidade dos dados processados.",
             mundo_dados_content: "Vivemos em uma era onde 90% dos dados existentes foram produzidos nos últimos dois anos. Neste vasto oceano digital, temos acesso a uma quantidade sem precedentes de informações - mas a capacidade de transformá-las em insights acionáveis é o verdadeiro diferencial competitivo.",
             o_que_e_osint_content: "OSINT (Open Source Intelligence) é o processo metodológico de coleta, análise e transformação de informações publicamente disponíveis em inteligência acionável. Combinada com IA, esta disciplina alcança novos patamares de eficiência e descoberta.",
             processo_osint_content: "O ciclo de OSINT envolve cinco etapas fundamentais: planejamento, coleta, processamento, análise e disseminação. Cada fase é potencializada por tecnologias de IA específicas, desde crawlers inteligentes até sistemas avançados de visualização de dados.",
@@ -320,6 +374,37 @@ const translations = {
         }
     },
     en: {
+        hybridIntel: {
+            title: "The New Hybrid Intelligence",
+            subtitle: "Human + Machine = Future",
+            description: "Combining human skills and machines to overcome limitations of both and create superior capabilities."
+        },
+        brazil: {
+            title: "OSINT in Brazil",
+            subtitle: "National success cases",
+            description: "Application cases in a national context with characteristics and challenges specific to the Brazilian scenario."
+        },
+        slide1: {
+            title: "AI & OSINT",
+            subtitle: "The New Digital Frontier",
+            welcome: "Welcome!",
+            description: "Exploring the possibilities, challenges and ethical implications of the integration between Artificial Intelligence and OSINT.",
+            insight_title: "Powerful Insights",
+            insight_desc: "Discovering hidden connections in public data with the power of AI",
+            approach_title: "Ethical Approach",
+            approach_desc: "Exploring the balance between innovation and responsibility"
+        },
+        slide2: {
+            title: "Agenda",
+            item1: "What is OSINT and its relevance",
+            item2: "The invisible world of data",
+            item3: "24/7 Digital life",
+            item4: "The OSINT journey",
+            item5: "Integration with AI",
+            item6: "Digital arsenal",
+            item7: "Ethical and legal considerations",
+            item8: "Future and next steps"
+        },
         common: {
             learn_more: "Learn more",
             lgpd: "GDPR",
@@ -483,7 +568,9 @@ const translations = {
             data: "Data Analysis"
         },
         readMode: {
-            label: "Read Mode"
+            label: "Read Mode",
+            activate: "Activate Read Mode",
+            deactivate: "Deactivate Read Mode"
         },
         footer: {
             home: "Home",
@@ -519,6 +606,8 @@ const translations = {
         digitalLife: {
             title: "24/7 Online",
             subtitle: "Your Digital Life in Numbers",
+            description: "Our digital life is always active and accessible, generating data constantly even when we are not aware. Each interaction leaves a permanent digital footprint.",
+            conclusion: "This reality creates both opportunities and challenges for OSINT research, requiring more sophisticated processing tools.",
             data_bytes: "Quintillion bytes/day",
             phone_checks: "Times we check our phones/day",
             online_percent: "People online in Brazil",
@@ -597,8 +686,10 @@ const translations = {
         },
         // New translations for presentation
         presentation: {
+            doc_title: "AI & OSINT — UAISINT Presentation",
             title: "AI & OSINT - The New Digital Frontier",
             subtitle: "Pipeline, Algorithms and Ethical Dilemmas",
+            osint_subtitle: "Open Source Intelligence",
             agenda: "Agenda",
             mundo_dados: "The Invisible World of Data",
             o_que_e_osint: "What is OSINT?",
@@ -618,6 +709,23 @@ const translations = {
             perguntas: "Questions & Answers",
             proximos_passos: "Next Steps",
             obrigado: "Thank You & Contact",
+            journey: "The OSINT Journey",
+            code: "Python Code for OSINT",
+            code_content: "Practical examples of automation for collecting and analyzing open data.",
+            ferramentas_content: "Tools and technologies that make up the modern OSINT + AI ecosystem.",
+            data_potential: "For security professionals, investigative journalists, and analysts, this data represents an inexhaustible source of potential intelligence.",
+            step1_title: "Open Sources",
+            step1_desc: "Information legally accessible to the public",
+            step2_title: "Methodology",
+            step2_desc: "Systematic process of collection and analysis",
+            step3_title: "Intelligence",
+            step3_desc: "Actionable insights for decision making",
+            processo_description: "A continuous cycle of collection, processing, analysis, and dissemination of information.",
+            processo_conclusion: "This structured process allows transforming fragments of information into a connected and meaningful panorama, revealing previously invisible connections.",
+            coleta_dados_description: "Various sources of information make up the OSINT ecosystem, each offering a unique piece of the puzzle.",
+            coleta_dados_conclusion: "The diversity of sources is crucial for cross-validation and building a comprehensive view of the object of analysis.",
+            enriquecimento_description: "Critical process of verification and contextualization of raw data to ensure quality analysis.",
+            enriquecimento_conclusion: "The quality of insights generated is directly proportional to the quality of the data processed.",
             mundo_dados_content: "We live in an era where 90% of existing data was produced in the last two years. In this vast digital ocean, we have access to an unprecedented amount of information - but the ability to transform it into actionable insights is the real competitive differentiator.",
             o_que_e_osint_content: "OSINT (Open Source Intelligence) is the methodical process of collecting, analyzing and transforming publicly available information into actionable intelligence. Combined with AI, this discipline reaches new levels of efficiency and discovery.",
             processo_osint_content: "The OSINT cycle involves five fundamental steps: planning, collection, processing, analysis and dissemination. Each phase is powered by specific AI technologies, from intelligent crawlers to advanced data visualization systems.",
@@ -639,6 +747,37 @@ const translations = {
         }
     },
     es: {
+        hybridIntel: {
+            title: "La Nueva Inteligencia Híbrida",
+            subtitle: "Humano + Máquina = Futuro",
+            description: "Combinando habilidades humanas y máquinas para superar limitaciones de ambas y crear capacidades superiores."
+        },
+        brazil: {
+            title: "OSINT en Brasil",
+            subtitle: "Casos de éxito nacionales",
+            description: "Casos de aplicación en contexto nacional con características y desafíos propios del escenario brasileño."
+        },
+        slide1: {
+            title: "IA & OSINT",
+            subtitle: "La Nueva Frontera Digital",
+            welcome: "¡Bienvenidos!",
+            description: "Explorando las posibilidades, desafíos e implicaciones éticas de la integración entre Inteligencia Artificial y OSINT.",
+            insight_title: "Insights Poderosos",
+            insight_desc: "Descubriendo conexiones ocultas en datos públicos con el poder de la IA",
+            approach_title: "Enfoque Ético",
+            approach_desc: "Explorando el equilibrio entre innovación y responsabilidad"
+        },
+        slide2: {
+            title: "Agenda",
+            item1: "Qué es OSINT y su relevancia",
+            item2: "El mundo invisible de los datos",
+            item3: "Vida digital 24/7",
+            item4: "El viaje del OSINT",
+            item5: "Integración con IA",
+            item6: "Arsenal digital",
+            item7: "Consideraciones éticas y legales",
+            item8: "Futuro y próximos pasos"
+        },
         common: {
             learn_more: "Saber más",
             lgpd: "LGPD",
@@ -802,7 +941,9 @@ const translations = {
             data: "Análisis de Datos"
         },
         readMode: {
-            label: "Modo Lectura"
+            label: "Modo Lectura",
+            activate: "Activar Modo Lectura",
+            deactivate: "Desactivar Modo Lectura"
         },
         footer: {
             home: "Inicio",
@@ -838,6 +979,8 @@ const translations = {
         digitalLife: {
             title: "24/7 En Línea",
             subtitle: "Tu Vida Digital en Números",
+            description: "Nuestra vida digital está siempre activa y accesible, generando datos constantemente incluso cuando no somos conscientes. Cada interacción deja una huella digital permanente.",
+            conclusion: "Esta realidad crea tanto oportunidades como desafíos para la investigación OSINT, requiriendo herramientas de procesamiento más sofisticadas.",
             data_bytes: "Quintillones de bytes/día",
             phone_checks: "Veces que revisamos el móvil/día",
             online_percent: "Personas conectadas en Brasil",
@@ -916,8 +1059,10 @@ const translations = {
         },
         // Nuevas traducciones para la presentación
         presentation: {
+            doc_title: "IA & OSINT — Presentación UAISINT",
             title: "IA & OSINT - La Nueva Frontera Digital",
             subtitle: "Pipeline, Algoritmos y Dilemas Éticos",
+            osint_subtitle: "Inteligencia de Fuentes Abiertas",
             agenda: "Agenda",
             mundo_dados: "El Mundo Invisible de los Datos",
             o_que_e_osint: "¿Qué es OSINT?",
@@ -937,6 +1082,23 @@ const translations = {
             perguntas: "Preguntas & Respuestas",
             proximos_passos: "Próximos Pasos",
             obrigado: "Gracias & Contacto",
+            journey: "La Jornada del OSINT",
+            code: "Código Python para OSINT",
+            code_content: "Ejemplos prácticos de automatización para recopilación y análisis de datos abiertos.",
+            ferramentas_content: "Herramientas y tecnologías que componen el ecosistema moderno de OSINT + IA.",
+            data_potential: "Para profesionales de seguridad, periodistas de investigación y analistas, estos datos representan una fuente inagotable de inteligencia potencial.",
+            step1_title: "Fuentes Abiertas",
+            step1_desc: "Información legalmente accesible al público",
+            step2_title: "Metodología",
+            step2_desc: "Proceso sistemático de recolección y análisis",
+            step3_title: "Inteligencia",
+            step3_desc: "Insights accionables para toma de decisiones",
+            processo_description: "Un ciclo continuo de recopilación, procesamiento, análisis y difusión de información.",
+            processo_conclusion: "Este proceso estructurado permite transformar fragmentos de información en un panorama conectado y significativo, revelando conexiones previamente invisibles.",
+            coleta_dados_description: "Diversas fuentes de información componen el ecosistema OSINT, cada una ofreciendo una pieza única del rompecabezas.",
+            coleta_dados_conclusion: "La diversidad de fuentes es crucial para la validación cruzada y la construcción de una visión integral del objeto de análisis.",
+            enriquecimento_description: "Proceso crítico de verificación y contextualización de datos crudos para garantizar un análisis de calidad.",
+            enriquecimento_conclusion: "La calidad de los insights generados es directamente proporcional a la calidad de los datos procesados.",
             mundo_dados_content: "Vivimos en una era donde el 90% de los datos existentes fueron producidos en los últimos dos años. En este vasto océano digital, tenemos acceso a una cantidad sin precedentes de información, pero la capacidad de transformarla en insights accionables es el verdadero diferenciador competitivo.",
             o_que_e_osint_content: "OSINT (Inteligencia de Fuentes Abiertas) es el proceso metódico de recolección, análisis y transformación de información públicamente disponible en inteligencia accionable. Combinada con IA, esta disciplina alcanza nuevos niveles de eficiencia y descubrimiento.",
             processo_osint_content: "El ciclo de OSINT involucra cinco etapas fundamentales: planificación, recolección, procesamiento, análisis y diseminación. Cada fase es potenciada por tecnologías de IA específicas, desde crawlers inteligentes hasta sistemas avanzados de visualización de datos.",
@@ -981,6 +1143,14 @@ function updateTranslations(lang) {
     
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(element => {
+        // Skip mineiro elements - they should never be translated
+        if (element.classList.contains('mineiro-text') || 
+            element.closest('.mineiro-badge') || 
+            element.querySelector('.mineiro-text') ||
+            element.hasAttribute('data-no-translate')) {
+            return;
+        }
+        
         const key = element.getAttribute('data-i18n');
         if (!key) return;
         
@@ -1014,15 +1184,8 @@ function updateTranslations(lang) {
 
 // Initialize language
 function initializeLanguage() {
-    // Verificar a estrutura dos arrays de tradução para humanos e IA
-    console.log('Checking human_list PT:', translations.pt.hybridIntel.human_list);
-    console.log('Checking human_list EN:', translations.en.hybridIntel.human_list);
-    console.log('Checking human_list ES:', translations.es.hybridIntel.human_list);
-    
-    // Verificar se podemos acessar os índices dos arrays
-    console.log('PT human_list[0]:', translations.pt.hybridIntel.human_list[0]);
-    console.log('EN human_list[0]:', translations.en.hybridIntel.human_list[0]);
-    console.log('ES human_list[0]:', translations.es.hybridIntel.human_list[0]);
+    // A inicialização é mais simples agora
+    console.log('Initializing language system...');
     
     const savedLang = localStorage.getItem('selectedLanguage') || 'pt';
     setLanguage(savedLang);
