@@ -8,15 +8,15 @@
     display: none;
     position: fixed;
     top: 20px;
-    right: 20px;
+    left: 20px;
     width: 45px;
     height: 45px;
-    background: var(--glass-bg);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     cursor: pointer;
-    z-index: 1002;
+    z-index: 10000;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -55,19 +55,19 @@
 
     /* Navigation adjustments */
     nav#navbar {
-        position: fixed;
-        left: -300px;
-        width: 280px;
-        height: 100vh;
-        background: rgba(10, 14, 39, 0.98);
+        position: fixed !important;
+        left: -300px !important;
+        width: 280px !important;
+        height: 100vh !important;
+        background: rgba(10, 14, 39, 0.98) !important;
         backdrop-filter: blur(20px);
         transition: left 0.3s ease;
-        z-index: 1001;
+        z-index: 9999 !important;
         box-shadow: 2px 0 20px rgba(0, 0, 0, 0.3);
     }
 
     nav#navbar.active {
-        left: 0;
+        left: 0 !important;
     }
 
     /* Main content adjustment */
@@ -102,7 +102,7 @@
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
-        z-index: 1000;
+        z-index: 9998;
         pointer-events: none;
     }
 
@@ -172,6 +172,7 @@
     .hero {
         min-height: 100vh;
         padding: 100px 20px 60px !important;
+        margin-left: 0 !important;
         text-align: center;
     }
 
@@ -546,7 +547,7 @@
         width: 40px;
         height: 40px;
         top: 15px;
-        right: 15px;
+        left: 15px;
     }
     
     .mobile-menu-btn span {
