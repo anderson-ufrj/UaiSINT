@@ -1,0 +1,355 @@
+/* 
+ * UAISINT - Mobile Styles
+ * Responsive design for mobile devices
+ */
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1001;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-btn span {
+    width: 24px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Navigation Overlay */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    nav {
+        left: -250px;
+        transition: left 0.3s ease;
+    }
+
+    nav.active {
+        left: 0;
+    }
+
+    /* Overlay for mobile menu */
+    body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+
+    body.menu-open::after {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Hero Section Mobile */
+    .hero {
+        padding: 100px 20px 50px;
+        min-height: 100vh;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin: 20px 0 30px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Section Headers Mobile */
+    .section-header {
+        padding: 0 20px;
+        margin-bottom: 30px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    /* Container Mobile */
+    .container {
+        padding: 0 20px;
+    }
+
+    /* About Section Mobile */
+    .about-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .about-text,
+    .about-image {
+        width: 100%;
+    }
+
+    /* Timeline Mobile */
+    .timeline {
+        padding: 0 !important;
+    }
+
+    /* Timeline vertical line - hide on mobile */
+    .timeline > div[style*="position: absolute"] {
+        display: none !important;
+    }
+
+    /* Timeline items mobile */
+    .timeline > div[style*="display: flex"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        margin-bottom: 20px !important;
+    }
+
+    .timeline > div[style*="display: flex"] > div[style*="width: 45%"] {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    /* Tools Grid Mobile */
+    .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Cases Grid Mobile */
+    .cases-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Brazil Section Mobile */
+    .brazil-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .brazil-text,
+    .brazil-image {
+        width: 100%;
+    }
+
+    /* Ethics Grid Mobile */
+    .ethics-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Compliance Grid Mobile */
+    .compliance-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Contact Section Mobile */
+    .contact-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .contact-info,
+    .contact-form {
+        width: 100%;
+    }
+
+    /* Footer Mobile */
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .footer-section {
+        width: 100%;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    /* Mineiro Badge Mobile */
+    .mineiro-badge {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    /* Cards Mobile */
+    .card {
+        padding: 20px;
+    }
+
+    /* Buttons Mobile */
+    .btn {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+    }
+
+    /* Form Elements Mobile */
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
+    /* Modal Mobile */
+    .modal-content {
+        width: 90%;
+        max-width: none;
+        margin: 20px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    /* Table Responsive */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 600px;
+    }
+
+    /* Hide Matrix Rain on Mobile for Performance */
+    .matrix-rain {
+        display: none;
+    }
+
+    /* Adjust padding for sections */
+    section {
+        padding: 60px 0;
+    }
+
+    /* Language Selector Mobile */
+    .lang-selector {
+        margin: 15px 0 10px;
+    }
+
+    /* Read Mode Toggle Mobile */
+    .read-mode-toggle {
+        margin: 5px 0 15px;
+    }
+
+    /* Code blocks mobile */
+    pre {
+        font-size: 12px;
+        overflow-x: auto;
+    }
+
+    /* Image responsive */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Floating elements */
+    .floating {
+        animation: none; /* Disable floating animation on mobile */
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .mineiro-badge {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 80px 20px 40px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    nav {
+        width: 200px;
+    }
+}
+
+/* Touch-friendly adjustments */
+@media (hover: none) and (pointer: coarse) {
+    .btn:hover,
+    .card:hover {
+        transform: none;
+    }
+
+    .nav-link {
+        padding: 12px 0;
+    }
+}

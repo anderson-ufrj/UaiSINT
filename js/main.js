@@ -8,6 +8,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('UAISINT website loaded');
     
+    // Initialize mobile menu
+    initializeMobileMenu();
+    
     // Initialize dark/light mode
     initializeThemeToggle();
     
@@ -17,6 +20,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // Custom event for when content is updated
     window.dispatchEvent(new CustomEvent('contentLoaded'));
 });
+
+// Mobile menu functionality
+function initializeMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navbar = document.getElementById('navbar');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    if (!mobileMenuBtn || !navbar) return;
+    
+    // Toggle mobile menu
+    mobileMenuBtn.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navbar.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!navbar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            mobileMenuBtn.classList.remove('active');
+            navbar.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+    });
+    
+    // Close menu when clicking on a nav link
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenuBtn.classList.remove('active');
+            navbar.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        });
+    });
+}
 
 // Theme toggle functionality
 function initializeThemeToggle() {
