@@ -1,6 +1,6 @@
 /* 
- * UAISINT - Mobile Styles
- * Responsive design for mobile devices
+ * UAISINT - Mobile Responsive Styles
+ * Complete mobile optimization
  */
 
 /* Mobile Menu Button */
@@ -8,56 +8,88 @@
     display: none;
     position: fixed;
     top: 20px;
-    left: 20px;
-    width: 40px;
-    height: 40px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 1002;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .mobile-menu-btn span {
-    width: 24px;
-    height: 2px;
+    width: 25px;
+    height: 3px;
     background: var(--text-primary);
     transition: all 0.3s ease;
+    border-radius: 2px;
 }
 
 .mobile-menu-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: rotate(45deg) translate(6px, 6px);
 }
 
 .mobile-menu-btn.active span:nth-child(2) {
     opacity: 0;
+    transform: scale(0);
 }
 
 .mobile-menu-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: rotate(-45deg) translate(7px, -7px);
 }
 
-/* Mobile Navigation Overlay */
-@media screen and (max-width: 768px) {
+/* Tablet and Mobile Styles */
+@media screen and (max-width: 1024px) {
+    /* Show mobile menu button */
     .mobile-menu-btn {
         display: flex;
     }
 
-    nav {
-        left: -250px;
+    /* Navigation adjustments */
+    nav#navbar {
+        position: fixed;
+        left: -300px;
+        width: 280px;
+        height: 100vh;
+        background: rgba(10, 14, 39, 0.98);
+        backdrop-filter: blur(20px);
         transition: left 0.3s ease;
+        z-index: 1001;
+        box-shadow: 2px 0 20px rgba(0, 0, 0, 0.3);
     }
 
-    nav.active {
+    nav#navbar.active {
         left: 0;
     }
 
+    /* Main content adjustment */
+    body {
+        margin-left: 0 !important;
+    }
+
+    /* All sections adjustment */
+    section {
+        margin-left: 0 !important;
+        padding: 80px 40px !important;
+    }
+
+    /* Container width adjustment */
+    .container {
+        max-width: 100%;
+        padding: 0 40px;
+    }
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
     /* Overlay for mobile menu */
     body::after {
         content: '';
@@ -66,69 +98,139 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.7);
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
-        z-index: 999;
+        z-index: 1000;
+        pointer-events: none;
     }
 
     body.menu-open::after {
         opacity: 1;
         visibility: visible;
+        pointer-events: all;
+    }
+
+    /* Scroll lock when menu is open */
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    /* Navigation mobile */
+    nav#navbar {
+        width: 250px;
+        left: -250px;
+    }
+
+    .nav-container {
+        padding: 20px;
+    }
+
+    .nav-logo {
+        margin-bottom: 20px;
+    }
+
+    .nav-logo img {
+        max-width: 150px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-link {
+        padding: 12px 15px;
+        font-size: 0.95rem;
+    }
+
+    /* Language selector mobile */
+    .lang-selector {
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 15px 0;
+    }
+
+    .lang-btn {
+        flex: 1;
+        min-width: 60px;
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    /* Sections padding */
+    section {
+        padding: 60px 20px !important;
+    }
+
+    /* Container mobile */
+    .container {
+        padding: 0 20px;
     }
 
     /* Hero Section Mobile */
     .hero {
-        padding: 100px 20px 50px !important;
         min-height: 100vh;
-        margin-left: 0 !important;
+        padding: 100px 20px 60px !important;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-badge {
+        font-size: 0.85rem;
+        padding: 8px 16px;
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        font-size: clamp(2rem, 8vw, 3rem);
         line-height: 1.2;
+        margin: 20px 0;
     }
 
     .hero-subtitle {
-        font-size: 1rem;
-        margin: 20px 0 30px;
+        font-size: clamp(0.95rem, 3vw, 1.1rem);
+        margin: 20px auto 30px;
+        padding: 0 10px;
     }
 
     .hero-buttons {
         flex-direction: column;
         gap: 15px;
         width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
     }
 
     .hero-buttons .btn {
         width: 100%;
         justify-content: center;
+        padding: 14px 20px;
+        font-size: 0.95rem;
     }
 
-    /* Section Headers Mobile */
+    /* Section headers mobile */
     .section-header {
-        padding: 0 20px;
-        margin-bottom: 30px;
+        text-align: center;
+        margin-bottom: 40px;
     }
 
     .section-title {
-        font-size: 2rem;
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+        margin-bottom: 15px;
     }
 
     .section-subtitle {
-        font-size: 1rem;
-    }
-
-    /* Container Mobile */
-    .container {
-        padding: 0 20px;
+        font-size: clamp(0.95rem, 3vw, 1.1rem);
+        padding: 0 10px;
     }
 
     /* About Section Mobile */
     .about-content {
-        display: grid !important;
-        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
         gap: 30px;
     }
 
@@ -137,39 +239,104 @@
         width: 100%;
     }
 
-    /* Timeline Mobile */
-    .timeline {
-        padding: 0 !important;
+    .about-text h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
     }
 
-    /* Timeline vertical line - hide on mobile */
+    .about-text p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .about-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+    }
+
+    /* Timeline Mobile */
+    .timeline {
+        position: relative;
+        padding: 20px 0 !important;
+    }
+
+    /* Hide timeline center line on mobile */
+    .timeline::before,
     .timeline > div[style*="position: absolute"] {
         display: none !important;
     }
 
-    /* Timeline items mobile */
+    /* Timeline items */
     .timeline > div {
+        display: flex !important;
         flex-direction: column !important;
-        align-items: flex-start !important;
-        margin-bottom: 20px !important;
-        justify-content: flex-start !important;
+        align-items: stretch !important;
+        margin-bottom: 30px !important;
+        position: relative !important;
     }
 
+    /* Timeline cards */
     .timeline > div > div {
         width: 100% !important;
         margin: 0 !important;
+        position: relative !important;
+        padding-left: 40px !important;
+    }
+
+    /* Timeline dots */
+    .timeline > div > div::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 20px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--primary-gradient);
+        border: 3px solid var(--dark-bg);
     }
 
     /* Tools Grid Mobile */
     .tools-grid {
+        display: grid !important;
         grid-template-columns: 1fr !important;
-        gap: 20px;
+        gap: 20px !important;
     }
 
-    /* Cases Grid Mobile */
-    .cases-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px;
+    .tool-card {
+        padding: 25px !important;
+    }
+
+    .tool-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    .tool-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+    }
+
+    .tool-card p {
+        font-size: 0.9rem;
+    }
+
+    /* Cases Cards Mobile */
+    .case-card {
+        padding: 25px !important;
+        margin-bottom: 20px;
+    }
+
+    .case-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .case-card h3 {
+        font-size: 1.25rem;
     }
 
     /* Brazil Section Mobile */
@@ -181,38 +348,78 @@
 
     .brazil-text,
     .brazil-image {
-        width: 100%;
+        width: 100% !important;
     }
 
-    /* Ethics Grid Mobile */
-    .ethics-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px;
+    /* Ethics Cards Mobile */
+    .ethics-card {
+        padding: 25px !important;
+        margin-bottom: 20px;
     }
 
-    /* Compliance Grid Mobile */
-    .compliance-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px;
+    .ethics-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+        margin-bottom: 15px;
+    }
+
+    /* Compliance Cards Mobile */
+    .compliance-card {
+        padding: 25px !important;
+        margin-bottom: 20px;
     }
 
     /* Contact Section Mobile */
     .contact-content {
-        display: grid !important;
-        grid-template-columns: 1fr !important;
-        gap: 30px;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 40px;
     }
 
     .contact-info,
     .contact-form {
+        width: 100% !important;
+    }
+
+    .contact-buttons {
         width: 100%;
     }
 
+    .contact-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 14px;
+        font-size: 0.95rem;
+    }
+
+    /* Form Mobile */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 12px 15px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
     /* Footer Mobile */
+    footer {
+        padding: 40px 20px 20px !important;
+        margin-left: 0 !important;
+    }
+
     .footer-content {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 30px;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
         text-align: center;
     }
 
@@ -220,143 +427,198 @@
         width: 100%;
     }
 
+    .footer-section h4 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+    }
+
+    .footer-links {
+        justify-content: center;
+        gap: 10px;
+    }
+
     .footer-bottom {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
         text-align: center;
+        padding-top: 20px;
+        margin-top: 20px;
     }
 
     /* Mineiro Badge Mobile */
     .mineiro-badge {
-        font-size: 0.9rem;
-        padding: 8px 16px;
-    }
-
-    /* Cards Mobile */
-    .card {
-        padding: 20px;
+        font-size: 0.85rem !important;
+        padding: 8px 16px !important;
+        margin: 15px auto !important;
+        max-width: 90%;
     }
 
     /* Buttons Mobile */
     .btn {
         padding: 12px 24px;
         font-size: 0.95rem;
+        gap: 8px;
     }
 
-    /* Form Elements Mobile */
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-        font-size: 16px; /* Prevents zoom on iOS */
+    .btn i {
+        font-size: 1rem;
     }
 
-    /* Modal Mobile */
-    .modal-content {
-        width: 90%;
-        max-width: none;
-        margin: 20px;
-        max-height: 90vh;
-        overflow-y: auto;
-    }
-
-    /* Table Responsive */
-    .table-container {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    table {
-        min-width: 600px;
-    }
-
-    /* Hide Matrix Rain on Mobile for Performance */
-    .matrix-rain {
-        display: none;
-    }
-
-    /* Adjust padding for sections */
-    section {
-        padding: 60px 0 !important;
-        margin-left: 0 !important;
-    }
-
-    /* Language Selector Mobile */
-    .lang-selector {
-        margin: 15px 0 10px;
-    }
-
-    /* Read Mode Toggle Mobile */
-    .read-mode-toggle {
-        margin: 5px 0 15px;
+    /* Cards Mobile */
+    .card {
+        padding: 20px;
+        border-radius: 12px;
     }
 
     /* Code blocks mobile */
     pre {
-        font-size: 12px;
+        font-size: 0.75rem;
+        padding: 15px;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
-    /* Image responsive */
-    img {
-        max-width: 100%;
-        height: auto;
+    code {
+        font-size: 0.85rem;
     }
 
-    /* Floating elements */
+    /* Tables Mobile */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -20px;
+        padding: 0 20px;
+    }
+
+    table {
+        min-width: 500px;
+        font-size: 0.85rem;
+    }
+
+    /* Modal Mobile */
+    .modal {
+        padding: 20px;
+    }
+
+    .modal-content {
+        width: calc(100% - 40px);
+        max-width: none;
+        margin: 20px;
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+    }
+
+    .modal-header {
+        padding: 20px;
+    }
+
+    .modal-title {
+        font-size: 1.25rem;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    /* Hide decorative elements */
+    .matrix-rain,
     .floating {
-        animation: none; /* Disable floating animation on mobile */
+        display: none !important;
+    }
+
+    /* Disable hover effects on touch devices */
+    @media (hover: none) {
+        .btn:hover,
+        .card:hover,
+        .tool-card:hover,
+        .case-card:hover,
+        .ethics-card:hover,
+        .compliance-card:hover {
+            transform: none !important;
+        }
     }
 }
 
 /* Small Mobile Devices */
 @media screen and (max-width: 480px) {
+    /* Mobile menu button smaller */
+    .mobile-menu-btn {
+        width: 40px;
+        height: 40px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .mobile-menu-btn span {
+        width: 22px;
+    }
+
+    /* Sections padding */
+    section {
+        padding: 50px 15px !important;
+    }
+
+    /* Hero adjustments */
+    .hero {
+        padding: 80px 15px 50px !important;
+    }
+
     .hero-title {
-        font-size: 2rem;
+        font-size: clamp(1.75rem, 7vw, 2.5rem);
     }
 
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    /* Section headers */
     .section-title {
-        font-size: 1.75rem;
+        font-size: clamp(1.5rem, 5vw, 2rem);
     }
 
+    .section-subtitle {
+        font-size: 0.9rem;
+    }
+
+    /* Buttons smaller */
     .btn {
         padding: 10px 20px;
         font-size: 0.9rem;
     }
 
-    .card {
-        padding: 15px;
+    /* Cards smaller padding */
+    .card,
+    .tool-card,
+    .case-card,
+    .ethics-card,
+    .compliance-card {
+        padding: 20px !important;
     }
 
+    /* Footer adjustments */
+    footer {
+        padding: 30px 15px 15px !important;
+    }
+
+    /* Mineiro badge smaller */
     .mineiro-badge {
-        font-size: 0.8rem;
-        padding: 6px 12px;
+        font-size: 0.75rem !important;
+        padding: 6px 12px !important;
     }
 }
 
-/* Landscape Mobile */
+/* Landscape orientation adjustments */
 @media screen and (max-width: 768px) and (orientation: landscape) {
     .hero {
         min-height: auto;
-        padding: 80px 20px 40px;
+        padding: 60px 20px 40px !important;
     }
 
     .hero-title {
         font-size: 2rem;
     }
 
-    nav {
-        width: 200px;
-    }
-}
-
-/* Touch-friendly adjustments */
-@media (hover: none) and (pointer: coarse) {
-    .btn:hover,
-    .card:hover {
-        transform: none;
-    }
-
-    .nav-link {
-        padding: 12px 0;
+    section {
+        padding: 40px 20px !important;
     }
 }
