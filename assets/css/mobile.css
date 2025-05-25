@@ -44,7 +44,7 @@
 }
 
 /* Mobile Navigation Overlay */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .mobile-menu-btn {
         display: flex;
     }
@@ -80,8 +80,9 @@
 
     /* Hero Section Mobile */
     .hero {
-        padding: 100px 20px 50px;
+        padding: 100px 20px 50px !important;
         min-height: 100vh;
+        margin-left: 0 !important;
     }
 
     .hero-title {
@@ -126,7 +127,8 @@
 
     /* About Section Mobile */
     .about-content {
-        flex-direction: column;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
         gap: 30px;
     }
 
@@ -146,32 +148,34 @@
     }
 
     /* Timeline items mobile */
-    .timeline > div[style*="display: flex"] {
+    .timeline > div {
         flex-direction: column !important;
         align-items: flex-start !important;
         margin-bottom: 20px !important;
+        justify-content: flex-start !important;
     }
 
-    .timeline > div[style*="display: flex"] > div[style*="width: 45%"] {
+    .timeline > div > div {
         width: 100% !important;
         margin: 0 !important;
     }
 
     /* Tools Grid Mobile */
     .tools-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 20px;
     }
 
     /* Cases Grid Mobile */
     .cases-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 20px;
     }
 
     /* Brazil Section Mobile */
     .brazil-content {
-        flex-direction: column;
+        display: flex !important;
+        flex-direction: column !important;
         gap: 30px;
     }
 
@@ -182,19 +186,20 @@
 
     /* Ethics Grid Mobile */
     .ethics-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 20px;
     }
 
     /* Compliance Grid Mobile */
     .compliance-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 20px;
     }
 
     /* Contact Section Mobile */
     .contact-content {
-        flex-direction: column;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
         gap: 30px;
     }
 
@@ -205,7 +210,8 @@
 
     /* Footer Mobile */
     .footer-content {
-        flex-direction: column;
+        display: flex !important;
+        flex-direction: column !important;
         gap: 30px;
         text-align: center;
     }
@@ -270,7 +276,8 @@
 
     /* Adjust padding for sections */
     section {
-        padding: 60px 0;
+        padding: 60px 0 !important;
+        margin-left: 0 !important;
     }
 
     /* Language Selector Mobile */
@@ -302,7 +309,7 @@
 }
 
 /* Small Mobile Devices */
-@media (max-width: 480px) {
+@media screen and (max-width: 480px) {
     .hero-title {
         font-size: 2rem;
     }
@@ -327,7 +334,7 @@
 }
 
 /* Landscape Mobile */
-@media (max-width: 768px) and (orientation: landscape) {
+@media screen and (max-width: 768px) and (orientation: landscape) {
     .hero {
         min-height: auto;
         padding: 80px 20px 40px;
